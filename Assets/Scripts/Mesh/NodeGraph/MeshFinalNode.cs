@@ -8,7 +8,7 @@ public class MeshFinalNode : MeshNode
         return "EndNode";
     }
 
-    public override void ProcessNode()
+    public override void ProcessNode(bool addImage = false)
     {
         points = GetInputValue("entry", entry);
     }

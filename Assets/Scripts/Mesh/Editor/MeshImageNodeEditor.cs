@@ -18,10 +18,8 @@ public class MeshImageNodeEditor : XNodeEditor.NodeEditor
 
         Texture texture = imageNode.GetValue();
 
-        //if (texture != null) EditorGUI.DrawPreviewTexture(new Rect(15, 75, 175, 175), texture);
-
         base.OnBodyGUI();
-        
-        EditorGUILayout.LabelField(new GUIContent(texture));
+
+        EditorGUILayout.LabelField(new GUIContent(texture), GUILayout.Width(175), GUILayout.Height(175));
     }
 }

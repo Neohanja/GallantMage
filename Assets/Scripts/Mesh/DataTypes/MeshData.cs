@@ -118,6 +118,8 @@ public class MeshData
 public class HeightValues
 {
     private float[] vals;
+    public int seed;
+    public Vector2 offset;
 
     public HeightValues()
     {

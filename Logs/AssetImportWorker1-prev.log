@@ -1,0 +1,1346 @@
+Using pre-set license
+Built from '2021.1/release' branch; Version is '2021.1.0f1 (61a549675243) revision 6399305'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 22000.434; Version 2009; 64bit' Language: 'en' Physical Memory: 8034 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.1.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/canun/Desktop/GallantMage
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+62024
+Successfully changed project path to: C:/Users/canun/Desktop/GallantMage
+C:/Users/canun/Desktop/GallantMage
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 108.16 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.1.0f1 (61a549675243)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/canun/Desktop/GallantMage/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1050 (ID=0x1c8d)
+    Vendor:   NVIDIA
+    VRAM:     4019 MB
+    Driver:   25.21.14.2531
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56852
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001745 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 105.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.912 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.003546 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.24 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.288 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 1.40 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2725 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 101.3 MB.
+System memory in use after: 101.5 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 3176.
+Total: 5.388000 ms (FindLiveObjects: 0.832200 ms CreateObjectMapping: 0.366500 ms MarkObjects: 4.090800 ms  DeleteObjects: 0.096000 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Scenes
+  artifactKey: Guid(9848311362db65d4989a48c01b88bbca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(9848311362db65d4989a48c01b88bbca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75e8fe6d0d1b46d561f1df7ae3769205') in 0.018250 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/Scenes/World.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/World.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2704da61d0ca334bf7aba2482aca0db6') in 0.040110 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 27.363832 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '192688c47b55d59904d9ee03b93058e1') in 0.127289 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 87.930188 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8905b2adcd891f986e0d7bbfc455b020') in 0.029699 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 16.404882 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '890b8b46602f59b639a4885538da2fb7') in 0.051132 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 41.412747 seconds.
+  path: Assets/Scripts/Mesh
+  artifactKey: Guid(fafe923424f235246a52e182a9c512ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh using Guid(fafe923424f235246a52e182a9c512ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4ecde76cedca5c4d427e052774d41fd') in 0.017513 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.231293 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph
+  artifactKey: Guid(0cddadee8f1454849ac66b825c2a6cb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph using Guid(0cddadee8f1454849ac66b825c2a6cb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77f44ac018dd2ea09f97732e4fd6a0b4') in 0.019761 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.902469 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/TerrainGraph.cs
+  artifactKey: Guid(c59571adea712f24ab77b81996d24fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/TerrainGraph.cs using Guid(c59571adea712f24ab77b81996d24fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e69dd5f9825f4d89cbb4e32f69e76329') in 0.038469 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.839122 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/RaiseTerrainNode.cs
+  artifactKey: Guid(fb2f313a45cb0db4cba82e3c7cd8ccd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/RaiseTerrainNode.cs using Guid(fb2f313a45cb0db4cba82e3c7cd8ccd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cf5b32cd6522136ced94b34de54933e') in 0.016971 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.518632 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7914787a5441c5dc7dd7be7e51eb62e9') in 0.015917 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 105.774870 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d588397253a835c890a138c215bffa0') in 0.018334 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 40.814592 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e7b8aadebddd1bec88ea0f47d5c16c2') in 0.017583 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 20.026130 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19656aa346414f0bebf76b8132637f73') in 0.013023 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 37.833761 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ead4c3b2dc769e942de4e53c86c64689') in 0.015167 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.744933 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48f0cdc382e69f7700afc474cf97d16e') in 0.017193 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 43.908015 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f5f70ff14c2db58e605dea6a7a7f39b') in 0.016001 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 29.543060 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5233d42677be0f2dd75e3a55a4674cbe') in 0.023025 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.367933 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02b214d2269c7e14cc8fd36fe77aa258') in 0.016702 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.415965 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '197f57d1cdc4b838d6ad89f04204e390') in 0.017032 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 42.255851 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba8e9490030765966426dd661b0af087') in 0.015910 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.816838 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshNode.cs
+  artifactKey: Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshNode.cs using Guid(a9ce07028b442134c840e94f2829d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31b49c48753e94a5858857574f707b0a') in 0.015791 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.035705 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.638 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.81 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2706 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 100.2 MB.
+System memory in use after: 100.4 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3179.
+Total: 3.659500 ms (FindLiveObjects: 0.278900 ms CreateObjectMapping: 0.142100 ms MarkObjects: 3.210600 ms  DeleteObjects: 0.026900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 129.533459 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/MeshImageNode.cs
+  artifactKey: Guid(0e182be29c615974191e2d922559f1e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/MeshImageNode.cs using Guid(0e182be29c615974191e2d922559f1e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '050410c440ec246766d8a27989fdc233') in 0.042626 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003096 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.287 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.16 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2707 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 100.3 MB.
+System memory in use after: 100.5 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3183.
+Total: 4.241400 ms (FindLiveObjects: 0.529600 ms CreateObjectMapping: 0.237300 ms MarkObjects: 3.437600 ms  DeleteObjects: 0.034700 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005959 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.83 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.308 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2707 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 100.3 MB.
+System memory in use after: 100.5 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3186.
+Total: 2.902700 ms (FindLiveObjects: 0.308000 ms CreateObjectMapping: 0.146000 ms MarkObjects: 2.416500 ms  DeleteObjects: 0.030900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002701 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.044 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.88 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2707 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 100.3 MB.
+System memory in use after: 100.5 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3189.
+Total: 3.013100 ms (FindLiveObjects: 0.410300 ms CreateObjectMapping: 0.216400 ms MarkObjects: 2.333000 ms  DeleteObjects: 0.051700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 510.529272 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e28d08c73522da73360d89eeec691aa') in 0.073954 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.190516 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eeb1a8924ce594d7c3234d3ae0e919ab') in 0.023362 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.401218 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c90808a781b650bd30f50dd874c0645b') in 0.022885 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.663060 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca30bac77180725c0f33680f5b4c0fa0') in 0.026422 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.678596 seconds.
+  path: Assets/TextMesh Pro/Sprites/EmojiOne.png
+  artifactKey: Guid(dffef66376be4fa480fb02b19edbe903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Sprites/EmojiOne.png using Guid(dffef66376be4fa480fb02b19edbe903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f3cacb3e95c326e31e4060b410a9a14') in 0.151468 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000278 seconds.
+  path: Assets/Scripts/Nodes/Editor/Resources/xnode_node.png
+  artifactKey: Guid(2fea1dcb24935ef4ca514d534eb6aa3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Nodes/Editor/Resources/xnode_node.png using Guid(2fea1dcb24935ef4ca514d534eb6aa3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '771a1f2f71f67fa5850985a1632cf512') in 0.041730 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000274 seconds.
+  path: Assets/Scripts/Nodes/Editor/Resources/xnode_dot_outer.png
+  artifactKey: Guid(434ca8b4bdfa5574abb0002bbc9b65ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Nodes/Editor/Resources/xnode_dot_outer.png using Guid(434ca8b4bdfa5574abb0002bbc9b65ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02b50bbadb136c39d4c1be226346f957') in 0.035244 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000332 seconds.
+  path: Assets/Scripts/Nodes/Editor/Resources/xnode_node_workfile.psd
+  artifactKey: Guid(2267efa6e1e349348ae0b28fb659a6e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Nodes/Editor/Resources/xnode_node_workfile.psd using Guid(2267efa6e1e349348ae0b28fb659a6e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98da1b795d115a456d8dc5c5a1f14634') in 0.035251 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000334 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8e54a871629763d0963692c877807b6') in 0.138437 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000307 seconds.
+  path: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+  artifactKey: Guid(e3265ab4bf004d28a9537516768c1c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Fonts/LiberationSans.ttf using Guid(e3265ab4bf004d28a9537516768c1c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ab672c63493fa934b7bac0b6e697ffe') in 0.084148 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001476 seconds.
+  path: Assets/Scripts/Nodes/Editor/Resources/xnode_node_highlight.png
+  artifactKey: Guid(2ab2b92d7e1771b47bba0a46a6f0f6d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Nodes/Editor/Resources/xnode_node_highlight.png using Guid(2ab2b92d7e1771b47bba0a46a6f0f6d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a81e694a95673ad7e63a5178dae850c4') in 0.046274 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000714 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+  artifactKey: Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset using Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a56a1ec34301b56e6db75e68bb620c10') in 0.125773 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000268 seconds.
+  path: Assets/Scripts/Nodes/Editor/Resources/xnode_dot.png
+  artifactKey: Guid(75a1fe0b102226a418486ed823c9a7fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Nodes/Editor/Resources/xnode_dot.png using Guid(75a1fe0b102226a418486ed823c9a7fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c92166c98613b72ce5721758ab96c91') in 0.035688 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.114252 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddb8911270223156b33c4f68b88afd98') in 0.020509 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.677319 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5d4c37b4a8705771fb111c107570767') in 0.019271 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002718 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.045 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2716 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.7 MB.
+System memory in use after: 109.9 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3374.
+Total: 3.018800 ms (FindLiveObjects: 0.459900 ms CreateObjectMapping: 0.222400 ms MarkObjects: 2.309300 ms  DeleteObjects: 0.025800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 174.155406 seconds.
+  path: Assets/Scripts/Mesh/Editor
+  artifactKey: Guid(4f68954295f61dc44bf9ab7f6e04d17a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/Editor using Guid(4f68954295f61dc44bf9ab7f6e04d17a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4924ab97bd17fee41061c442578104f') in 0.016634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.474241 seconds.
+  path: Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs
+  artifactKey: Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs using Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '742364a9da25f844f8c624c6be9d2cf9') in 0.031176 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002610 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.045 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.7 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3378.
+Total: 2.843600 ms (FindLiveObjects: 0.375800 ms CreateObjectMapping: 0.226300 ms MarkObjects: 2.217800 ms  DeleteObjects: 0.022700 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003229 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.01 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.123 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.83 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.7 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3381.
+Total: 4.493300 ms (FindLiveObjects: 0.553700 ms CreateObjectMapping: 0.276100 ms MarkObjects: 3.594700 ms  DeleteObjects: 0.067200 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 472.052743 seconds.
+  path: Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs
+  artifactKey: Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs using Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7679ea48ab23ebcad535d8477ddef42') in 0.021550 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002978 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.925 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.7 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3384.
+Total: 3.225000 ms (FindLiveObjects: 0.442500 ms CreateObjectMapping: 0.284200 ms MarkObjects: 2.473400 ms  DeleteObjects: 0.022300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 41.281582 seconds.
+  path: Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs
+  artifactKey: Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs using Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa03adc3c394bc7fd0bb8323cfc19d7c') in 0.017143 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002775 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.910 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.7 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3387.
+Total: 3.835600 ms (FindLiveObjects: 0.387900 ms CreateObjectMapping: 0.215800 ms MarkObjects: 3.189000 ms  DeleteObjects: 0.041400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 51.544446 seconds.
+  path: Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs
+  artifactKey: Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/Editor/MeshImageNodeEditor.cs using Guid(71e28f3fb28338a4d8dca58d9a4ca4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23763abf1d1a366b97adfa8fd33b31c0') in 0.020867 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003359 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.000 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.99 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.7 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3390.
+Total: 3.650400 ms (FindLiveObjects: 0.811900 ms CreateObjectMapping: 0.313400 ms MarkObjects: 2.486400 ms  DeleteObjects: 0.035500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004199 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.80 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.005 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.8 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3393.
+Total: 2.138900 ms (FindLiveObjects: 0.258400 ms CreateObjectMapping: 0.132800 ms MarkObjects: 1.721800 ms  DeleteObjects: 0.025300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 743.171636 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a638286a48f7a90f16a9a02710d26355') in 0.064585 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003224 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.945 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.5 MB.
+System memory in use after: 109.8 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3396.
+Total: 2.815300 ms (FindLiveObjects: 0.396300 ms CreateObjectMapping: 0.156600 ms MarkObjects: 2.236000 ms  DeleteObjects: 0.025000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 29.617963 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0218407a2a35d0fe3dd0c56a79c1d26a') in 0.083918 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002788 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.96 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.938 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.65 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2708 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.6 MB.
+System memory in use after: 109.8 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3399.
+Total: 4.482500 ms (FindLiveObjects: 1.092400 ms CreateObjectMapping: 0.460200 ms MarkObjects: 2.895700 ms  DeleteObjects: 0.032600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 245.167779 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/BlendNode.cs
+  artifactKey: Guid(b93157b50bfa0444c8f795ffbfea1e6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/BlendNode.cs using Guid(b93157b50bfa0444c8f795ffbfea1e6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f91f6f58855b3743d0327147bc2c3810') in 0.028425 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003744 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.72 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.255 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.82 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.6 MB.
+System memory in use after: 109.8 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3403.
+Total: 3.595600 ms (FindLiveObjects: 0.707600 ms CreateObjectMapping: 0.340700 ms MarkObjects: 2.516300 ms  DeleteObjects: 0.029700 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005596 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.155 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.28 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.6 MB.
+System memory in use after: 109.8 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3406.
+Total: 6.149700 ms (FindLiveObjects: 2.159800 ms CreateObjectMapping: 0.376800 ms MarkObjects: 3.577700 ms  DeleteObjects: 0.028800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 969.151374 seconds.
+  path: Assets/Scripts/Mesh/NodeGraph/BlendNode.cs
+  artifactKey: Guid(b93157b50bfa0444c8f795ffbfea1e6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Mesh/NodeGraph/BlendNode.cs using Guid(b93157b50bfa0444c8f795ffbfea1e6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9375e333420a2010f891bc99cb561413') in 0.023826 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.446675 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '372aa5cebff0c3a5a808fea67196b42d') in 0.063442 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.365057 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40f8210443a7887a6b2213bfe41a6677') in 0.024093 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.269145 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a89dbb994d1ed12174d13d41f71a7bf0') in 0.020009 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.124392 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5fe67c1a5cccab11aa4915eecdab72b') in 0.024544 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.163789 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb9591268304bd40f9e976714daaa2e5') in 0.021502 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.165013 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '618cc9d8b899579d1a55500f7c5bc7c9') in 0.015628 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.723720 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0279afa71133a2584d761e2ac82f570c') in 0.015851 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.842695 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e545a682c12f30e1a4001c2d520bce7') in 0.025082 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.682749 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce2cc125ea98d71252acb220c6768a15') in 0.022618 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.197740 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bec899b209458065ae59a76bd2bcadfc') in 0.022613 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.044479 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3002efab0210e4447c3ac8be2c446690') in 0.020481 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.562837 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cbc3ef5693d6e645a5b8a85b24e0693') in 0.022667 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.541662 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '786be2159f1aa24b07289f77e0616844') in 0.024699 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.621470 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '629f61fe8bf934928ae2d360b2cf1dd9') in 0.022357 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.996503 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38d4e15a61c690679ec420e2212d7caf') in 0.019475 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.224128 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b63e10e6b5df10e3f77962624eef8d2') in 0.024623 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.318609 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '411f393f2d2f069441b2d31c10df654d') in 0.033519 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.269044 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b140e7fab56a04123d90775b4eb7f666') in 0.021973 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.782406 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1166414714b1d3e12478a0719d56a47') in 0.022371 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 19.587167 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a29ccd3648dc1d041ca3a5057f09c08') in 0.024130 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 19.850716 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '992ae197ed33a2bc85fabbedc86ec313') in 0.025685 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 17.468969 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3a77aba3ace75121d96bb8d45906897') in 0.022920 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.476280 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9acaf8ff70b82c918ebca776dbb52d26') in 0.025672 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.047080 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1debd3c32648e94f33e81c72571ab73f') in 0.024702 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.532687 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ee37fcb38524941c0d3db8d23ca6e06') in 0.024246 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.867136 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3793b5df3c46d5dd8da5c2e6b1cfe3e5') in 0.020567 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.787642 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6573d0986f7a3a7b57626f158c568983') in 0.024128 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.469416 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f0533e4a5c71c77bc9e607d3ccbccd4') in 0.021139 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.981251 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eafcb233fb9bcbfe945a7577a42cf2f1') in 0.023117 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.135163 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58c5769be359629ccd3d23a8701b1ad0') in 0.023222 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.516264 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3352b73fbf662836e62b800add68acc') in 0.021631 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 18.692498 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0299da47854e8ebc37a0c5188fc52dbd') in 0.017900 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 62.790225 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f721abcfd79956d9000d01dffad7318') in 0.026133 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.610162 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29f74defa699bbb40489cc41aa9e82fa') in 0.029905 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.601918 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d399553669479a43245732027b7f57d') in 0.022199 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 59.668949 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43038482e8894a40fb64553f962c3a9d') in 0.024795 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.832088 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5dd1425bdf6b9ec3a09a8ba55720bb2f') in 0.023603 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 20.258465 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'deca20bba6bc53326b6a1c337b87d356') in 0.028578 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 24.215132 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b041a9df3cf5445a3ae86c0fa100303') in 0.020994 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.350405 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66fcc5620e58e10b7aa82bb98aaff93e') in 0.023617 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 17.402592 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb442a23b6d8bdd62067fa792f35b5b5') in 0.022910 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 51.940527 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36fa9dd7505e26ef9240e6031d0e6df1') in 0.018547 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002698 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.968 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.7 MB.
+System memory in use after: 109.9 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3409.
+Total: 3.750100 ms (FindLiveObjects: 0.375300 ms CreateObjectMapping: 0.176400 ms MarkObjects: 3.155900 ms  DeleteObjects: 0.041400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 456.818726 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd04fbf0418ee9c5f51e49b7dd144a07c') in 0.033583 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003272 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.059 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.82 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.7 MB.
+System memory in use after: 109.9 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3412.
+Total: 5.139900 ms (FindLiveObjects: 0.846400 ms CreateObjectMapping: 0.493400 ms MarkObjects: 3.764500 ms  DeleteObjects: 0.033500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006629 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.012 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.7 MB.
+System memory in use after: 110.0 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3415.
+Total: 2.690500 ms (FindLiveObjects: 0.466700 ms CreateObjectMapping: 0.212900 ms MarkObjects: 1.985700 ms  DeleteObjects: 0.024300 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005966 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.986 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.63 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.7 MB.
+System memory in use after: 110.0 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3418.
+Total: 2.512200 ms (FindLiveObjects: 0.298700 ms CreateObjectMapping: 0.159200 ms MarkObjects: 2.033700 ms  DeleteObjects: 0.019900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 87.217383 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '199209f813b2cb990efbd9a03d122c13') in 0.034911 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002738 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.968 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.8 MB.
+System memory in use after: 110.0 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3421.
+Total: 2.644600 ms (FindLiveObjects: 0.380800 ms CreateObjectMapping: 0.139400 ms MarkObjects: 2.102500 ms  DeleteObjects: 0.020600 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002779 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.046 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.76 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.8 MB.
+System memory in use after: 110.0 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3424.
+Total: 2.616000 ms (FindLiveObjects: 0.291600 ms CreateObjectMapping: 0.176000 ms MarkObjects: 2.127300 ms  DeleteObjects: 0.020100 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002837 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.949 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.67 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.8 MB.
+System memory in use after: 110.0 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3427.
+Total: 3.913800 ms (FindLiveObjects: 0.504800 ms CreateObjectMapping: 0.261500 ms MarkObjects: 3.114400 ms  DeleteObjects: 0.031400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 54.653367 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40e26ade7bb5a2d31c95010a1c90d044') in 0.031977 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.749965 seconds.
+  path: Assets/Items/TerraGraph/TerraGraph.asset
+  artifactKey: Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Items/TerraGraph/TerraGraph.asset using Guid(4cb2ff7f11f1c024693865dd50f65d38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c41c0381b62a37389e05e1d00fbc4306') in 0.020438 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004580 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.68 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.017 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.8 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3430.
+Total: 4.190500 ms (FindLiveObjects: 0.815300 ms CreateObjectMapping: 0.409300 ms MarkObjects: 2.931300 ms  DeleteObjects: 0.033300 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003003 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.016 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.8 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3433.
+Total: 3.178000 ms (FindLiveObjects: 0.335000 ms CreateObjectMapping: 0.162400 ms MarkObjects: 2.650600 ms  DeleteObjects: 0.028900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002909 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.052 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.8 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3436.
+Total: 2.637300 ms (FindLiveObjects: 0.288700 ms CreateObjectMapping: 0.151400 ms MarkObjects: 2.174200 ms  DeleteObjects: 0.021900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002734 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.124 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.77 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.9 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3439.
+Total: 2.368100 ms (FindLiveObjects: 0.294100 ms CreateObjectMapping: 0.158000 ms MarkObjects: 1.894200 ms  DeleteObjects: 0.020600 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002814 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.002 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.9 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3442.
+Total: 2.775100 ms (FindLiveObjects: 0.348700 ms CreateObjectMapping: 0.158500 ms MarkObjects: 2.245400 ms  DeleteObjects: 0.020900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004250 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.039 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.73 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.9 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3445.
+Total: 2.623400 ms (FindLiveObjects: 0.310300 ms CreateObjectMapping: 0.155400 ms MarkObjects: 2.136100 ms  DeleteObjects: 0.020800 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004736 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\canun\Desktop\GallantMage\Assets\Scripts\Nodes\Editor\NodeEditorAssetModProcessor.cs:55 
+
+(Filename: Assets/Scripts/Nodes/Editor/NodeEditorAssetModProcessor.cs Line: 55)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.000 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2709 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.9 MB.
+System memory in use after: 110.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 3448.
+Total: 2.923000 ms (FindLiveObjects: 0.598600 ms CreateObjectMapping: 0.163900 ms MarkObjects: 2.133600 ms  DeleteObjects: 0.025900 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

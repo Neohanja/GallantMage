@@ -19,20 +19,22 @@ public class MeshNode : Node
 	{
 		points = new HeightValues();
 		image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
-		ProcessNode();
+		
 
 		switch (port.fieldName)
         {
-			case "points":				
+			case "points":
+				ProcessNode();
 				return points;
 			case "image":
+				ProcessNode(true);
 				return image;
 			default:
 				return null;
 		}
 	}
 
-	public virtual void ProcessNode()
+	public virtual void ProcessNode(bool addImage = false)
     {
 		
     }
@@ -47,7 +49,7 @@ public class MeshNode : Node
 	public virtual Texture2D GetImage()
 	{
 		image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
-		ProcessNode();
+		ProcessNode(true);
 		return image;
 	}
 

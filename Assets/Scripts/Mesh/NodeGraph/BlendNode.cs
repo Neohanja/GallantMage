@@ -12,11 +12,12 @@ public class BlendNode : MeshNode
     public float blend = 0.5f;
     public MathFunction blendType;
 
-    public override void ProcessNode()
+    public override void ProcessNode(bool addImage = false)
     {
         float[] a = GetInputValue("entry", entry).CopyPoints();
         float[] b = GetInputValue("entryTwo", entryTwo).CopyPoints();
         float[] vals = new float[a.Length];
+        Color[] cols = new Color[a.Length];
 
         for(int bl = 0; bl < a.Length; bl++)
         {
@@ -32,6 +33,16 @@ public class BlendNode : MeshNode
                     vals[bl] = a[bl] * b[bl] * blend;
                     break;
             }
+
+            if (addImage) cols[bl] = Color.Lerp(Color.black, Color.white, vals[bl]);
+        }
+
+        if (addImage)
+        {
+            image.SetPixels(cols);
+            image.filterMode = FilterMode.Point;
+            image.wrapMode = TextureWrapMode.Clamp;
+            image.Apply();
         }
 
         points.SetPoints(vals);
