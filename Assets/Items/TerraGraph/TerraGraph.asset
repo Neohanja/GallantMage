@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59571adea712f24ab77b81996d24fb5, type: 3}
+  m_Name: TerraGraph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 3443036328621354917}
+  - {fileID: 6805075231585827120}
+  current: {fileID: 6805075231585827120}
+--- !u!114 &3443036328621354917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76278044983b69441b01a7b70c174c00, type: 3}
+  m_Name: Grad Noise
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -136, y: -72}
+  ports:
+    keys:
+    - entry
+    - points
+    values:
+    - _fieldName: entry
+      _node: {fileID: 3443036328621354917}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 6805075231585827120}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: 3443036328621354917}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  seed: 128456
+  offset: {x: 0, y: 0}
+  scale: 45.96
+  octaves: 5
+  lacunarity: 0.5
+  persistance: 1
+  noise0To1: 0
+--- !u!114 &6805075231585827120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ce07028b442134c840e94f2829d2be, type: 3}
+  m_Name: Mesh
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: -136}
+  ports:
+    keys:
+    - points
+    values:
+    - _fieldName: points
+      _node: {fileID: 6805075231585827120}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 3443036328621354917}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
