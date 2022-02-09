@@ -7,6 +7,8 @@ using XNode;
 /// </summary>
 public class MeshNode : Node
 {
+	[Output(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+	public Texture2D image;
 	[Output(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)] 
 	public HeightValues points;
 	[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
@@ -15,14 +17,19 @@ public class MeshNode : Node
 	// Return the correct value of an output port when requested
 	public override object GetValue(NodePort port)
 	{
-		switch(port.fieldName)
+		points = new HeightValues();
+		image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
+		ProcessNode();
+
+		switch (port.fieldName)
         {
-			case "points":
-				points = new HeightValues();
-				ProcessNode();
-				return points;				
+			case "points":				
+				return points;
+			case "image":
+				return image;
+			default:
+				return null;
 		}
-		return null;
 	}
 
 	public virtual void ProcessNode()
@@ -34,9 +41,15 @@ public class MeshNode : Node
     {
 		points = new HeightValues();
 		ProcessNode();
-
 		return points;
     }
+
+	public virtual Texture2D GetImage()
+	{
+		image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
+		ProcessNode();
+		return image;
+	}
 
 	public virtual bool LastNode()
     {

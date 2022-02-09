@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Mesh Final
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 296, y: -88}
+  position: {x: 440, y: -72}
   ports:
     keys:
     - points
     - entry
+    - image
     values:
     - _fieldName: points
       _node: {fileID: -6686102498292296330}
@@ -40,6 +41,140 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: image
+      _node: {fileID: -6686102498292296330}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  image: {fileID: 0}
+--- !u!114 &-5322264275450547293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93157b50bfa0444c8f795ffbfea1e6f, type: 3}
+  m_Name: Blend
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -40, y: -72}
+  ports:
+    keys:
+    - entryTwo
+    - image
+    - points
+    - entry
+    values:
+    - _fieldName: entryTwo
+      _node: {fileID: -5322264275450547293}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: -4972343476576009592}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: image
+      _node: {fileID: -5322264275450547293}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: -5322264275450547293}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -4703210081765159384}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: -5322264275450547293}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 3443036328621354917}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  image: {fileID: 0}
+  blend: 0.5
+  blendType: 0
+--- !u!114 &-4972343476576009592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76278044983b69441b01a7b70c174c00, type: 3}
+  m_Name: Grad Noise
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -344, y: 72}
+  ports:
+    keys:
+    - entry
+    - points
+    - image
+    values:
+    - _fieldName: entry
+      _node: {fileID: -4972343476576009592}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: -4972343476576009592}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entryTwo
+        node: {fileID: -5322264275450547293}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: image
+      _node: {fileID: -4972343476576009592}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  image: {fileID: 0}
+  seed: 0
+  zOffset: 2
+  scale: 64.325
+  noise0To1: 1
 --- !u!114 &-4703210081765159384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,11 +188,12 @@ MonoBehaviour:
   m_Name: Raise Terrain
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -88}
+  position: {x: 200, y: -72}
   ports:
     keys:
     - points
     - entry
+    - image
     values:
     - _fieldName: points
       _node: {fileID: -4703210081765159384}
@@ -77,12 +213,22 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: points
-        node: {fileID: 3443036328621354917}
+        node: {fileID: -5322264275450547293}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: image
+      _node: {fileID: -4703210081765159384}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  image: {fileID: 0}
   minHeight: 32
   heightGrowth: 128
 --- !u!114 &11400000
@@ -99,9 +245,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 3443036328621354917}
-  - {fileID: 6805075231585827120}
   - {fileID: -6686102498292296330}
   - {fileID: -4703210081765159384}
+  - {fileID: 2708830590796244410}
+  - {fileID: -5322264275450547293}
+  - {fileID: -4972343476576009592}
+--- !u!114 &2708830590796244410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e182be29c615974191e2d922559f1e1, type: 3}
+  m_Name: Mesh Image
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -40, y: -328}
+  ports:
+    keys:
+    - entry
+    values:
+    - _fieldName: entry
+      _node: {fileID: 2708830590796244410}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: image
+        node: {fileID: 3443036328621354917}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  entry: {fileID: 0}
 --- !u!114 &3443036328621354917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,73 +294,15 @@ MonoBehaviour:
   m_Name: Grad Noise
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: -88}
+  position: {x: -344, y: -136}
   ports:
     keys:
     - entry
     - points
+    - image
     values:
     - _fieldName: entry
       _node: {fileID: 3443036328621354917}
-      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: points
-        node: {fileID: 6805075231585827120}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: points
-      _node: {fileID: 3443036328621354917}
-      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: entry
-        node: {fileID: -4703210081765159384}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-  seed: 128456
-  zOffset: 0
-  scale: 128
-  noise0To1: 0
---- !u!114 &6805075231585827120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ce07028b442134c840e94f2829d2be, type: 3}
-  m_Name: Mesh
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -424, y: -88}
-  ports:
-    keys:
-    - points
-    - entry
-    values:
-    - _fieldName: points
-      _node: {fileID: 6805075231585827120}
-      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: entry
-        node: {fileID: 3443036328621354917}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: entry
-      _node: {fileID: 6805075231585827120}
       _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections: []
@@ -189,3 +310,32 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: 3443036328621354917}
+      _typeQualifiedName: HeightValues, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5322264275450547293}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: image
+      _node: {fileID: 3443036328621354917}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 2708830590796244410}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  image: {fileID: 0}
+  seed: 0
+  zOffset: 0
+  scale: 228.32
+  noise0To1: 0
