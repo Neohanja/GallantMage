@@ -9,18 +9,38 @@ public class MeshNode : Node
 {
 	[Output(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)] 
 	public HeightValues points;
+	[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+	public HeightValues entry;
 
-    // Return the correct value of an output port when requested
-    public override object GetValue(NodePort port)
+	// Return the correct value of an output port when requested
+	public override object GetValue(NodePort port)
 	{
-		points = new HeightValues();
-
-		return points;
+		switch(port.fieldName)
+        {
+			case "points":
+				points = new HeightValues();
+				ProcessNode();
+				return points;				
+		}
+		return null;
 	}
 
-	public virtual MeshData GetMesh()
+	public virtual void ProcessNode()
     {
-		return new MeshData(points.GetPoints());
+		
+    }
+
+	public virtual HeightValues GetMesh()
+    {
+		points = new HeightValues();
+		ProcessNode();
+
+		return points;
+    }
+
+	public virtual bool LastNode()
+    {
+		return false;
     }
 
 	public virtual string GetString()

@@ -138,7 +138,7 @@ public class HeightValues
         return vals;
     }
 
-    public float[] CopyPoint()
+    public float[] CopyPoints()
     {
         float[] newVals = new float[vals.Length];
         for(int i = 0; i < vals.Length; i++)

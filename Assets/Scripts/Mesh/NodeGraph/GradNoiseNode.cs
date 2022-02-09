@@ -6,49 +6,30 @@ using XNode;
 /// </summary>
 public class GradNoiseNode : MeshNode
 {
-	[Input] public HeightValues entry;
-
 	public int seed;
-	public Vector2 offset;
+	public int zOffset;
 	public float scale;
-	public int octaves;
-	public float lacunarity;
-	public float persistance;
 	public bool noise0To1;
 
-	public override object GetValue(NodePort port)
+	public override void ProcessNode()
 	{
-		float[] vals = entry.GetPoints();
+		float[] vals = GetInputValue("entry", entry).CopyPoints();
 
-		for(int x = 0; x < MeshData.MeshSize; x++)
-        {
+		for (int x = 0; x < MeshData.MeshSize; x++)
+		{
 			for (int y = 0; y < MeshData.MeshSize; y++)
-            {
-				float pNoise = 0f;
-				float amp = 1f;
-				float freq = 1f;
+			{
+				float xSample = (x) / scale;
+				float ySample = (y) / scale;
 
-				for (int o = 0; o < octaves; o++)
-                {
-					float xSample = (offset.x + x) / scale * freq;
-					float ySample = (offset.y + y) / scale * freq;
-
-					float noiseVal = Noise.Noise2D(xSample, ySample, o, seed);
-					if (noise0To1) noiseVal = (noiseVal + 1) * 0.5f;
-					pNoise += noiseVal * amp;
-
-					amp *= persistance;
-					freq *= lacunarity;
-                }
+				float pNoise = Noise.Noise2D(xSample, ySample, zOffset, seed);
+				if (noise0To1) pNoise = (pNoise + 1) * 0.5f;
 
 				vals[x + y * MeshData.MeshSize] = pNoise;
-            }
-
+			}
 		}
 
-		entry.SetPoints(vals);
-
-		return entry;
+		points.SetPoints(vals);
 	}
 
     public override string GetString()

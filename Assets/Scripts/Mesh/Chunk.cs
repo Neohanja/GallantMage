@@ -29,18 +29,7 @@ public class Chunk : MonoBehaviour
 
     public void CompileNodeGraph()
     {
-        foreach(MeshNode m in terrainGraph.nodes)
-        {
-            if(m.GetString() == "BaseNode")
-            {
-                terrainGraph.current = m;
-                break;
-            }
-        }
-
-        //Add code to move through the node paths here. <--WIP-->
-
-        chunkMesh = terrainGraph.current.GetMesh();
+        chunkMesh = terrainGraph.ProcessNodes(chunkCoord);
 
         meshFilter.mesh = chunkMesh.GetMesh();
     }
