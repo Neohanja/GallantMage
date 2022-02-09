@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: Grad Noise
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: -72}
+  position: {x: -184, y: -104}
   ports:
     keys:
     - entry
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: Mesh
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -392, y: -136}
+  position: {x: -424, y: -136}
   ports:
     keys:
     - points

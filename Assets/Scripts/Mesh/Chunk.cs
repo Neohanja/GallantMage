@@ -38,6 +38,8 @@ public class Chunk : MonoBehaviour
             }
         }
 
+        //Add code to move through the node paths here. <--WIP-->
+
         chunkMesh = terrainGraph.current.GetMesh();
 
         meshFilter.mesh = chunkMesh.GetMesh();
