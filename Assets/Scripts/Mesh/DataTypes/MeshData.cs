@@ -115,13 +115,11 @@ public class MeshData
 }
 
 [System.Serializable]
-public class HeightValues
+public class ChunkData
 {
     private float[] vals;
-    public int seed;
-    public Vector2 offset;
 
-    public HeightValues()
+    public ChunkData()
     {
         vals = new float[MeshData.MeshSize * MeshData.MeshSize];
         for (int i = 0; i < vals.Length; i++)
@@ -130,7 +128,7 @@ public class HeightValues
         }
     }
 
-    public HeightValues(float[] transfer)
+    public ChunkData(float[] transfer)
     {
         vals = transfer;
     }

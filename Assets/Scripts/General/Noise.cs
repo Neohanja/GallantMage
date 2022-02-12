@@ -95,7 +95,7 @@ public static class Noise
         return dist;
     }
 
-    public static float[] CellAuto(int size, int seed, Vector2 pos, float percent, int smoothing, int birth, int death)
+    public static float[] CellAuto(int size, int seed, float percent, int smoothing, int birth, int death)
     {
         bool[,] grid = new bool[size, size];
 

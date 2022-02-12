@@ -5,8 +5,6 @@ using XNode;
 [CustomNodeEditor(typeof(MeshImageNode))]
 public class MeshImageNodeEditor : XNodeEditor.NodeEditor
 {
-
-
     public override void OnBodyGUI()
     {
         if (target == null)
@@ -14,6 +12,7 @@ public class MeshImageNodeEditor : XNodeEditor.NodeEditor
             Debug.LogWarning("Target Does not exist for Mesh Image Node.");
             return;
         }
+
         MeshImageNode imageNode = (MeshImageNode)target;
 
         Texture texture = imageNode.GetValue();

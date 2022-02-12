@@ -6,10 +6,16 @@ using XNode;
 [CreateAssetMenu(fileName = "TerraGraph", menuName = "Terrain/Terrain Graph")]
 public class TerrainGraph : NodeGraph 
 {
-	public MeshData ProcessNodes(Vector2 chunkCord)
+    public Vector2 offset;
+    public int seed;
+
+	public ChunkData ProcessNodes(Vector2 chunkCord, int seed)
     {
-        HeightValues vals = new HeightValues();
+        ChunkData vals = new ChunkData();
         MeshNode endPoint = null;
+
+        offset = chunkCord;
+        this.seed = seed;
 
         foreach(MeshNode m in nodes)
         {
@@ -23,6 +29,6 @@ public class TerrainGraph : NodeGraph
         if (endPoint != null)
             vals = endPoint.GetMesh();
 
-        return new MeshData(vals.GetPoints());
+        return vals;
     }
 }

@@ -3,7 +3,6 @@ using XNode;
 
 public class CellAutoNode : MeshNode
 {
-	public int seed;
 	[Range(0f, 1f)]
 	public float startAlive;
 	public int smoothing;
@@ -13,8 +12,7 @@ public class CellAutoNode : MeshNode
 
 	public override void ProcessNode(bool addImage = false)
     {
-		float[] vals = Noise.CellAuto(MeshData.MeshSize, seed, new Vector2(0, 0), startAlive, smoothing, birth, death);
-			//GetInputValue("entry", entry).CopyPoints();
+		float[] vals = Noise.CellAuto(MeshData.MeshSize, GetGraph.seed, startAlive, smoothing, birth, death);
 		Color[] cols = new Color[vals.Length];
 
         for (int x = 0; x < MeshData.MeshSize; x++)

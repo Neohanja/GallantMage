@@ -2,13 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Chunk))]
+[CustomEditor(typeof(MapManager))]
 public class ChunkNodeViewer : Editor
 {
     public override void OnInspectorGUI()
     {
         //base.OnInspectorGUI();
-        Chunk editorChunk = (Chunk)target;
+        MapManager editorChunk = (MapManager)target;
 
         if (DrawDefaultInspector())
         {

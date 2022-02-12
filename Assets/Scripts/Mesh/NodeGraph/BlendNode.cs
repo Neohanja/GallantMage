@@ -6,11 +6,11 @@ using XNode;
 public class BlendNode : MeshNode
 {
     [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-    public HeightValues entryTwo;
+    public ChunkData entryTwo;
 
-    [Range(0f, 1f)]
-    public float blend = 0.5f;
     public MathFunction blendType;
+    [Range(0f, 1f)]
+    public float blend = 0.5f;    
 
     public override void ProcessNode(bool addImage = false)
     {

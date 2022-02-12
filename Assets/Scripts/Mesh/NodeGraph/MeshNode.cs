@@ -5,21 +5,22 @@ using XNode;
 /// Creates a basic Mesh Data Object to pass to the Chunk/World Map
 /// Use as a start Node
 /// </summary>
-public class MeshNode : Node
+public abstract class MeshNode : Node
 {
 	[Output(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
 	public Texture2D image;
 	[Output(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)] 
-	public HeightValues points;
+	public ChunkData points;
 	[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-	public HeightValues entry;
+	public ChunkData entry;
 
 	protected bool rebuildImage;
 
 	// Return the correct value of an output port when requested
 	public override object GetValue(NodePort port)
 	{
-		points = new HeightValues();
+		points = new ChunkData();
+
 		if (image == null)
 		{
 			image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
@@ -48,9 +49,11 @@ public class MeshNode : Node
 		
     }
 
-	public virtual HeightValues GetMesh()
+	public virtual void SetOffset(Vector2 newOffset, int newSeed) { }
+
+	public virtual ChunkData GetMesh()
     {
-		points = new HeightValues();
+		points = new ChunkData();
 		ProcessNode();
 		return points;
     }
@@ -69,7 +72,7 @@ public class MeshNode : Node
 
 	public virtual string GetString()
     {
-		return "BaseNode";
+		return "MeshNode";
     }
 
 	public override void OnRemoveConnection(NodePort port)
@@ -86,5 +89,19 @@ public class MeshNode : Node
 	{
 		rebuildImage = true;
 		DoThisOrWeBreakStuff();
+	}
+
+	public TerrainGraph GetGraph
+	{
+		get
+		{
+			if (graph is TerrainGraph)
+				return graph as TerrainGraph;
+			else
+			{
+				Debug.LogWarning("Node placed in incorrect graph type");
+				return default;
+			}
+		}
 	}
 }
