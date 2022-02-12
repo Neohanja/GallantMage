@@ -1,18 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XNode;
 
-public class #SCRIPTNAME# : Node {
+public class #SCRIPTNAME# : MeshNode 
+{
 
-	// Use this for initialization
-	protected override void Init() {
-		base.Init();
-		#NOTRIM#
-	}
+	public override void ProcessNode(bool addImage = false)
+    {
+        float[] vals = GetInputValue("entry", entry).CopyPoints();
+		Color[] cols = new Color[vals.Length];
 
-	// Return the correct value of an output port when requested
-	public override object GetValue(NodePort port) {
-		return null; // Replace this
+        for (int x = 0; x < MeshData.MeshSize; x++)
+		{
+			for (int y = 0; y < MeshData.MeshSize; y++)
+			{
+				int index = x + y * MeshData.MeshSize;
+
+				if(addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
+			}
+		}
+
+		if (addImage)
+		{
+			image.SetPixels(cols);
+			image.filterMode = FilterMode.Point;
+			image.wrapMode = TextureWrapMode.Clamp;
+			image.Apply();
+		}
+
+		points.SetPoints(vals);
+    }
+
+    public override string GetString()
+    {
+		return "#SCRIPTNAME#";
 	}
 }

@@ -48,5 +48,10 @@ public class GradNoiseNode : MeshNode
     public override string GetString()
     {
 		return "GradientNoise";
-    }
+	}
+
+	protected override void DoThisOrWeBreakStuff()
+	{
+		if (scale <= 0) scale = 0.0001f;
+	}
 }

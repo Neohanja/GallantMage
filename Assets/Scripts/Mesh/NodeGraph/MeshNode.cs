@@ -14,12 +14,17 @@ public class MeshNode : Node
 	[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
 	public HeightValues entry;
 
+	protected bool rebuildImage;
+
 	// Return the correct value of an output port when requested
 	public override object GetValue(NodePort port)
 	{
 		points = new HeightValues();
-		image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
-		
+		if (image == null)
+		{
+			image = new Texture2D(MeshData.MeshSize, MeshData.MeshSize);
+			rebuildImage = true;
+		}	
 
 		switch (port.fieldName)
         {
@@ -27,7 +32,11 @@ public class MeshNode : Node
 				ProcessNode();
 				return points;
 			case "image":
-				ProcessNode(true);
+				if (rebuildImage)
+				{
+					ProcessNode(true);
+					rebuildImage = false;
+				}
 				return image;
 			default:
 				return null;
@@ -62,4 +71,20 @@ public class MeshNode : Node
     {
 		return "BaseNode";
     }
+
+	public override void OnRemoveConnection(NodePort port)
+	{
+		if (port.fieldName == "image") rebuildImage = true;
+	}
+
+	protected virtual void DoThisOrWeBreakStuff()
+	{
+
+	}
+
+	protected void OnValidate()
+	{
+		rebuildImage = true;
+		DoThisOrWeBreakStuff();
+	}
 }

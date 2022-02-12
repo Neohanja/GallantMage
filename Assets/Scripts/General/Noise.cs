@@ -71,13 +71,12 @@ public static class Noise
 
     //Voronoi Noise Generation Theories
 
-    public static Vector3[] VoronoiNoise(Vector2 pos, int offset, int indexes, int seed)
+    public static float VoronoiNoise(Vector2 pos, int offset, int seed)
     {
-        Vector3[] vPoints = new Vector3[9];
+        float dist = 2f;
 
         int x = MathFun.Floor(pos.x);
         int y = MathFun.Floor(pos.y);
-        int index = 0;
 
         for(int oX = -1; oX <= 1; oX++)
         {
@@ -87,12 +86,73 @@ public static class Noise
                 // prn : psuedo random number
                 float vX = x + oX + RanGen.PullNumber(seed, oX + x, oY + y, 22 + offset) % a / b;
                 float vY = y + oY + RanGen.PullNumber(seed, oX + x, oY + y, 44 + offset) % a / b;
-                int height = RanGen.PullNumber(seed, oX + x, oY + y, 66 + offset) % indexes;
-                vPoints[index] = new Vector3(vX, vY, height);
-                index++;
+
+                float cDist = Vector2.Distance(pos, new Vector2(vX, vY));
+                if (cDist < dist) dist = cDist;
             }
         }
 
-        return vPoints;
+        return dist;
+    }
+
+    public static float[] CellAuto(int size, int seed, Vector2 pos, float percent, int smoothing, int birth, int death)
+    {
+        bool[,] grid = new bool[size, size];
+
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                grid[x, y] = RanGen.PullNumber(seed, x, y) % a / b <= percent;
+            }
+        }
+
+        for(int s = 0; s < smoothing; s++)
+        {
+            grid = SmoothCell(grid, size, birth, death);
+        }
+
+        float[] endResult = new float[size * size];
+
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                int index = x + y * size;
+                endResult[index] = grid[x, y] ? 1f : 0f;
+            }
+        }
+
+        return endResult;
+    }
+
+    public static bool[,] SmoothCell(bool[,] grid, int size, int birth, int death)
+    {
+        bool[,] newGrid = new bool[size, size];
+
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
+                bool spot = grid[x, y];
+                int count = 0;
+
+                for(int cX = -1; cX <= 1; cX++)
+                {
+                    for(int cY = -1; cY <= 1; cY++)
+                    {
+                        if (x + cX < 0 || x + cX >= size || y + cY < 0 || y + cY >= size)
+                            count++;
+                        else if (grid[x + cX, y + cY])
+                            count++;
+                    }
+                }
+                if (count >= birth) spot = true;
+                if (count <= death) spot = false;
+                newGrid[x, y] = spot;
+            }
+        }
+
+        return newGrid;
     }
 }
