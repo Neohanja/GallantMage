@@ -29,7 +29,31 @@ public class Chunk
         MeshData meshData = new MeshData(chunkData.GetPoints());
         chunkFilter.mesh = meshData.GetMesh();
 
-        chunkObj.transform.position = new Vector3(chunkCoord.x - ChunkSize / 2, 0f, chunkCoord.y - ChunkSize / 2);
+        chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
+    }
+
+    public float GetHeight(Vector2 point)
+    {
+        if (point.x < 0 || point.x >= ChunkSize || point.y < 0 || point.y >= ChunkSize) return 0f;
+
+        int iX = MathFun.Floor(point.x);
+        int iY = MathFun.Floor(point.y);
+
+        float midX = point.x - iX;
+        float midY = point.y - iY;
+
+        float a = MathFun.Lerp(chunkData.GetPoint(iX, iY), chunkData.GetPoint(iX + 1, iY), midX);
+        float b = MathFun.Lerp(chunkData.GetPoint(iX, iY + 1), chunkData.GetPoint(iX + 1, iY + 1), midX);
+
+        return MathFun.Lerp(a, b, midY);
+    }
+
+    public static float HalfMap
+    {
+        get
+        {
+            return (MeshData.MeshSize - 1) / 2f;
+        }
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }

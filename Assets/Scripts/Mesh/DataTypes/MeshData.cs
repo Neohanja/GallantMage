@@ -138,6 +138,11 @@ public class ChunkData
         return vals;
     }
 
+    public float GetPoint(int x, int y)
+    {
+        return vals[x + y * MeshData.MeshSize];
+    }
+
     public float[] CopyPoints()
     {
         float[] newVals = new float[vals.Length];

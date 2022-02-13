@@ -34,8 +34,17 @@ public class Movement : MonoBehaviour
         if (running) modSpeed *= runBoost;
 
         transform.position += momentum * modSpeed * Time.deltaTime;
+        AttachToGround();
         momentum.x = 0f;
         momentum.z = 0f;
+    }
+
+    protected virtual void AttachToGround()
+    {
+        float x = transform.position.x;
+        float z = transform.position.z;
+        float y = MapManager.World.GetHeight(new Vector2(x + Chunk.HalfMap, z + Chunk.HalfMap));
+        transform.position = new Vector3(x, y, z);
     }
 
     protected virtual void Initialize()

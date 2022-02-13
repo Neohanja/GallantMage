@@ -33,6 +33,20 @@ public class MapManager : MonoBehaviour
         Destroy(testMesh);
         chunkMap = new Dictionary<Vector2Int, Chunk>();
         VerifyMap(new Vector2Int(0, 0));
+        if (AIManager.AI_Engine != null) AIManager.AI_Engine.StartAI();
+    }
+
+    public float GetHeight(Vector2 point)
+    {
+        int chunkX = MathFun.Floor(point.x / ChunkSize);
+        int chunkY = MathFun.Floor(point.y / ChunkSize);
+
+        if (!chunkMap.ContainsKey(new Vector2Int(chunkX, chunkY))) return 0f;
+
+        float xPos = point.x - chunkX * ChunkSize;
+        float yPos = point.y - chunkY * ChunkSize;
+
+        return chunkMap[new Vector2Int(chunkX, chunkY)].GetHeight(new Vector2(xPos, yPos));
     }
 
     public void VerifyMap(Vector2Int location)
