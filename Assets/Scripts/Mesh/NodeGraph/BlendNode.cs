@@ -26,11 +26,26 @@ public class BlendNode : MeshNode
                 case MathFunction.Blend:
                     vals[bl] = MathFun.Lerp(a[bl], b[bl], blend);
                     break;
+                case MathFunction.Subtract:
+                    vals[bl] = a[bl] - b[bl] * blend;
+                    break;
                 case MathFunction.Add:
                     vals[bl] = a[bl] + b[bl] * blend;
                     break;
                 case MathFunction.Multiply:
                     vals[bl] = a[bl] * b[bl] * blend;
+                    break;
+                case MathFunction.Difference:
+                    vals[bl] = MathFun.Abs(a[bl] - b[bl]);
+                    break;
+                case MathFunction.BlendDif:
+                    vals[bl] = blend - MathFun.Abs(a[bl] - b[bl]);
+                    break;
+                case MathFunction.MinVal:
+                    vals[bl] = a[bl] < b[bl] ? a[bl] : b[bl];
+                    break;
+                case MathFunction.MaxVal:
+                    vals[bl] = a[bl] < b[bl] ? b[bl] : a[bl];
                     break;
             }
 
@@ -52,6 +67,11 @@ public class BlendNode : MeshNode
     {
         Blend,
         Add,
-        Multiply
+        Multiply,
+        Subtract,
+        Difference,
+        BlendDif,
+        MinVal,
+        MaxVal
     }
 }
