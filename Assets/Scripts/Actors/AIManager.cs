@@ -6,11 +6,19 @@ public class AIManager : MonoBehaviour
 {
     public static AIManager AI_Engine { private set; get; }
 
-    public GameObject Player;
+    [Header("Game Actors")]
+    public int npcCount;
+    public int mobCount;
+    public List<Actor> aiAgents;
+    int target;
 
-    public List<GameObject> tempAgents;
+    [Header("Master Lists")]
+    public List<Race> npcRacials;
+    public List<Race> mobRacials;
+    public Stats masterList;
 
-    int target = 0;
+    [Header("Materials")]
+    public Material actorMat;
 
     void Awake()
     {
@@ -21,19 +29,28 @@ public class AIManager : MonoBehaviour
     // Start is called before the first frame update
     public void StartAI()
     {
-        float x = Player.transform.position.x;
-        float z = Player.transform.position.z;
-        float y = MapManager.World.GetHeight(new Vector2(x + Chunk.HalfMap, z + Chunk.HalfMap));
-        Player.transform.position = new Vector3(x, y, z);
+        aiAgents = new List<Actor>();
 
-        if (CamControl.MainCam != null) CamControl.MainCam.SetTarget(Player);
+        float x = Random.Range(-120f, 120f);
+        float y = Random.Range(-120f, 120f);
 
-        foreach (GameObject agent in tempAgents)
+        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), new Vector2(x, y), npcRacials[0]));
+        CamControl.MainCam.SetTarget(aiAgents[0].actorObj);
+
+        for (int i = 0; i < npcCount; i++)
         {
-            x = agent.transform.position.x;
-            z = agent.transform.position.z;
-            y = MapManager.World.GetHeight(new Vector2(x + Chunk.HalfMap, z + Chunk.HalfMap));
-            agent.transform.position = new Vector3(x, y, z);
+            x = Random.Range(-120f, 120f);
+            y = Random.Range(-120f, 120f);
+            int npcIndex = Random.Range(0, npcRacials.Count);
+            aiAgents.Add(new Actor(Actor.ActorType.NPC, masterList.CopyList(), new Vector2(x, y), npcRacials[npcIndex]));
+        }
+
+        for (int i = 0; i < mobCount; i++)
+        {
+            x = Random.Range(-120f, 120f);
+            y = Random.Range(-120f, 120f);
+            int mobIndex = Random.Range(0, mobRacials.Count);
+            aiAgents.Add(new Actor(Actor.ActorType.Mob, masterList.CopyList(), new Vector2(x, y), mobRacials[mobIndex]));
         }
     }
 
@@ -43,9 +60,8 @@ public class AIManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Tab) && CamControl.MainCam != null)
         {
             target++;
-            if (target > tempAgents.Count) target = 0;
-            if (target == 0) CamControl.MainCam.SetTarget(Player);
-            else CamControl.MainCam.SetTarget(tempAgents[target - 1]);
+            if (target >= aiAgents.Count) target = 0;
+            CamControl.MainCam.SetTarget(aiAgents[target].actorObj);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateAssetMenu(fileName = "TerraGraph", menuName = "Terrain/Terrain Graph")]
+[CreateAssetMenu(fileName = "TerraGraph", menuName = "Gallant Mage/Terrain Graph")]
 public class TerrainGraph : NodeGraph 
 {
     public Vector2 offset;

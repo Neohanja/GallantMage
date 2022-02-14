@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
     [Header("Base Stats")]
     public float speed;
     public float runBoost;
-    public Color skinColor;
 
     public FSM stateMachine;
     protected bool running;
@@ -49,8 +48,6 @@ public class Movement : MonoBehaviour
 
     protected virtual void Initialize()
     {
-        GetComponentInChildren<MeshRenderer>().material.color = skinColor;
-        
         stateMachine = new FSM(this);
         BuildStateMachine();
     }
