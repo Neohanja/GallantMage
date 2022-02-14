@@ -16,13 +16,24 @@ public class MeshData
         Init();
     }
 
+    public MeshData(float waterLevel)
+    {
+        Init(true);
+        float[] points = new float[MeshSize * MeshSize];
+        for(int i = 0; i < points.Length; i++)
+        {
+            points[i] = waterLevel;
+        }
+        RemapPoints(points);
+    }
+
     public MeshData(float[] points)
     {
         Init();
         RemapPoints(points);
     }
 
-    void Init()
+    void Init(bool isWater = false)
     {
         verts = new Vector3[MeshSize * MeshSize];
         tris = new int[(MeshSize - 1) * (MeshSize - 1) * 6];
@@ -35,7 +46,10 @@ public class MeshData
             {
                 int vIndex = x + y * MeshSize;
                 verts[vIndex] = new Vector3(x, 0, y);
-                uvMap[vIndex] = new Vector2(x / (float)MeshSize, y / (float)MeshSize);
+                if (isWater)
+                    uvMap[vIndex] = new Vector2(x % 2, y % 2);
+                else
+                    uvMap[vIndex] = new Vector2(x / (float)MeshSize, y / (float)MeshSize);
 
                 if (x < MeshSize - 1 && y < MeshSize - 1)
                 {

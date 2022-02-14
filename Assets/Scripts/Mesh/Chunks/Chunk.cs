@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Chunk
 {
+    //Chunk Terrain
     GameObject chunkObj;
     MeshFilter chunkFilter;
     MeshRenderer chunkRender;
     MeshData chunkMesh;
+
+    //Water Terrain
+    GameObject waterObj;
+    MeshFilter waterFilter;
+    MeshRenderer waterRender;
+    MeshData waterMesh;
 
     ChunkData chunkData;
     Vector2 chunkCoord;
@@ -24,12 +31,24 @@ public class Chunk
         {
             chunkRender.material = MapManager.World.terrainMat;
             chunkObj.transform.SetParent(MapManager.World.transform);
+            CreateWater();
         }
 
         MeshData meshData = new MeshData(chunkData.GetPoints());
         chunkFilter.mesh = meshData.GetMesh();
 
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
+    }
+
+    public void CreateWater()
+    {
+        waterObj = new GameObject("Water");
+        waterFilter = waterObj.AddComponent<MeshFilter>();
+        waterRender = waterObj.AddComponent<MeshRenderer>();
+        waterObj.transform.SetParent(chunkObj.transform);
+        waterRender.material = MapManager.World.waterMat;
+        waterMesh = new MeshData(MapManager.World.seaLevel);
+        waterFilter.mesh = waterMesh.GetMesh();
     }
 
     public float GetHeight(Vector2 point)

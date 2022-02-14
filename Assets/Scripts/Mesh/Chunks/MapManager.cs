@@ -11,11 +11,13 @@ public class MapManager : MonoBehaviour
 
     [Header("Materials")]
     public Material terrainMat;
+    public Material waterMat;
     Dictionary<Vector2Int, Chunk> chunkMap;
 
     [Header("Game Settings")]
     public int seed;
     public int viewDistance;
+    public float seaLevel;
 
     [Header("Editor Settings")]
     public Vector2 testOffset;
