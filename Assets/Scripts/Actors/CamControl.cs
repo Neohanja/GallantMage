@@ -17,14 +17,28 @@ public class CamControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position;
+        offset = transform.position;        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if (target != null)
+        {
             transform.position = target.transform.position + offset;
+            if (MapManager.World != null)
+            {
+                float x = transform.position.x;
+                float z = transform.position.z;
+                float y = MapManager.World.GetHeight(new Vector2(x + Chunk.HalfMap, z + Chunk.HalfMap));
+
+                if (transform.position.y < y + offset.y)
+                {
+                    transform.position = new Vector3(x, y + offset.y, z);
+                }
+            }
+            transform.LookAt(target.position + Vector3.up);
+        }
     }
 
     public void SetTarget(GameObject actor)

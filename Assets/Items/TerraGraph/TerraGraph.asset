@@ -137,10 +137,7 @@ MonoBehaviour:
       _node: {fileID: -5502167298469903044}
       _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: entry
-        node: {fileID: 665050647350693714}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
@@ -207,7 +204,10 @@ MonoBehaviour:
       _node: {fileID: -5322264275450547293}
       _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: entry
+        node: {fileID: 130563537046740247}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
@@ -237,8 +237,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   image: {fileID: 0}
-  blendType: 1
-  blend: 0.58692724
+  blendType: 2
+  blend: 0.8032978
 --- !u!114 &-2275994930510203517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
       _dynamic: 0
   image: {fileID: 0}
   blendType: 5
-  blend: 0.30715522
+  blend: 0.6533485
 --- !u!114 &-2157356183043341537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,10 +423,10 @@ MonoBehaviour:
   - {fileID: 874349019745253007}
   - {fileID: 3363694974094079520}
   - {fileID: -5502167298469903044}
-  - {fileID: 665050647350693714}
+  - {fileID: 130563537046740247}
   offset: {x: 0, y: 0}
   seed: 0
---- !u!114 &665050647350693714
+--- !u!114 &130563537046740247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,18 +439,18 @@ MonoBehaviour:
   m_Name: Mesh Image
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 248, y: -472}
+  position: {x: 248, y: 8}
   ports:
     keys:
     - entry
     values:
     - _fieldName: entry
-      _node: {fileID: 665050647350693714}
+      _node: {fileID: 130563537046740247}
       _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: image
-        node: {fileID: -5502167298469903044}
+        node: {fileID: -5322264275450547293}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -516,7 +516,7 @@ MonoBehaviour:
   image: {fileID: 0}
   min: 0.1
   useMin: 1
-  max: 0.3
+  max: 0.6
   useMax: 1
 --- !u!114 &2565659245504068317
 MonoBehaviour:
@@ -619,8 +619,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   image: {fileID: 0}
-  blendType: 2
-  blend: 1
+  blendType: 0
+  blend: 0.71871805
 --- !u!114 &3443036328621354917
 MonoBehaviour:
   m_ObjectHideFlags: 0
