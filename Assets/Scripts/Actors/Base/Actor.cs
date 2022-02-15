@@ -16,13 +16,14 @@ public class Actor
     MeshFilter model;
     MeshRenderer renderProperties;
 
-    public Actor(ActorType aType, Stats list, Vector2 spawnLoc, Race racials)
+    public Actor(ActorType aType, Stats list, Vector2 spawnLoc, Race racials, GameObject attachSpecial = null)
     {
         stats = list;
         stats.ModStats(racials.racialStats);
         actorType = aType;
 
         actorObj = new GameObject(actorType.ToString());
+        if (attachSpecial != null) attachSpecial.transform.SetParent(actorObj.transform);
 
         switch(actorType)
         {

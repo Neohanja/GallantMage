@@ -31,10 +31,12 @@ public class AIManager : MonoBehaviour
     {
         aiAgents = new List<Actor>();
 
+        GameObject playerCam = GetComponentInChildren<Camera>().gameObject;
+
         float x = Random.Range(-120f, 120f);
         float y = Random.Range(-120f, 120f);
 
-        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), new Vector2(x, y), npcRacials[0]));
+        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), new Vector2(x, y), npcRacials[0], playerCam));
         CamControl.MainCam.SetTarget(aiAgents[0].actorObj);
 
         for (int i = 0; i < npcCount; i++)
