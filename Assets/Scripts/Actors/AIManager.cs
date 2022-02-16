@@ -6,6 +6,8 @@ public class AIManager : MonoBehaviour
 {
     public static AIManager AI_Engine { private set; get; }
 
+    public static readonly int Player = 0;
+
     [Header("Game Actors")]
     public int npcCount;
     public int mobCount;
@@ -24,6 +26,13 @@ public class AIManager : MonoBehaviour
     {
         if (AI_Engine != null && AI_Engine != this) Destroy(gameObject);
         else AI_Engine = this;
+    }
+
+    public Vector2 GetLocation(int actorIndex = 0)
+    {
+        Vector3 pos = aiAgents[actorIndex].actorObj.transform.position;
+
+        return new Vector2(pos.x, pos.z);
     }
 
     // Start is called before the first frame update

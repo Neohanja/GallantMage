@@ -30,7 +30,7 @@ public class CamControl : MonoBehaviour
             {
                 float x = transform.position.x;
                 float z = transform.position.z;
-                float y = MapManager.World.GetHeight(new Vector2(x + Chunk.HalfMap, z + Chunk.HalfMap));
+                float y = MapManager.World.GetHeight(new Vector2(x, z));
 
                 if (transform.position.y < y + offset.y)
                 {

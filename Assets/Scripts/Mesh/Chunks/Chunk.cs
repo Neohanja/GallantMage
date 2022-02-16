@@ -17,6 +17,7 @@ public class Chunk
     MeshData waterMesh;
 
     ChunkData chunkData;
+    BoxBounds chunkBounds;
     Vector2 chunkCoord;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
@@ -38,6 +39,8 @@ public class Chunk
         chunkFilter.mesh = meshData.GetMesh();
 
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
+
+        chunkBounds = new BoxBounds(new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap), Vector2.one * (MeshData.MeshSize - 1));
     }
 
     public void CreateWater()
@@ -73,6 +76,24 @@ public class Chunk
         {
             return (MeshData.MeshSize - 1) / 2f;
         }
+    }
+
+    public bool CheckViewDistance(float distance, Vector2 position, bool correctPos = true)
+    {
+        if(correctPos)
+        {
+            position.x += HalfMap;
+            position.y += HalfMap;
+        }
+
+        Vector2 ActualLoc = new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap);
+
+        bool checkDist = chunkBounds.PointWithinBounds(ActualLoc, distance);
+
+        if (checkDist && !chunkObj.activeSelf) chunkObj.SetActive(true);
+        else if (!checkDist && chunkObj.activeSelf) chunkObj.SetActive(false);
+
+        return checkDist;
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }

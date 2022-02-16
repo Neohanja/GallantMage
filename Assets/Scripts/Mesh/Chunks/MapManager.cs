@@ -13,6 +13,7 @@ public class MapManager : MonoBehaviour
     public Material terrainMat;
     public Material waterMat;
     Dictionary<Vector2Int, Chunk> chunkMap;
+    public List<Vector2Int> activeChunks;
 
     [Header("Game Settings")]
     public int seed;
@@ -34,12 +35,24 @@ public class MapManager : MonoBehaviour
     {
         Destroy(testMesh);
         chunkMap = new Dictionary<Vector2Int, Chunk>();
+        activeChunks = new List<Vector2Int>();
         VerifyMap(new Vector2Int(0, 0));
         if (AIManager.AI_Engine != null) AIManager.AI_Engine.StartAI();
     }
 
-    public float GetHeight(Vector2 point)
+    void Update()
     {
+        VerifyMap(AIManager.AI_Engine.GetLocation());
+    }
+
+    public float GetHeight(Vector2 point, bool autoCorrect = true)
+    {
+        if (autoCorrect)
+        {
+            point.x += Chunk.HalfMap;
+            point.y += Chunk.HalfMap;
+        }
+
         int chunkX = MathFun.Floor(point.x / ChunkSize);
         int chunkY = MathFun.Floor(point.y / ChunkSize);
 
@@ -51,8 +64,16 @@ public class MapManager : MonoBehaviour
         return chunkMap[new Vector2Int(chunkX, chunkY)].GetHeight(new Vector2(xPos, yPos));
     }
 
-    public void VerifyMap(Vector2Int location)
+    public void VerifyMap(Vector2 position, bool autoCorrect = true)
     {
+        if(autoCorrect)
+        {
+            position.x += Chunk.HalfMap;
+            position.y += Chunk.HalfMap;
+        }
+
+        Vector2Int location = new Vector2Int(MathFun.Floor(position.x / ChunkSize), MathFun.Floor(position.y / ChunkSize));
+
         for(int x = -viewDistance; x <= viewDistance; x++)
         {
             for (int y = -viewDistance; y <= viewDistance; y++)
@@ -60,10 +81,25 @@ public class MapManager : MonoBehaviour
                 AddChunk(new Vector2Int(x, y) + location);
             }
         }
+
+        if (activeChunks.Count > 0)
+        {
+            for (int c = activeChunks.Count - 1; c >= 0; c--)
+            {
+                if (!chunkMap[activeChunks[c]].CheckViewDistance(viewDistance * ChunkSize, position, false))
+                {
+                    activeChunks.RemoveAt(c);
+                }
+            }
+        }
     }
 
     public void AddChunk(Vector2Int location)
     {
+        if (!activeChunks.Contains(location))
+        {
+            activeChunks.Add(location);
+        }
         if (chunkMap.ContainsKey(location)) return;
 
         ChunkData newChunk = terrainGraph.ProcessNodes(location * ChunkSize, seed);
