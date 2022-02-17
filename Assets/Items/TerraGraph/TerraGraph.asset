@@ -111,7 +111,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   image: {fileID: 0}
-  minHeight: -32
+  minHeight: 32
   heightGrowth: 256
 --- !u!114 &-5502167298469903044
 MonoBehaviour:
@@ -241,7 +241,7 @@ MonoBehaviour:
       _dynamic: 0
   image: {fileID: 0}
   blendType: 2
-  blend: 0.8032978
+  blend: 1
 --- !u!114 &-5157499755088355806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,8 +616,8 @@ MonoBehaviour:
   - {fileID: -88268546312938600}
   - {fileID: -5157499755088355806}
   - {fileID: 6933006422855276160}
-  offset: {x: 240, y: 240}
-  seed: 0
+  offset: {x: 0, y: 0}
+  seed: 3
 --- !u!114 &130563537046740247
 MonoBehaviour:
   m_ObjectHideFlags: 0

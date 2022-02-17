@@ -86,9 +86,7 @@ public class Chunk
             position.y += HalfMap;
         }
 
-        Vector2 ActualLoc = new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap);
-
-        bool checkDist = chunkBounds.PointWithinBounds(ActualLoc, distance);
+        bool checkDist = chunkBounds.PointWithinBounds(position, distance);
 
         if (checkDist && !chunkObj.activeSelf) chunkObj.SetActive(true);
         else if (!checkDist && chunkObj.activeSelf) chunkObj.SetActive(false);

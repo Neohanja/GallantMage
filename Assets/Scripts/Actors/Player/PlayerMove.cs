@@ -22,12 +22,37 @@ public class PlayerMove : Movement
             thirdPersonCam = CamControl.MainCam.gameObject;
         firstPersonCam = GetComponentInChildren<Camera>().gameObject;
 
-        if(firstPersonCam != null)
+        if(firstPersonCam != null && !Application.isEditor)
         {
             thirdPersonCam.SetActive(false);
             fpsCam = true;
             prevRotation = transform.rotation;
             model.enabled = false;
+            MouseActive(false);
+        }
+        else
+        {
+            if (firstPersonCam != null)
+                firstPersonCam.SetActive(false);
+            fpsCam = false;
+            MouseActive(true);
+        }
+    }
+
+    protected void MouseActive(bool activeMouse)
+    {
+        if (!Application.isEditor)
+        {
+            if (activeMouse)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 
@@ -49,6 +74,7 @@ public class PlayerMove : Movement
                     transform.rotation = Quaternion.identity; 
                     CamControl.MainCam.SetTarget(gameObject);
                     model.enabled = true;
+                    MouseActive(true);
                 }
             }
             else
@@ -60,6 +86,7 @@ public class PlayerMove : Movement
                     firstPersonCam.SetActive(true);
                     transform.rotation = prevRotation;
                     model.enabled = false;
+                    MouseActive(false);
                 }
             }
         }
