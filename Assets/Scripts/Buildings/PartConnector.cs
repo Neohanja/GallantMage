@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PartConnector : MonoBehaviour
 {
-    List<BuildingPart.PartType> connectionsAllowed;
+    public List<BuildingPart.PartType> connectionsAllowed;
 
     // Start is called before the first frame update
     void Start()

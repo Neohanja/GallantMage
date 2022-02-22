@@ -11,6 +11,7 @@ public class PlayerMove : Movement
     GameObject firstPersonCam;
     Quaternion prevRotation;
     MeshRenderer model;
+    public int partIndex = 0;
 
     protected override void Initialize()
     {

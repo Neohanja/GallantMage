@@ -18,7 +18,7 @@ public class Chunk
 
     ChunkData chunkData;
     BoxBounds chunkBounds;
-    Vector2 chunkCoord;
+    Vector2 chunkCoord;    
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {

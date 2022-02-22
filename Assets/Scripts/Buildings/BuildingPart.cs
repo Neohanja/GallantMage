@@ -6,6 +6,7 @@ public class BuildingPart : MonoBehaviour
 {
     public string partName;
     public bool requiresFoundation;
+    public PartType partType;
 
     // Start is called before the first frame update
     void Start()
