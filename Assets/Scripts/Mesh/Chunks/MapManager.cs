@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
     [Header("Materials")]
     public Material terrainMat;
     public Material waterMat;
+    public Gradient heightGrad;
     Dictionary<Vector2Int, Chunk> chunkMap;
     public List<Vector2Int> activeChunks;
 

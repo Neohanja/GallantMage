@@ -38,6 +38,8 @@ public class Chunk
         MeshData meshData = new MeshData(chunkData.GetPoints());
         chunkFilter.mesh = meshData.GetMesh();
 
+        chunkRender.material.mainTexture = MapTexture.TextureByHeight(MeshData.MeshSize, chunkData.GetPointsRaw(), MapManager.World.heightGrad);
+
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
 
         chunkBounds = new BoxBounds(new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap), Vector2.one * (MeshData.MeshSize - 1));

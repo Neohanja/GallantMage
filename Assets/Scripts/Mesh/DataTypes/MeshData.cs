@@ -152,6 +152,18 @@ public class ChunkData
         return vals;
     }
 
+    public float[] GetPointsRaw()
+    {
+        float[] rawVals = new float[vals.Length];
+
+        for(int i = 0; i < vals.Length; i++)
+        {
+            rawVals[i] = Mathf.InverseLerp(32, 288, vals[i]);// (vals[i] - 32) / 256f;
+        }
+
+        return rawVals;
+    }
+
     public float GetPoint(int x, int y)
     {
         return vals[x + y * MeshData.MeshSize];
