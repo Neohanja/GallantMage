@@ -24,13 +24,13 @@ public class MeshData
         {
             points[i] = waterLevel;
         }
-        RemapPoints(points);
+        RemapPoints(points, 0, 0);
     }
 
-    public MeshData(float[] points)
+    public MeshData(float[] points, float growth, float minHeight)
     {
         Init();
-        RemapPoints(points);
+        RemapPoints(points, growth, minHeight);
     }
 
     void Init(bool isWater = false)
@@ -87,14 +87,14 @@ public class MeshData
         return map;
     }
 
-    public void RemapPoints(float[] remap)
+    public void RemapPoints(float[] remap, float growth, float minHeight)
     {
         for (int y = 0; y < MeshSize; y++)
         {
             for (int x = 0; x < MeshSize; x++)
             {
                 int vIndex = x + y * MeshSize;
-                verts[vIndex].y = remap[vIndex];
+                verts[vIndex].y = remap[vIndex] * growth + minHeight;
             }
         }
     }
@@ -152,21 +152,9 @@ public class ChunkData
         return vals;
     }
 
-    public float[] GetPointsRaw()
-    {
-        float[] rawVals = new float[vals.Length];
-
-        for(int i = 0; i < vals.Length; i++)
-        {
-            rawVals[i] = Mathf.InverseLerp(32, 288, vals[i]);// (vals[i] - 32) / 256f;
-        }
-
-        return rawVals;
-    }
-
     public float GetPoint(int x, int y)
     {
-        return vals[x + y * MeshData.MeshSize];
+        return vals[x + y * MeshData.MeshSize] * MapManager.World.growth + MapManager.World.minHeight;
     }
 
     public float[] CopyPoints()

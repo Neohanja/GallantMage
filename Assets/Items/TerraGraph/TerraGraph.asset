@@ -105,14 +105,48 @@ MonoBehaviour:
       _node: {fileID: -6686102498292296330}
       _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: entry
+        node: {fileID: 2890934902370976681}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
   image: {fileID: 0}
-  minHeight: 32
-  heightGrowth: 256
+  normalize: 0
+  unclampValue: 0
+--- !u!114 &-6065187738574764023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e182be29c615974191e2d922559f1e1, type: 3}
+  m_Name: Mesh Image
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -616, y: -408}
+  ports:
+    keys:
+    - entry
+    values:
+    - _fieldName: entry
+      _node: {fileID: -6065187738574764023}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: image
+        node: {fileID: -2275994930510203517}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  entry: {fileID: 0}
 --- !u!114 &-5502167298469903044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +405,10 @@ MonoBehaviour:
       _node: {fileID: -2275994930510203517}
       _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: entry
+        node: {fileID: -6065187738574764023}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
@@ -402,7 +439,7 @@ MonoBehaviour:
       _dynamic: 0
   image: {fileID: 0}
   blendType: 5
-  blend: 0.6533485
+  blend: 0.6848952
 --- !u!114 &-2157356183043341537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,6 +653,8 @@ MonoBehaviour:
   - {fileID: -88268546312938600}
   - {fileID: -5157499755088355806}
   - {fileID: 6933006422855276160}
+  - {fileID: 2890934902370976681}
+  - {fileID: -6065187738574764023}
   offset: {x: 0, y: 0}
   seed: 3
 --- !u!114 &130563537046740247
@@ -735,6 +774,37 @@ MonoBehaviour:
       connections:
       - fieldName: image
         node: {fileID: 3363694974094079520}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  entry: {fileID: 0}
+--- !u!114 &2890934902370976681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e182be29c615974191e2d922559f1e1, type: 3}
+  m_Name: Mesh Image
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1048, y: -88}
+  ports:
+    keys:
+    - entry
+    values:
+    - _fieldName: entry
+      _node: {fileID: 2890934902370976681}
+      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: image
+        node: {fileID: -6686102498292296330}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
