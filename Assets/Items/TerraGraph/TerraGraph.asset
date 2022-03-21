@@ -202,7 +202,7 @@ MonoBehaviour:
       _dynamic: 0
   image: {fileID: 0}
   zOffset: 22
-  scale: 86.21
+  scale: 73.16
   noise0To1: 1
 --- !u!114 &-5322264275450547293
 MonoBehaviour:

@@ -63,6 +63,7 @@ public static class MathFun
         return t;
     }
 
+    // WIP Need to fix at some point (using unity mathf for now)
     public static float InverseLerp(float a, float b, float value)
     {
         return (a - value) / (b - a);
