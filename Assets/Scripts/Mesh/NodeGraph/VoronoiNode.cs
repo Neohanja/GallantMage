@@ -10,10 +10,9 @@ public class VoronoiNode : MeshNode
     public bool inverse;
     public bool useCurve;
 
-    public override void ProcessNode(bool addImage = false)
+    public override void ProcessNode()
     {
         float[] vals = new float[MeshData.MeshSize * MeshData.MeshSize];
-        Color[] cols = new Color[vals.Length];
 
         for (int x = 0; x < MeshData.MeshSize; x++)
         {
@@ -24,17 +23,8 @@ public class VoronoiNode : MeshNode
                 float ySample = (GetGraph.offset.y + y) / scale;
                 vals[index] = Noise.VoronoiNoise(new Vector2(xSample, ySample), zOffset, GetGraph.seed);
                 if (inverse) vals[index] = 1f - vals[index];
-                if (addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
                 if (useCurve) vals[index] = MathFun.Curve(vals[index]);
             }
-        }
-
-        if (addImage)
-        {
-            image.SetPixels(cols);
-            image.filterMode = FilterMode.Point;
-            image.wrapMode = TextureWrapMode.Clamp;
-            image.Apply();
         }
 
         points.SetPoints(vals);
@@ -45,7 +35,7 @@ public class VoronoiNode : MeshNode
         return "VornoiNoiseTwo";
     }
 
-    protected override void DoThisOrWeBreakStuff()
+    void OnValidate()
     {
         if (scale <= 0) scale = 0.0001f;
     }

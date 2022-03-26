@@ -8,10 +8,9 @@ public class MinMaxNode : MeshNode
 	public float max;
 	public bool useMax;
 
-	public override void ProcessNode(bool addImage = false)
+	public override void ProcessNode()
     {
         float[] vals = GetInputValue("entry", entry).CopyPoints();
-		Color[] cols = new Color[vals.Length];
 
         for (int x = 0; x < MeshData.MeshSize; x++)
 		{
@@ -21,17 +20,7 @@ public class MinMaxNode : MeshNode
 
 				if (vals[index] < min && useMin) vals[index] = min;
 				if (vals[index] > max && useMax) vals[index] = max;
-
-				if(addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
 			}
-		}
-
-		if (addImage)
-		{
-			image.SetPixels(cols);
-			image.filterMode = FilterMode.Point;
-			image.wrapMode = TextureWrapMode.Clamp;
-			image.Apply();
 		}
 
 		points.SetPoints(vals);

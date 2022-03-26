@@ -10,10 +10,9 @@ public class CellAutoNode : MeshNode
 	public int death;
 	public bool inverse;
 
-	public override void ProcessNode(bool addImage = false)
+	public override void ProcessNode()
     {
 		float[] vals = Noise.CellAuto(MeshData.MeshSize, GetGraph.seed, startAlive, smoothing, birth, death);
-		Color[] cols = new Color[vals.Length];
 
         for (int x = 0; x < MeshData.MeshSize; x++)
 		{
@@ -21,17 +20,7 @@ public class CellAutoNode : MeshNode
 			{
 				int index = x + y * MeshData.MeshSize;
 				if (inverse) vals[index] = 1 - vals[index];
-
-				if(addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
 			}
-		}
-
-		if (addImage)
-		{
-			image.SetPixels(cols);
-			image.filterMode = FilterMode.Point;
-			image.wrapMode = TextureWrapMode.Clamp;
-			image.Apply();
 		}
 
 		points.SetPoints(vals);

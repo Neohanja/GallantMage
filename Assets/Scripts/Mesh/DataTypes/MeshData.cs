@@ -24,7 +24,7 @@ public class MeshData
         {
             points[i] = waterLevel;
         }
-        RemapPoints(points, 0, 0);
+        RemapPoints(points, 1, 0);
     }
 
     public MeshData(float[] points, float growth, float minHeight)

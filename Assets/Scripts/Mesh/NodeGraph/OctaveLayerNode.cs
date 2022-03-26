@@ -11,10 +11,9 @@ public class OctaveLayerNode : MeshNode
 	public bool noise0To1;
 
 
-	public override void ProcessNode(bool addImage = false)
+	public override void ProcessNode()
     {
         float[] vals = GetInputValue("entry", entry).CopyPoints();
-		Color[] cols = new Color[vals.Length];
 
         for (int x = 0; x < MeshData.MeshSize; x++)
 		{
@@ -40,17 +39,7 @@ public class OctaveLayerNode : MeshNode
 				}
 
 				vals[index] = pNoise;
-
-				if(addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
 			}
-		}
-
-		if (addImage)
-		{
-			image.SetPixels(cols);
-			image.filterMode = FilterMode.Point;
-			image.wrapMode = TextureWrapMode.Clamp;
-			image.Apply();
 		}
 
 		points.SetPoints(vals);
@@ -61,7 +50,7 @@ public class OctaveLayerNode : MeshNode
 		return "OctaveLayer";
 	}
 
-    protected override void DoThisOrWeBreakStuff()
+    void OnValidate()
     {
 		if (scale <= 0f) scale = 0.00001f;
     }

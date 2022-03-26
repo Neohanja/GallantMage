@@ -24,10 +24,7 @@ MonoBehaviour:
       _node: {fileID: -9001658091978066195}
       _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: entry
-        node: {fileID: 7581272711858043113}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
@@ -636,25 +633,14 @@ MonoBehaviour:
   - {fileID: 3443036328621354917}
   - {fileID: -6686102498292296330}
   - {fileID: -5322264275450547293}
-  - {fileID: 2565659245504068317}
-  - {fileID: 4824417475701191324}
-  - {fileID: 7581272711858043113}
   - {fileID: -9001658091978066195}
-  - {fileID: -2053409693829322356}
   - {fileID: -2157356183043341537}
   - {fileID: -2275994930510203517}
-  - {fileID: 5207875723942541439}
   - {fileID: 874349019745253007}
   - {fileID: 3363694974094079520}
   - {fileID: -5502167298469903044}
-  - {fileID: 130563537046740247}
-  - {fileID: -1320639761040009303}
   - {fileID: -3264291198561444928}
   - {fileID: -88268546312938600}
-  - {fileID: -5157499755088355806}
-  - {fileID: 6933006422855276160}
-  - {fileID: 2890934902370976681}
-  - {fileID: -6065187738574764023}
   offset: {x: 0, y: 0}
   seed: 3
 --- !u!114 &130563537046740247
@@ -1027,37 +1013,6 @@ MonoBehaviour:
       connections:
       - fieldName: image
         node: {fileID: -3264291198561444928}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-  entry: {fileID: 0}
---- !u!114 &7581272711858043113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e182be29c615974191e2d922559f1e1, type: 3}
-  m_Name: Mesh Image
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -40, y: 120}
-  ports:
-    keys:
-    - entry
-    values:
-    - _fieldName: entry
-      _node: {fileID: 7581272711858043113}
-      _typeQualifiedName: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: image
-        node: {fileID: -9001658091978066195}
         reroutePoints: []
       _direction: 0
       _connectionType: 1

@@ -11,10 +11,9 @@ public class MeshFinalNode : MeshNode
         return "EndNode";
     }
 
-    public override void ProcessNode(bool addImage = false)
+    public override void ProcessNode()
     {
 		float[] vals = GetInputValue("entry", entry).CopyPoints();
-		Color[] cols = new Color[vals.Length];
 
 		if (normalize)
 		{
@@ -40,23 +39,6 @@ public class MeshFinalNode : MeshNode
 					if (unclampValue) vals[index] = vals[index] * 2 - 1f;
 				}
 			}
-		}
-
-		if (addImage)
-		{
-			for (int x = 0; x < MeshData.MeshSize; x++)
-			{
-				for (int y = 0; y < MeshData.MeshSize; y++)
-				{
-					int index = x + y * MeshData.MeshSize;
-					if (addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
-				}
-			}
-
-			image.SetPixels(cols);
-			image.filterMode = FilterMode.Point;
-			image.wrapMode = TextureWrapMode.Clamp;
-			image.Apply();
 		}
 
 		points.SetPoints(vals);
