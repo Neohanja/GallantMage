@@ -160,6 +160,12 @@ public class MeshData
         }
     }
 
+    public Vector3[] GetNorms()
+    {
+        CalculateNormals();
+        return norms;
+    }
+
     public void RemapPoints(List<Vector3> remap)
     {
         foreach(Vector3 point in remap)

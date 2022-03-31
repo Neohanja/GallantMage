@@ -116,8 +116,9 @@ public class MapManager : MonoBehaviour
         MeshData chunkMesh = new MeshData(chunkData.GetPoints(), growth, minHeight);
 
         testMesh.GetComponent<MeshFilter>().mesh = chunkMesh.GetMesh();
-        testMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture = 
-            MapTexture.TextureByHeight(MeshData.MeshSize, colorScale, chunkData.GetPoints(), heightGrad);
+        testMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture =
+            MapTexture.TextureByNormal(MeshData.MeshSize, colorScale, chunkMesh.GetNorms(), chunkMesh.HeightList(), seaLevel, heightGrad);
+            //MapTexture.TextureByHeight(MeshData.MeshSize, colorScale, chunkData.GetPoints(), heightGrad);
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }

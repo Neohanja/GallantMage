@@ -25,6 +25,15 @@ public static class MathFun
         return min + percent * (max - min);
     }
 
+    public static Vector3 LerpV3(Vector3 a, Vector3 b, float percent)
+    {
+        float x = Lerp(a.x, b.x, percent);
+        float y = Lerp(a.y, b.y, percent);
+        float z = Lerp(a.z, b.z, percent);
+
+        return new Vector3(x, y, z);
+    }
+
     public static int SnapLerp(int min, int max, float percent)
     {
         return Round(min + percent * (max - min));
