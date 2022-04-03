@@ -18,10 +18,14 @@ public class Chunk
 
     ChunkData chunkData;
     BoxBounds chunkBounds;
-    Vector2 chunkCoord;    
+    Vector2 chunkIndex;
+    RanGen chunkPRG;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {
+        chunkPRG = new RanGen(RanGen.PullNumber(MapManager.World.seed, MathFun.Floor(chunkCoord.x), MathFun.Floor(chunkCoord.y)));
+        chunkIndex = chunkCoord;
+
         chunkData = chunkInfo;
 
         chunkObj = new GameObject("Chunk");
@@ -34,6 +38,10 @@ public class Chunk
             chunkObj.transform.SetParent(MapManager.World.transform);
             CreateWater();
         }
+        if(Flora.TreeMaker != null)
+        {
+            BuildTreeScatter();
+        }
 
         MeshData meshData = new MeshData(chunkData.GetPoints(), MapManager.World.growth, MapManager.World.minHeight);
         chunkFilter.mesh = meshData.GetMesh();
@@ -42,8 +50,6 @@ public class Chunk
             MapTexture.TextureByNormal(MeshData.MeshSize, MapManager.World.colorScale,
             meshData.GetNorms(), meshData.HeightList(), 
             MapManager.World.seaLevel, MapManager.World.heightGrad);
-        // MapTexture.TextureByHeight(MeshData.MeshSize, MapManager.World.colorScale,
-        // chunkData.GetPoints(), MapManager.World.heightGrad);
 
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
 
@@ -59,6 +65,45 @@ public class Chunk
         waterRender.material = MapManager.World.waterMat;
         waterMesh = new MeshData(MapManager.World.seaLevel);
         waterFilter.mesh = waterMesh.GetMesh();
+    }
+
+    public void BuildTreeScatter()
+    {
+        int treePop = chunkPRG.Roll(25, 50);
+        int maxTries = 100000;
+        List<Vector3> points = new List<Vector3>();
+
+        for(int t = 0; t < maxTries; t++)
+        {
+            if (points.Count >= treePop) break;
+
+            float x = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
+            float z = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
+
+            Vector2 treeLoc = new Vector2(x, z);
+
+            float y = GetHeight(treeLoc);
+
+            if(y > MapManager.World.seaLevel)
+            {
+                bool canPlace = true;
+                foreach(Vector3 pt in points)
+                {
+                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= 0.75f)
+                    {
+                        canPlace = false;
+                        break;
+                    }
+                }
+
+                if(canPlace)
+                {
+                    points.Add(new Vector3(x + chunkIndex.x - HalfMap, y, z + chunkIndex.y - HalfMap));
+                }
+            }
+        }
+
+        Flora.TreeMaker.AddTreePoints(points, new Vector2(0.5f, 1.5f));
     }
 
     public float GetHeight(Vector2 point)

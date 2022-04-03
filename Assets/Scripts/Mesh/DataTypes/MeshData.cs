@@ -163,6 +163,7 @@ public class MeshData
     public Vector3[] GetNorms()
     {
         CalculateNormals();
+
         return norms;
     }
 

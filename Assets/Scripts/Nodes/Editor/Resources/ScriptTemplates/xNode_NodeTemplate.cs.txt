@@ -4,10 +4,9 @@ using XNode;
 public class #SCRIPTNAME# : MeshNode 
 {
 
-	public override void ProcessNode(bool addImage = false)
+	public override void ProcessNode()
     {
         float[] vals = GetInputValue("entry", entry).CopyPoints();
-		Color[] cols = new Color[vals.Length];
 
         for (int x = 0; x < MeshData.MeshSize; x++)
 		{
@@ -15,16 +14,8 @@ public class #SCRIPTNAME# : MeshNode
 			{
 				int index = x + y * MeshData.MeshSize;
 
-				if(addImage) cols[index] = Color.Lerp(Color.black, Color.white, vals[index]);
+				// Add Process Here
 			}
-		}
-
-		if (addImage)
-		{
-			image.SetPixels(cols);
-			image.filterMode = FilterMode.Point;
-			image.wrapMode = TextureWrapMode.Clamp;
-			image.Apply();
 		}
 
 		points.SetPoints(vals);

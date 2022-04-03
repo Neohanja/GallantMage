@@ -18,19 +18,19 @@ public static class MapTexture
                 {
                     for (int x = 0; x < scale; x++)
                     {
-                        if (hMap[h * size + w] <= seaLevel + 0.5f)
+                        float xSample = w + (x / (float)scale);
+                        float ySample = h + (y / (float)scale);
+
+                        if (GetPoint(hMap, xSample, ySample, size) <= seaLevel + 0.5f)
                         {
                             cols[index] = new Color(0.94f, 0.92f, 0.66f);
                         }
                         else
                         {
-                            float xSample = w + (x / (float)scale);
-                            float ySample = h + (y / (float)scale);
-
                             Vector3 height = LerpNorm(norms, xSample, ySample, size);
                             float angle = NormAngle(height);
 
-                            if (angle > 0.075f)
+                            if (angle > 0.1f)
                             {
                                 cols[index] = new Color(0.55f, 0.35f, 0.03f);
                             }
@@ -48,8 +48,8 @@ public static class MapTexture
 
         Texture2D texture = new Texture2D(imgSize, imgSize);
         texture.SetPixels(cols);
-        texture.filterMode = FilterMode.Point;
-        texture.wrapMode = TextureWrapMode.Clamp;
+        // texture.filterMode = FilterMode.Point;
+        // texture.wrapMode = TextureWrapMode.Clamp;
         texture.Apply();
         return texture;
     }
@@ -57,7 +57,6 @@ public static class MapTexture
     public static float NormAngle(Vector3 norm)
     {
         Vector3 forward = new Vector3(norm.x, 0, norm.z);
-        forward.Normalize();
         return MathFun.Abs((Vector3.Angle(forward, norm)  - 90f) /180f);
     }
 
