@@ -18,8 +18,9 @@ MonoBehaviour:
     stats:
     - statName: Damage
       shortName: Dmg
-      baseVal: 1
+      baseValue: 1
       modValue: 2
+      statType: 0
   raceColor: {r: 0.8658537, g: 0.4138483, b: 0.9433962, a: 0}
   baseSpeed: 3
   baseRun: 2.5
