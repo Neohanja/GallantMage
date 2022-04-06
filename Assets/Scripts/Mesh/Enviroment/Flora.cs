@@ -17,6 +17,7 @@ public class Flora : MonoBehaviour
     public float updateDistance = 100f;
     public Vector3 lastUpdatePos;
     public Transform currentViewer;
+    bool firstPush = false;
 
     void Awake()
     {
@@ -66,10 +67,11 @@ public class Flora : MonoBehaviour
         {
             float dist = Vector3.Distance(currentViewer.position, lastUpdatePos);
 
-            if (dist >= updateDistance)
+            if (dist >= updateDistance || !firstPush)
             {
                 CheckTreeVisibility();
                 lastUpdatePos = currentViewer.position;
+                firstPush = true;
             }
         }
     }

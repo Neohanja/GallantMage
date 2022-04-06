@@ -69,7 +69,7 @@ public class Chunk
 
     public void BuildTreeScatter()
     {
-        int treePop = chunkPRG.Roll(25, 50);
+        int treePop = chunkPRG.Roll(225, 650);
         int maxTries = 100000;
         List<Vector3> points = new List<Vector3>();
 
@@ -108,7 +108,7 @@ public class Chunk
 
     public float GetHeight(Vector2 point)
     {
-        if (point.x < 0 || point.x >= ChunkSize || point.y < 0 || point.y >= ChunkSize) return 0f;
+        if (point.x < 0 || point.x >= ChunkSize || point.y < 0 || point.y >= ChunkSize) return -256f;
 
         int iX = MathFun.Floor(point.x);
         int iY = MathFun.Floor(point.y);
