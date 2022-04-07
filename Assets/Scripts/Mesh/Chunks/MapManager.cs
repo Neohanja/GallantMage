@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
     [Header("Materials")]
     public Material terrainMat;
     public Material waterMat;
+    public TreeStyle[] treeVariations;
     Dictionary<Vector2Int, Chunk> chunkMap;
     public List<Vector2Int> activeChunks;
 
@@ -35,11 +36,14 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        if (UIManager.ActiveUI != null) seed = UIManager.ActiveUI.seed;
+
         Destroy(testMesh);
         chunkMap = new Dictionary<Vector2Int, Chunk>();
         activeChunks = new List<Vector2Int>();
         VerifyMap(new Vector2Int(0, 0));
         if (AIManager.AI_Engine != null) AIManager.AI_Engine.StartAI();
+        if (UIManager.ActiveUI != null) UIManager.ActiveUI.DoneLoading();
     }
 
     void Update()

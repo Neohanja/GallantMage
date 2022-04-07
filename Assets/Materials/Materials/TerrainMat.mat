@@ -129,9 +129,9 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - dirtAngle: 0.113
-    - grassAngle: 0.789
-    - seaLevel: 0
+    - dirtAngle: 0.154
+    - grassAngle: 0.361
+    - seaLevel: -0.38
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

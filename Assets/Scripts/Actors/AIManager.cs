@@ -42,27 +42,34 @@ public class AIManager : MonoBehaviour
 
         GameObject playerCam = GetComponentInChildren<Camera>().gameObject;
 
-        float x = Random.Range(-120f, 120f);
-        float y = Random.Range(-120f, 120f);
-
-        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), new Vector2(x, y), npcRacials[0], playerCam));
+        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), RandomSpawn(), npcRacials[0], playerCam));
         CamControl.MainCam.SetTarget(aiAgents[0].actorObj);
 
         for (int i = 0; i < npcCount; i++)
         {
-            x = Random.Range(-120f, 120f);
-            y = Random.Range(-120f, 120f);
             int npcIndex = Random.Range(0, npcRacials.Count);
-            aiAgents.Add(new Actor(Actor.ActorType.NPC, masterList.CopyList(), new Vector2(x, y), npcRacials[npcIndex]));
+            aiAgents.Add(new Actor(Actor.ActorType.NPC, masterList.CopyList(), RandomSpawn(), npcRacials[npcIndex]));
         }
 
         for (int i = 0; i < mobCount; i++)
         {
-            x = Random.Range(-120f, 120f);
-            y = Random.Range(-120f, 120f);
             int mobIndex = Random.Range(0, mobRacials.Count);
-            aiAgents.Add(new Actor(Actor.ActorType.Mob, masterList.CopyList(), new Vector2(x, y), mobRacials[mobIndex]));
+            aiAgents.Add(new Actor(Actor.ActorType.Mob, masterList.CopyList(), RandomSpawn(), mobRacials[mobIndex]));
         }
+    }
+
+    public Vector3 RandomSpawn()
+    {
+        float x, y, z;
+
+        do
+        {
+            x = Random.Range(-120f, 120f);
+            z = Random.Range(-120f, 120f);
+            y = MapManager.World.GetHeight(new Vector2(x, z));
+        } while (y <= MapManager.World.seaLevel);
+
+        return new Vector3(x, y, z);
     }
 
     // Update is called once per frame

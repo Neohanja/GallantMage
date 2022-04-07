@@ -38,11 +38,14 @@ public class Chunk
             chunkObj.transform.SetParent(MapManager.World.transform);
             CreateWater();
         }
+        /* In case I want to use this still
         if(Flora.TreeMaker != null)
         {
             BuildTreeScatter();
         }
+        */
 
+        BuildTrees();
         MeshData meshData = new MeshData(chunkData.GetPoints(), MapManager.World.growth, MapManager.World.minHeight);
         chunkFilter.mesh = meshData.GetMesh();
 
@@ -99,6 +102,54 @@ public class Chunk
         }
 
         Flora.TreeMaker.AddTreePoints(points, new Vector2(0.5f, 1.5f));
+    }
+
+    public void BuildTrees()
+    {
+        int treePop = chunkPRG.Roll(225, 650);
+        int maxTries = 100000;
+        List<Vector3> points = new List<Vector3>();
+
+        for(int t = 0; t < maxTries; t++)
+        {
+            if (points.Count >= treePop) break;
+
+            float x = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
+            float z = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
+
+            Vector2 treeLoc = new Vector2(x, z);
+
+            float y = GetHeight(treeLoc);
+
+            if(y > MapManager.World.seaLevel)
+            {
+                bool canPlace = true;
+                foreach(Vector3 pt in points)
+                {
+                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= 0.75f)
+                    {
+                        canPlace = false;
+                        break;
+                    }
+                }
+
+                if(canPlace)
+                {
+                    Vector3 treeLocFull = new Vector3(x, y, z);
+                    points.Add(treeLocFull);
+                    Vector3 scale = (chunkPRG.Percent() + 0.5f) * Vector3.one;
+
+                    TreeStyle thisTree = MapManager.World.treeVariations[chunkPRG.Roll(0, MapManager.World.treeVariations.Length - 1)];
+                    GameObject tree = new GameObject("Tree " + points.Count.ToString() + ": " + thisTree.treeName);                    
+                    tree.AddComponent<MeshFilter>().mesh = thisTree.model;
+                    tree.AddComponent<MeshRenderer>().materials = thisTree.materials;
+                    tree.AddComponent<FloraData>();
+                    tree.transform.SetParent(chunkObj.transform);
+                    tree.transform.position = treeLocFull;
+                    tree.transform.localScale = scale;
+                }
+            }
+        }
     }
 
     public float GetHeight(Vector2 point)

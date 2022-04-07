@@ -184,14 +184,6 @@ public class Flora : MonoBehaviour
 }
 
 [System.Serializable]
-public class TreeStyle
-{
-    public string treeName;
-    public Mesh model;
-    public Material[] materials;
-}
-
-[System.Serializable]
 public class TreePlant
 {
     public Vector3 point;

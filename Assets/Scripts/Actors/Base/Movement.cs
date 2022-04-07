@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     [Header("Base Stats")]
     public float speed;
     public float runBoost;
+    public float actorHeight = 1f;
 
     public FSM stateMachine;
     protected bool running;
@@ -26,6 +27,7 @@ public class Movement : MonoBehaviour
 
     protected virtual void GameLoop()
     {
+        if (UIManager.ActiveUI != null && UIManager.ActiveUI.inUI) return;
         stateMachine.RunFSM();
         GetMovement();
 
@@ -43,6 +45,9 @@ public class Movement : MonoBehaviour
         float x = transform.position.x;
         float z = transform.position.z;
         float y = MapManager.World.GetHeight(new Vector2(x, z));
+
+        if (y < MapManager.World.seaLevel - (actorHeight * 0.5f))
+            y = MapManager.World.seaLevel - (actorHeight * 0.5f);
         transform.position = new Vector3(x, y, z);
     }
 

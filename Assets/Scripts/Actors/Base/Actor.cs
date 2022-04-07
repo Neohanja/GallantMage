@@ -16,7 +16,7 @@ public class Actor
     MeshFilter model;
     MeshRenderer renderProperties;
 
-    public Actor(ActorType aType, Stats list, Vector2 spawnLoc, Race racials, GameObject attachSpecial = null)
+    public Actor(ActorType aType, Stats list, Vector3 spawnLoc, Race racials, GameObject attachSpecial = null)
     {
         stats = list;
         stats.ModStats(racials.racialStats);
@@ -51,8 +51,7 @@ public class Actor
         renderProperties.material = AIManager.AI_Engine.actorMat;
         renderProperties.material.color = racials.raceColor;
 
-        float yLoc = MapManager.World.GetHeight(spawnLoc);
-        actorObj.transform.position = new Vector3(spawnLoc.x, yLoc, spawnLoc.y);
+        actorObj.transform.position = spawnLoc;
     }
 
     public enum ActorType

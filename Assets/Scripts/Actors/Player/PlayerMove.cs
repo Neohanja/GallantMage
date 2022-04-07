@@ -31,40 +31,26 @@ public class PlayerMove : Movement
             fpsCam = true;
             prevRotation = transform.rotation;
             model.enabled = false;
-            MouseActive(false);
+            if (UIManager.ActiveUI != null)
+                UIManager.ActiveUI.MouseActive(false);
         }
         else
         {
             if (firstPersonCam != null)
                 firstPersonCam.SetActive(false);
             fpsCam = false;
-            MouseActive(true);
-        }
-    }
-
-    protected void MouseActive(bool activeMouse)
-    {
-        if (!Application.isEditor)
-        {
-            if (activeMouse)
-            {
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+            if (UIManager.ActiveUI != null)
+                UIManager.ActiveUI.MouseActive(true);
         }
     }
 
     protected override void GetMovement()
     {
+
         float side = Input.GetAxis("Horizontal");
         float forward = Input.GetAxis("Vertical");
 
-        if(Input.GetKeyDown(KeyCode.F3))
+        if(Input.GetKeyDown(KeyCode.F3) && Application.isEditor)
         {
             if(fpsCam)
             {
@@ -77,7 +63,8 @@ public class PlayerMove : Movement
                     transform.rotation = Quaternion.identity; 
                     CamControl.MainCam.SetTarget(gameObject);
                     model.enabled = true;
-                    MouseActive(true);
+                    if (UIManager.ActiveUI != null)
+                        UIManager.ActiveUI.MouseActive(true);
                 }
             }
             else
@@ -89,7 +76,8 @@ public class PlayerMove : Movement
                     firstPersonCam.SetActive(true);
                     transform.rotation = prevRotation;
                     model.enabled = false;
-                    MouseActive(false);
+                    if (UIManager.ActiveUI != null)
+                        UIManager.ActiveUI.MouseActive(false);
                 }
             }
         }
