@@ -12,8 +12,6 @@ public class MapManager : MonoBehaviour
     [Header("Materials")]
     public Material terrainMat;
     public Material waterMat;
-    public MapGradient heightGrad;
-    public int colorScale;
     Dictionary<Vector2Int, Chunk> chunkMap;
     public List<Vector2Int> activeChunks;
 
@@ -116,16 +114,7 @@ public class MapManager : MonoBehaviour
         MeshData chunkMesh = new MeshData(chunkData.GetPoints(), growth, minHeight);
 
         testMesh.GetComponent<MeshFilter>().mesh = chunkMesh.GetMesh();
-        testMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture =
-            MapTexture.TextureByNormal(MeshData.MeshSize, colorScale, chunkMesh.GetNorms(), chunkMesh.HeightList(), seaLevel, heightGrad);
-            //MapTexture.TextureByHeight(MeshData.MeshSize, colorScale, chunkData.GetPoints(), heightGrad);
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }
-
-    private void OnValidate()
-    {
-        heightGrad.OnValidate();
-        if (colorScale < 1) colorScale = 1;
-    }
 }
