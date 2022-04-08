@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Music Site(s):
+// https://pernyblom.github.io/abundant-music/index.html
+
 public class Jukebox : MonoBehaviour
 {
     public PlayType musicSelectionStyle;
@@ -64,7 +67,9 @@ public class Jukebox : MonoBehaviour
                     initialSongChoice = Random.Range(0, backgroundMusic.Count);
                     break;
                 case PlayType.RepeatSingle:
-                    // Another do nothing, but do not return because we are still playing music.
+                    // Clamp values, just in case. IE: in the title, we want to keep the same song playing.
+                    if (initialSongChoice < 0) initialSongChoice = 0;
+                    if (initialSongChoice >= backgroundMusic.Count) initialSongChoice = backgroundMusic.Count - 1;
                     break;
             }
         } while (backgroundMusic[initialSongChoice].skipSong && attemptSongs > 0);

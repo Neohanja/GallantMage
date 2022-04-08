@@ -65,45 +65,6 @@ public class Chunk
         waterFilter.mesh = waterMesh.GetMesh();
     }
 
-    public void BuildTreeScatter()
-    {
-        int treePop = chunkPRG.Roll(225, 650);
-        int maxTries = 100000;
-        List<Vector3> points = new List<Vector3>();
-
-        for(int t = 0; t < maxTries; t++)
-        {
-            if (points.Count >= treePop) break;
-
-            float x = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
-            float z = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
-
-            Vector2 treeLoc = new Vector2(x, z);
-
-            float y = GetHeight(treeLoc);
-
-            if(y > MapManager.World.seaLevel)
-            {
-                bool canPlace = true;
-                foreach(Vector3 pt in points)
-                {
-                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= 0.75f)
-                    {
-                        canPlace = false;
-                        break;
-                    }
-                }
-
-                if(canPlace)
-                {
-                    points.Add(new Vector3(x + chunkIndex.x - HalfMap, y, z + chunkIndex.y - HalfMap));
-                }
-            }
-        }
-
-        Flora.TreeMaker.AddTreePoints(points, new Vector2(0.5f, 1.5f));
-    }
-
     public void BuildTrees()
     {
         int treePop = chunkPRG.Roll(225, 650);
