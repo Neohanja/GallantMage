@@ -108,6 +108,7 @@ public class Chunk
                     tree.transform.SetParent(chunkObj.transform);
                     tree.transform.position = treeLocFull;
                     tree.transform.localScale = scale;
+                    tree.transform.Rotate(new Vector3(0, chunkPRG.Roll(0, 360), 0));
                 }
             }
         }
