@@ -4,6 +4,19 @@ using UnityEngine;
 
 public static class MathFun
 {
+    public static Vector2Int V2toV2Int(Vector2 vector, bool roundUp)
+    {
+        int x = Floor(vector.x);
+        int y = Floor(vector.y);
+
+        if(roundUp)
+        {
+            x++;
+            y++;
+        }
+        return new Vector2Int(x, y);
+    }
+
     public static int Floor(float a)
     {
         int val = (int)a;

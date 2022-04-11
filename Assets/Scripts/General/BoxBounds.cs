@@ -14,10 +14,43 @@ public class BoxBounds
         size = boxSize;
     }
 
+    public BoxBounds(Mesh mesh)
+    {
+        float startX = 0;
+        float startY = 0;
+        float endX = 0;
+        float endY = 0;
+
+        for(int v = 0; v < mesh.vertices.Length; v++)
+        {
+            if (mesh.vertices[v].x < startX) startX = mesh.vertices[v].x;
+            if (mesh.vertices[v].y < startY) startX = mesh.vertices[v].y;
+            if (mesh.vertices[v].x > endX) endX = mesh.vertices[v].x;
+            if (mesh.vertices[v].y > endY) endY = mesh.vertices[v].y;
+        }
+
+        start = new Vector2(0, 0);
+        size = new Vector2(endX - startX, endY - startY);
+    }
+
     public bool PointWithinBounds(Vector2 point, float buffer)
     {
         return point.x >= start.x - buffer && point.x <= start.x + size.x + buffer &&
                point.y >= start.y - buffer && point.y <= start.y + size.y + buffer;
+    }
+
+    public bool BoxOverlap(BoxBounds other, float buffer)
+    {
+        return PointWithinBounds(other.UpperLeft, buffer) ||
+            PointWithinBounds(other.LowerLeft, buffer) ||
+            PointWithinBounds(other.UpperRight, buffer) ||
+            PointWithinBounds(other.LowerRight, buffer) ||
+            PointWithinBounds(other.Center, buffer) ||
+            other.PointWithinBounds(UpperLeft, buffer) ||
+            other.PointWithinBounds(LowerLeft, buffer) ||
+            other.PointWithinBounds(UpperRight, buffer) ||
+            other.PointWithinBounds(LowerRight, buffer) ||
+            other.PointWithinBounds(Center, buffer);
     }
 
     public Vector2 UpperLeft

@@ -16,6 +16,10 @@ public class Actor
     MeshFilter model;
     MeshRenderer renderProperties;
 
+    // Collision Stuff
+    Rigidbody actorRB;
+    CapsuleCollider actorCollider;
+
     public Actor(ActorType aType, Stats list, Vector3 spawnLoc, Race racials, GameObject attachSpecial = null)
     {
         stats = list;
@@ -46,10 +50,17 @@ public class Actor
 
         model = actorObj.AddComponent<MeshFilter>();
         renderProperties = actorObj.AddComponent<MeshRenderer>();
-
         model.mesh = racials.baseModel;
         renderProperties.material = AIManager.AI_Engine.actorMat;
         renderProperties.material.color = racials.raceColor;
+
+        // Collision for Raycasting and stuff. Since that seems suddenly important
+        actorCollider = actorObj.AddComponent<CapsuleCollider>();
+        actorRB = actorObj.AddComponent<Rigidbody>();
+        actorCollider.center = new Vector3(0, 1, 0);
+        actorCollider.radius = 0.5f;
+        actorCollider.height = 2f;
+        actorRB.constraints = RigidbodyConstraints.FreezeRotation;// | RigidbodyConstraints.FreezePositionY;
 
         actorObj.transform.position = spawnLoc;
     }

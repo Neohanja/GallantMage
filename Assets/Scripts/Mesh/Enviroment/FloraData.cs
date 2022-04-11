@@ -12,5 +12,6 @@ public class TreeStyle
 {
     public string treeName;
     public Mesh model;
+    public bool blocksMovement;
     public Material[] materials;
 }

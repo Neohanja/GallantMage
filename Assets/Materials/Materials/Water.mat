@@ -83,6 +83,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Scale: 0.13
+    - Transparency: 0.8
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

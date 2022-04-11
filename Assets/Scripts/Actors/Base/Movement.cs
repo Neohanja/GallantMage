@@ -7,11 +7,12 @@ public class Movement : MonoBehaviour
     [Header("Base Stats")]
     public float speed;
     public float runBoost;
-    public float actorHeight = 1f;
+    public float actorHeight = 2f;
 
     public FSM stateMachine;
     protected bool running;
     protected Vector3 momentum;
+    protected Rigidbody locomotion;
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +35,19 @@ public class Movement : MonoBehaviour
         float modSpeed = speed;
         if (running) modSpeed *= runBoost;
 
-        transform.position += momentum * modSpeed * Time.deltaTime;
-        AttachToGround();
+        if (transform.position.y < MapManager.World.seaLevel)
+        {
+            locomotion.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            AttachToGround();
+        }
+        else locomotion.constraints = RigidbodyConstraints.FreezeRotation;
+
+        transform.position += momentum * modSpeed * Time.deltaTime;        
         momentum.x = 0f;
         momentum.z = 0f;
+        if (locomotion != null) locomotion.velocity = new Vector3(0f, locomotion.velocity.y, 0f);
+
+        
     }
 
     protected virtual void AttachToGround()
@@ -53,6 +63,7 @@ public class Movement : MonoBehaviour
 
     protected virtual void Initialize()
     {
+        locomotion = GetComponent<Rigidbody>();
         stateMachine = new FSM(this);
         BuildStateMachine();
     }

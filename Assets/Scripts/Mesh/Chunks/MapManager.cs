@@ -13,8 +13,12 @@ public class MapManager : MonoBehaviour
     public Material terrainMat;
     public Material waterMat;
     public TreeStyle[] treeVariations;
+    public BuildingSpawner[] buildings;
     Dictionary<Vector2Int, Chunk> chunkMap;
-    public List<Vector2Int> activeChunks;
+    List<Vector2Int> activeChunks;
+    public List<Vector3> potentialSpawns;
+    List<Vector2Int> queuedChunks;
+    List<Vector3> popSpawn;
 
     [Header("Game Settings")]
     public int seed;
@@ -41,7 +45,9 @@ public class MapManager : MonoBehaviour
         Destroy(testMesh);
         chunkMap = new Dictionary<Vector2Int, Chunk>();
         activeChunks = new List<Vector2Int>();
-        VerifyMap(new Vector2Int(0, 0));
+        queuedChunks = new List<Vector2Int>();
+        potentialSpawns = new List<Vector3>();
+        VerifyMap(new Vector2Int(0, 0), initMap: true);
         if (AIManager.AI_Engine != null) AIManager.AI_Engine.StartAI();
         if (UIManager.ActiveUI != null) UIManager.ActiveUI.DoneLoading();
     }
@@ -49,6 +55,52 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         VerifyMap(AIManager.AI_Engine.GetLocation());
+
+        if (queuedChunks.Count > 0) BuildQueue();
+        if (popSpawn != null && popSpawn.Count > 0)
+        {
+            AddTown(popSpawn);
+            popSpawn.Clear();
+        }
+    }
+
+    public void AddTown(List<Vector3> pop)
+    {
+        if(AIManager.AI_Engine == null)
+        {
+            if (popSpawn == null) popSpawn = new List<Vector3>();
+            foreach(Vector3 v in pop)
+            {
+                if(!popSpawn.Contains(v))
+                    popSpawn.Add(v);
+            }
+        }
+        else
+        {
+            AIManager.AI_Engine.AddPopulous(pop);
+        }
+    }
+
+    public void AddSpawnPoint(Vector3 location)
+    {
+        if(!potentialSpawns.Contains(location))
+            potentialSpawns.Add(location);
+    }
+
+    public Vector3 GetRandomSpawn()
+    {
+        if(potentialSpawns.Count > 0)
+        {
+            return potentialSpawns[RanGen.PullNumber(seed, 1337) % potentialSpawns.Count];
+        }
+        else
+        {
+            float xPos = RanGen.PullNumber(seed, 10107) % ChunkSize - Chunk.HalfMap + 0.5f;
+            float zPos = RanGen.PullNumber(seed, 10107, 8008) % ChunkSize - Chunk.HalfMap + 0.5f;
+            float yPos = GetHeight(new Vector2(xPos, zPos));
+            return new Vector3(xPos, yPos, zPos);
+
+        }
     }
 
     public float GetHeight(Vector2 point, bool autoCorrect = true)
@@ -70,7 +122,7 @@ public class MapManager : MonoBehaviour
         return chunkMap[new Vector2Int(chunkX, chunkY)].GetHeight(new Vector2(xPos, yPos));
     }
 
-    public void VerifyMap(Vector2 position, bool autoCorrect = true)
+    public void VerifyMap(Vector2 position, bool autoCorrect = true, bool initMap = false)
     {
         if(autoCorrect)
         {
@@ -84,7 +136,7 @@ public class MapManager : MonoBehaviour
         {
             for (int y = -viewDistance; y <= viewDistance; y++)
             {
-                AddChunk(new Vector2Int(x, y) + location);
+                AddChunk(new Vector2Int(x, y) + location, initMap);
             }
         }
 
@@ -100,8 +152,23 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void AddChunk(Vector2Int location)
+    public void BuildQueue()
     {
+        // Work on MultiThreading
+
+        foreach(Vector2Int location in queuedChunks)
+            AddChunk(location, true);
+        queuedChunks.Clear();
+    }
+
+    public void AddChunk(Vector2Int location, bool buildNow)
+    {
+        if (!buildNow && !chunkMap.ContainsKey(location))
+        {
+            queuedChunks.Add(location);
+            return;
+        }
+
         if (!activeChunks.Contains(location))
         {
             activeChunks.Add(location);

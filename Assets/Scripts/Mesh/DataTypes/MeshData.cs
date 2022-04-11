@@ -148,6 +148,11 @@ public class MeshData
         return map;
     }
 
+    public float GetPoint(int x, int y)
+    {
+        return verts[x + y * MeshSize].y;
+    }
+
     public void RemapPoints(float[] remap, float growth, float minHeight)
     {
         for (int y = 0; y < MeshSize; y++)

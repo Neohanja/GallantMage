@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class Chunk
 {
+    static readonly int MaxTries = 100000;
+    // Tree Distro
+    static readonly int MinTreeCount = 256;
+    static readonly int MaxTreeCount = 600;
+    static readonly float TreeDistance = 0.75f;
+    // Towns
+    static readonly float MaxTownAltitude = 15f;
+    static readonly int MinBuildings = 5;
+    static readonly int MaxBuildings = 15;
+    static readonly int MinPop = 8;
+    static readonly int MaxPop = 30;
+    static readonly int MinTownSizePerBuilding = 5;
+    static readonly int MaxTownSizePerBuilding = 10;
+    static readonly float BuildingDistance = 3;
+
     //Chunk Terrain
     GameObject chunkObj;
     MeshFilter chunkFilter;
     MeshRenderer chunkRender;
     MeshData chunkMesh;
+    MeshCollider chunkCollider;
 
     //Water Terrain
     GameObject waterObj;
@@ -16,21 +32,24 @@ public class Chunk
     MeshRenderer waterRender;
     MeshData waterMesh;
 
+    // Data and Randomness
     ChunkData chunkData;
     BoxBounds chunkBounds;
-    Vector2 chunkIndex;
+    bool townExists;
+    BoxBounds townBounds;
     RanGen chunkPRG;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {
         chunkPRG = new RanGen(RanGen.PullNumber(MapManager.World.seed, MathFun.Floor(chunkCoord.x), MathFun.Floor(chunkCoord.y)));
-        chunkIndex = chunkCoord;
 
         chunkData = chunkInfo;
+        townExists = false;
 
         chunkObj = new GameObject("Chunk");
         chunkFilter = chunkObj.AddComponent<MeshFilter>();
         chunkRender = chunkObj.AddComponent<MeshRenderer>();
+        chunkCollider = chunkObj.AddComponent<MeshCollider>();
 
         if (MapManager.World != null)
         {
@@ -38,20 +57,17 @@ public class Chunk
             chunkObj.transform.SetParent(MapManager.World.transform);
             CreateWater();
         }
-        /* In case I want to use this still
-        if(Flora.TreeMaker != null)
-        {
-            BuildTreeScatter();
-        }
-        */
 
-        BuildTrees();
-        MeshData meshData = new MeshData(chunkData.GetPoints(), MapManager.World.growth, MapManager.World.minHeight);
-        chunkFilter.mesh = meshData.GetMesh();
-
+        // Make Chunk
+        chunkMesh = new MeshData(chunkData.GetPoints(), MapManager.World.growth, MapManager.World.minHeight);
+        chunkFilter.mesh = chunkMesh.GetMesh();
+        chunkCollider.sharedMesh = chunkFilter.mesh;
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
-
         chunkBounds = new BoxBounds(new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap), Vector2.one * (MeshData.MeshSize - 1));
+
+        // Populate Chunks
+        PopTown();
+        BuildTrees();        
     }
 
     public void CreateWater()
@@ -63,15 +79,135 @@ public class Chunk
         waterRender.material = MapManager.World.waterMat;
         waterMesh = new MeshData(MapManager.World.seaLevel);
         waterFilter.mesh = waterMesh.GetMesh();
+        waterRender.receiveShadows = false;
+    }
+
+    public void PopTown()
+    {
+        List<BoxBounds> points = new List<BoxBounds>();
+
+        int population = chunkPRG.Roll(MinPop, MaxPop);
+        int buildings = chunkPRG.Roll(MinBuildings, MaxBuildings);
+        Vector2Int townStart, townSize;
+        int tries = 0;
+
+        do
+        {
+            if (tries >= MaxTries) return;
+            tries++;
+
+            int sizeX = chunkPRG.Roll(MinTownSizePerBuilding, MaxTownSizePerBuilding) * buildings;
+            int sizeY = chunkPRG.Roll(MinTownSizePerBuilding, MaxTownSizePerBuilding) * buildings;
+            townSize = new Vector2Int(sizeX, sizeY);
+            int startX = chunkPRG.Roll(0, ChunkSize - 1 - sizeX);
+            int startY = chunkPRG.Roll(0, ChunkSize - 1 - sizeY);
+            townStart = new Vector2Int(startX, startY);
+        } while(!IsAreaClear(townStart, townSize));
+
+        // What happens if I don't flatten it first?
+        // FlattenLand(townStart, townSize);
+        townBounds = new BoxBounds(townStart, townSize);
+        townExists = true;
+        float ySpawn = GetHeight(townBounds.Center);
+        Vector3 townCenter = new Vector3(townBounds.Center.x, ySpawn, townBounds.Center.y);
+        MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
+
+        for (int t = 0; t < MaxTries; t++)
+        {
+            if (points.Count >= buildings) break;
+
+            int buildingID = chunkPRG.Roll(0, MapManager.World.buildings.Length - 1);
+            BuildingSpawner potentialBuilding = MapManager.World.buildings[buildingID];
+            BoxBounds bPoint = new BoxBounds(potentialBuilding.model);
+
+            float x = chunkPRG.Roll((int)bPoint.size.x, townSize.x - (int)bPoint.size.x) + chunkPRG.Percent();
+            float z = chunkPRG.Roll((int)bPoint.size.y, townSize.y - (int)bPoint.size.y) + chunkPRG.Percent();
+            x += townStart.x;
+            z += townStart.y;
+
+            Vector2 buildingLoc = new Vector2(x, z);
+            bPoint.start += buildingLoc - bPoint.Center;            
+
+            bool canPlace = true;
+            foreach (BoxBounds pt in points)
+            {
+                if (pt.BoxOverlap(bPoint, BuildingDistance))
+                {
+                    canPlace = false;
+                    break;
+                }
+            }
+
+            if (canPlace)
+            {
+                points.Add(bPoint);
+                FlattenLand(MathFun.V2toV2Int(bPoint.start, false) - Vector2Int.one, MathFun.V2toV2Int(bPoint.size, true) + Vector2Int.one);
+                float y = GetHeight(buildingLoc);
+                Vector3 buildingFullLoc = new Vector3(x, y, z);
+                Vector3 tCenter = new Vector3(townCenter.x, y, townCenter.z);
+
+                GameObject home = new GameObject("Building " + points.Count.ToString() + ": " + potentialBuilding.buildingName);
+                home.AddComponent<MeshFilter>().mesh = potentialBuilding.model;
+                home.AddComponent<MeshCollider>().sharedMesh = potentialBuilding.model;
+                home.AddComponent<MeshRenderer>().materials = potentialBuilding.materials;
+                home.AddComponent<BuildingData>();
+                home.transform.SetParent(chunkObj.transform);
+                home.transform.position = ChunkOffset + buildingFullLoc;
+                home.transform.LookAt(ChunkOffset + tCenter);
+            }
+        }
+    }
+
+    public void FlattenLand(Vector2Int start, Vector2Int size)
+    {
+        int count = 0;
+        float avg = 0f;
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                avg += GetHeight(start + new Vector2(x, y));
+                count++;
+            }
+        }
+
+        avg /= count;
+
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                chunkMesh.RemapPoint(start.x + x, start.y + y, avg);
+            }
+        }
+
+        chunkFilter.mesh = chunkMesh.GetMesh();
+        chunkCollider.sharedMesh = chunkFilter.mesh;
+        // return avg;
+    }
+
+    public bool IsAreaClear(Vector2 point, Vector2 size)
+    {
+        for(int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                if (GetHeight(point + new Vector2(x, y)) <= SeaLevel)
+                    return false;
+                if (GetHeight(point + new Vector2(x, y)) >= MaxTownAltitude)
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     public void BuildTrees()
     {
-        int treePop = chunkPRG.Roll(225, 650);
-        int maxTries = 100000;
+        int treePop = chunkPRG.Roll(MinTreeCount, MaxTreeCount);
         List<Vector3> points = new List<Vector3>();
 
-        for(int t = 0; t < maxTries; t++)
+        for(int t = 0; t < MaxTries; t++)
         {
             if (points.Count >= treePop) break;
 
@@ -87,14 +223,20 @@ public class Chunk
                 bool canPlace = true;
                 foreach(Vector3 pt in points)
                 {
-                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= 0.75f)
+                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= TreeDistance)
                     {
                         canPlace = false;
                         break;
                     }
+                    
                 }
 
-                if(canPlace)
+                if (townExists && townBounds.PointWithinBounds(treeLoc, TreeDistance))
+                {
+                    canPlace = false;
+                }
+
+                if (canPlace)
                 {
                     Vector3 treeLocFull = new Vector3(x, y, z);
                     points.Add(treeLocFull);
@@ -103,10 +245,11 @@ public class Chunk
                     TreeStyle thisTree = MapManager.World.treeVariations[chunkPRG.Roll(0, MapManager.World.treeVariations.Length - 1)];
                     GameObject tree = new GameObject("Tree " + points.Count.ToString() + ": " + thisTree.treeName);                    
                     tree.AddComponent<MeshFilter>().mesh = thisTree.model;
+                    if (thisTree.blocksMovement) tree.AddComponent<MeshCollider>().sharedMesh = thisTree.model;
                     tree.AddComponent<MeshRenderer>().materials = thisTree.materials;
                     tree.AddComponent<FloraData>();
                     tree.transform.SetParent(chunkObj.transform);
-                    tree.transform.position = treeLocFull;
+                    tree.transform.position = ChunkOffset + treeLocFull;
                     tree.transform.localScale = scale;
                     tree.transform.Rotate(new Vector3(0, chunkPRG.Roll(0, 360), 0));
                 }
@@ -124,8 +267,10 @@ public class Chunk
         float midX = point.x - iX;
         float midY = point.y - iY;
 
-        float a = MathFun.Lerp(chunkData.GetPoint(iX, iY), chunkData.GetPoint(iX + 1, iY), midX);
-        float b = MathFun.Lerp(chunkData.GetPoint(iX, iY + 1), chunkData.GetPoint(iX + 1, iY + 1), midX);
+        float a = MathFun.Lerp(chunkMesh.GetPoint(iX, iY), chunkMesh.GetPoint(iX + 1, iY), midX);
+        //float a = MathFun.Lerp(chunkData.GetPoint(iX, iY), chunkData.GetPoint(iX + 1, iY), midX);
+        float b = MathFun.Lerp(chunkMesh.GetPoint(iX, iY + 1), chunkMesh.GetPoint(iX + 1, iY + 1), midX);
+        //float b = MathFun.Lerp(chunkData.GetPoint(iX, iY + 1), chunkData.GetPoint(iX + 1, iY + 1), midX);
 
         return MathFun.Lerp(a, b, midY);
     }
@@ -137,6 +282,8 @@ public class Chunk
             return (MeshData.MeshSize - 1) / 2f;
         }
     }
+
+    public static float SeaLevel { get { return MapManager.World.seaLevel; } }
 
     public bool CheckViewDistance(float distance, Vector2 position, bool correctPos = true)
     {
@@ -155,4 +302,6 @@ public class Chunk
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }
+
+    Vector3 ChunkOffset { get { return chunkObj.transform.position; } }
 }
