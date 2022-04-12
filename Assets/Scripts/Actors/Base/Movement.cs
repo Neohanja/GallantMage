@@ -56,8 +56,8 @@ public class Movement : MonoBehaviour
         float z = transform.position.z;
         float y = MapManager.World.GetHeight(new Vector2(x, z));
 
-        if (y < MapManager.World.seaLevel - (actorHeight * 0.5f))
-            y = MapManager.World.seaLevel - (actorHeight * 0.5f);
+        if (y < MapManager.World.seaLevel - (actorHeight * 0.25f))
+            y = MapManager.World.seaLevel - (actorHeight * 0.25f);
         transform.position = new Vector3(x, y, z);
     }
 

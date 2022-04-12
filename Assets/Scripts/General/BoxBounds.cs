@@ -29,8 +29,8 @@ public class BoxBounds
             if (mesh.vertices[v].y > endY) endY = mesh.vertices[v].y;
         }
 
-        start = new Vector2(0, 0);
         size = new Vector2(endX - startX, endY - startY);
+        start = new Vector2(startX, startY);
     }
 
     public bool PointWithinBounds(Vector2 point, float buffer)
@@ -89,7 +89,7 @@ public class BoxBounds
     {
         get
         {
-            return new Vector2(start.x + size.x / 2, start.y + size.y / 2);
+            return new Vector2(start.x + (size.x / 2f), start.y + (size.y / 2f));
         }
     }
 }

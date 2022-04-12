@@ -17,7 +17,7 @@ public class Chunk
     static readonly int MaxPop = 30;
     static readonly int MinTownSizePerBuilding = 5;
     static readonly int MaxTownSizePerBuilding = 10;
-    static readonly float BuildingDistance = 3;
+    static readonly float BuildingDistance = 4;
 
     //Chunk Terrain
     GameObject chunkObj;
@@ -99,13 +99,12 @@ public class Chunk
             int sizeX = chunkPRG.Roll(MinTownSizePerBuilding, MaxTownSizePerBuilding) * buildings;
             int sizeY = chunkPRG.Roll(MinTownSizePerBuilding, MaxTownSizePerBuilding) * buildings;
             townSize = new Vector2Int(sizeX, sizeY);
-            int startX = chunkPRG.Roll(0, ChunkSize - 1 - sizeX);
-            int startY = chunkPRG.Roll(0, ChunkSize - 1 - sizeY);
+            int startX = chunkPRG.Roll(2, ChunkSize - 3 - sizeX);
+            int startY = chunkPRG.Roll(2, ChunkSize - 3 - sizeY);
             townStart = new Vector2Int(startX, startY);
         } while(!IsAreaClear(townStart, townSize));
 
-        // What happens if I don't flatten it first?
-        // FlattenLand(townStart, townSize);
+        FlattenLand(townStart, townSize);
         townBounds = new BoxBounds(townStart, townSize);
         townExists = true;
         float ySpawn = GetHeight(townBounds.Center);
@@ -126,7 +125,8 @@ public class Chunk
             z += townStart.y;
 
             Vector2 buildingLoc = new Vector2(x, z);
-            bPoint.start += buildingLoc - bPoint.Center;            
+            bPoint.start += buildingLoc;
+            
 
             bool canPlace = true;
             foreach (BoxBounds pt in points)
@@ -141,7 +141,6 @@ public class Chunk
             if (canPlace)
             {
                 points.Add(bPoint);
-                FlattenLand(MathFun.V2toV2Int(bPoint.start, false) - Vector2Int.one, MathFun.V2toV2Int(bPoint.size, true) + Vector2Int.one);
                 float y = GetHeight(buildingLoc);
                 Vector3 buildingFullLoc = new Vector3(x, y, z);
                 Vector3 tCenter = new Vector3(townCenter.x, y, townCenter.z);
@@ -166,7 +165,8 @@ public class Chunk
         {
             for (int y = 0; y < size.y; y++)
             {
-                avg += GetHeight(start + new Vector2(x, y));
+                Vector2 point = new Vector2(start.x + x, start.y + y);
+                avg += GetHeight(point);
                 count++;
             }
         }
@@ -177,13 +177,25 @@ public class Chunk
         {
             for (int y = 0; y < size.y; y++)
             {
-                chunkMesh.RemapPoint(start.x + x, start.y + y, avg);
+                Vector2 point = new Vector2(start.x + x, start.y + y);
+                chunkMesh.RemapPoint(MathFun.Round(point.x), MathFun.Round(point.y), avg);
             }
         }
 
         chunkFilter.mesh = chunkMesh.GetMesh();
         chunkCollider.sharedMesh = chunkFilter.mesh;
-        // return avg;
+    }
+
+    Vector2 Rotate(Vector2 point, float degrees)
+    {
+        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+        float tx = point.x;
+        float ty = point.y;
+        float vX = (cos * tx) - (sin * ty);
+        float vY = (sin * tx) + (cos * ty);
+        return new Vector2(vX, vY);
     }
 
     public bool IsAreaClear(Vector2 point, Vector2 size)

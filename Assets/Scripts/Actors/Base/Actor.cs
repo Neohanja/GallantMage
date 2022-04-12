@@ -57,9 +57,9 @@ public class Actor
         // Collision for Raycasting and stuff. Since that seems suddenly important
         actorCollider = actorObj.AddComponent<CapsuleCollider>();
         actorRB = actorObj.AddComponent<Rigidbody>();
-        actorCollider.center = new Vector3(0, 1, 0);
-        actorCollider.radius = 0.5f;
-        actorCollider.height = 2f;
+        actorCollider.center = new Vector3(0, 0.5f, 0);
+        actorCollider.radius = 0.25f;
+        actorCollider.height = 1f;
         actorRB.constraints = RigidbodyConstraints.FreezeRotation;// | RigidbodyConstraints.FreezePositionY;
 
         actorObj.transform.position = spawnLoc;
