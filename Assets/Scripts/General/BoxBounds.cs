@@ -33,6 +33,14 @@ public class BoxBounds
         start = new Vector2(startX, startY);
     }
 
+    public BoxBounds Copy()
+    {
+        Vector2 startN = new Vector2(start.x, start.y);
+        Vector2 sizeN = new Vector2(size.x, size.y);
+
+        return new BoxBounds(startN, sizeN);
+    }
+
     public bool PointWithinBounds(Vector2 point, float buffer)
     {
         return point.x >= start.x - buffer && point.x <= start.x + size.x + buffer &&

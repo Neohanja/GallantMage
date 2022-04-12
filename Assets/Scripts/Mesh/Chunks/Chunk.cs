@@ -17,7 +17,7 @@ public class Chunk
     static readonly int MaxPop = 30;
     static readonly int MinTownSizePerBuilding = 5;
     static readonly int MaxTownSizePerBuilding = 10;
-    static readonly float BuildingDistance = 4;
+    static readonly float BuildingDistance = 2;
 
     //Chunk Terrain
     GameObject chunkObj;
@@ -117,10 +117,10 @@ public class Chunk
 
             int buildingID = chunkPRG.Roll(0, MapManager.World.buildings.Length - 1);
             BuildingSpawner potentialBuilding = MapManager.World.buildings[buildingID];
-            BoxBounds bPoint = new BoxBounds(potentialBuilding.model);
+            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();
 
-            float x = chunkPRG.Roll((int)bPoint.size.x, townSize.x - (int)bPoint.size.x) + chunkPRG.Percent();
-            float z = chunkPRG.Roll((int)bPoint.size.y, townSize.y - (int)bPoint.size.y) + chunkPRG.Percent();
+            float x = chunkPRG.Roll(1, townSize.x - 1 - (int)bPoint.size.x) + chunkPRG.Percent();
+            float z = chunkPRG.Roll(1, townSize.y - 1 - (int)bPoint.size.y) + chunkPRG.Percent();
             x += townStart.x;
             z += townStart.y;
 
@@ -142,16 +142,11 @@ public class Chunk
             {
                 points.Add(bPoint);
                 float y = GetHeight(buildingLoc);
-                Vector3 buildingFullLoc = new Vector3(x, y, z);
+                Vector3 buildingFullLoc = ChunkOffset + new Vector3(x, y, z);
                 Vector3 tCenter = new Vector3(townCenter.x, y, townCenter.z);
 
-                GameObject home = new GameObject("Building " + points.Count.ToString() + ": " + potentialBuilding.buildingName);
-                home.AddComponent<MeshFilter>().mesh = potentialBuilding.model;
-                home.AddComponent<MeshCollider>().sharedMesh = potentialBuilding.model;
-                home.AddComponent<MeshRenderer>().materials = potentialBuilding.materials;
-                home.AddComponent<BuildingData>();
-                home.transform.SetParent(chunkObj.transform);
-                home.transform.position = ChunkOffset + buildingFullLoc;
+                GameObject home = GameObject.Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkObj.transform);
+                home.name = "Building " + points.Count.ToString() + ": " + potentialBuilding.buildingName;
                 home.transform.LookAt(ChunkOffset + tCenter);
             }
         }
