@@ -13,7 +13,6 @@ public class MapManager : MonoBehaviour
     public Material terrainMat;
     public Material waterMat;
     public TreeStyle[] treeVariations;
-    public BuildingSpawner[] buildings;
     Dictionary<Vector2Int, Chunk> chunkMap;
     List<Vector2Int> activeChunks;
     public List<Vector3> potentialSpawns;

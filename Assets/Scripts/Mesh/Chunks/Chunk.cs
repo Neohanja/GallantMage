@@ -11,13 +11,8 @@ public class Chunk
     static readonly float TreeDistance = 0.75f;
     // Towns
     static readonly float MaxTownAltitude = 15f;
-    static readonly int MinBuildings = 5;
-    static readonly int MaxBuildings = 15;
-    static readonly int MinPop = 8;
-    static readonly int MaxPop = 30;
-    static readonly int MinTownSizePerBuilding = 5;
-    static readonly int MaxTownSizePerBuilding = 10;
-    static readonly float BuildingDistance = 2;
+    static readonly int MinTownSize = 15;
+    static readonly int MaxTownSize = 30;
 
     //Chunk Terrain
     GameObject chunkObj;
@@ -38,6 +33,7 @@ public class Chunk
     bool townExists;
     BoxBounds townBounds;
     RanGen chunkPRG;
+    List<BoxBounds> townBuildings;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {
@@ -70,6 +66,10 @@ public class Chunk
         BuildTrees();        
     }
 
+    public Transform GetChunkTransform() { return chunkObj.transform; }
+    public Vector2 ChunkLocV2() { return new Vector2(chunkObj.transform.position.x, chunkObj.transform.position.z); }
+    public Vector3 ChunkLocV3() { return chunkObj.transform.position; }
+
     public void CreateWater()
     {
         waterObj = new GameObject("Water");
@@ -84,10 +84,7 @@ public class Chunk
 
     public void PopTown()
     {
-        List<BoxBounds> points = new List<BoxBounds>();
-
-        int population = chunkPRG.Roll(MinPop, MaxPop);
-        int buildings = chunkPRG.Roll(MinBuildings, MaxBuildings);
+        if (TownBuilder.Helper == null) return;
         Vector2Int townStart, townSize;
         int tries = 0;
 
@@ -96,8 +93,8 @@ public class Chunk
             if (tries >= MaxTries) return;
             tries++;
 
-            int sizeX = chunkPRG.Roll(MinTownSizePerBuilding, MaxTownSizePerBuilding) * buildings;
-            int sizeY = chunkPRG.Roll(MinTownSizePerBuilding, MaxTownSizePerBuilding) * buildings;
+            int sizeX = chunkPRG.Roll(MinTownSize, MaxTownSize);
+            int sizeY = chunkPRG.Roll(MinTownSize, MaxTownSize);
             townSize = new Vector2Int(sizeX, sizeY);
             int startX = chunkPRG.Roll(2, ChunkSize - 3 - sizeX);
             int startY = chunkPRG.Roll(2, ChunkSize - 3 - sizeY);
@@ -111,45 +108,7 @@ public class Chunk
         Vector3 townCenter = new Vector3(townBounds.Center.x, ySpawn, townBounds.Center.y);
         MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
 
-        for (int t = 0; t < MaxTries; t++)
-        {
-            if (points.Count >= buildings) break;
-
-            int buildingID = chunkPRG.Roll(0, MapManager.World.buildings.Length - 1);
-            BuildingSpawner potentialBuilding = MapManager.World.buildings[buildingID];
-            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();
-
-            float x = chunkPRG.Roll(1, townSize.x - 1 - (int)bPoint.size.x) + chunkPRG.Percent();
-            float z = chunkPRG.Roll(1, townSize.y - 1 - (int)bPoint.size.y) + chunkPRG.Percent();
-            x += townStart.x;
-            z += townStart.y;
-
-            Vector2 buildingLoc = new Vector2(x, z);
-            bPoint.start += buildingLoc;
-            
-
-            bool canPlace = true;
-            foreach (BoxBounds pt in points)
-            {
-                if (pt.BoxOverlap(bPoint, BuildingDistance))
-                {
-                    canPlace = false;
-                    break;
-                }
-            }
-
-            if (canPlace)
-            {
-                points.Add(bPoint);
-                float y = GetHeight(buildingLoc);
-                Vector3 buildingFullLoc = ChunkOffset + new Vector3(x, y, z);
-                Vector3 tCenter = new Vector3(townCenter.x, y, townCenter.z);
-
-                GameObject home = GameObject.Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkObj.transform);
-                home.name = "Building " + points.Count.ToString() + ": " + potentialBuilding.buildingName;
-                home.transform.LookAt(ChunkOffset + tCenter);
-            }
-        }
+        townBuildings = TownBuilder.Helper.BuildTown(townBounds, chunkPRG, this);
     }
 
     public void FlattenLand(Vector2Int start, Vector2Int size)
