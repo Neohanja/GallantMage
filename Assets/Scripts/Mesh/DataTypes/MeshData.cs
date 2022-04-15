@@ -11,6 +11,7 @@ public class MeshData
     int[] tris;
     Vector2[] uvMap;
     Vector3[] norms;
+    Color[] cols;
 
     public MeshData()
     {
@@ -35,6 +36,7 @@ public class MeshData
         verts = new Vector3[SqrCount * 2];
         tris = new int[SqrCount * 3];
         uvMap = new Vector2[SqrCount * 2];
+        cols = new Color[SqrCount * 2];
         int tIndex = 0, vIndex = 0;
         
         for (int y = 0; y < chunkSize; y+=2)
@@ -45,6 +47,11 @@ public class MeshData
                 verts[vIndex + 1] = new Vector3(x, seaLevel, y + 2);
                 verts[vIndex + 2] = new Vector3(x + 2, seaLevel, y + 2);
                 verts[vIndex + 3] = new Vector3(x + 2, seaLevel, y);
+
+                cols[vIndex] = new Color(1f, 1f, 1f, 1f);
+                cols[vIndex + 1] = new Color(1f, 1f, 1f, 1f);
+                cols[vIndex + 1] = new Color(1f, 1f, 1f, 1f);
+                cols[vIndex + 1] = new Color(1f, 1f, 1f, 1f);
 
                 uvMap[vIndex] = new Vector2(x, y);
                 uvMap[vIndex + 1] = new Vector2(x, y + 1);
@@ -70,6 +77,7 @@ public class MeshData
         verts = new Vector3[MeshSize * MeshSize];
         tris = new int[(MeshSize - 1) * (MeshSize - 1) * 6];
         uvMap = new Vector2[MeshSize * MeshSize];
+        cols = new Color[MeshSize * MeshSize];
 
         int tIndex = 0;
         for (int y = 0; y < MeshSize; y++)
@@ -78,6 +86,7 @@ public class MeshData
             {
                 int vIndex = x + y * MeshSize;
                 verts[vIndex] = new Vector3(x, 0, y);
+                cols[vIndex] = new Color(1f, 1f, 1f, 0f);
                 uvMap[vIndex] = new Vector2(x / (float)MeshSize, y / (float)MeshSize);
 
                 if (x < MeshSize - 1 && y < MeshSize - 1)
@@ -189,12 +198,18 @@ public class MeshData
         verts[Index(x, y)].y = val;
     }
 
+    public void PaintPoint(int x, int y, Color vPaint)
+    {
+        cols[Index(x, y)] = vPaint;
+    }
+
     public Mesh GetMesh()
     {
         Mesh mesh = new Mesh();
         mesh.vertices = verts;
         mesh.uv = uvMap;
         mesh.triangles = tris;
+        mesh.colors = cols;
 
         CalculateNormals();
         mesh.normals = norms;

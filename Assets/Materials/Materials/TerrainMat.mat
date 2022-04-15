@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 835a7aff717b53546a6daf63e49f7683, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Road:
+        m_Texture: {fileID: 2800000, guid: c5ee24b1e7ca472458323a1428742afe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Sand:
         m_Texture: {fileID: 2800000, guid: 76a97c61e798fac42aaee52f8ce0f1f5, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -132,6 +136,7 @@ Material:
     - dirtAngle: 0.831
     - grassAngle: 0.366
     - seaLevel: -0.31
+    - tScale: 42
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

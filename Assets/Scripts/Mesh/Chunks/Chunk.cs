@@ -101,14 +101,35 @@ public class Chunk
             townStart = new Vector2Int(startX, startY);
         } while(!IsAreaClear(townStart, townSize));
 
-        FlattenLand(townStart, townSize);
+        FlattenLand(townStart - Vector2Int.one * 2, townSize + Vector2Int.one * 2);
         townBounds = new BoxBounds(townStart, townSize);
         townExists = true;
-        float ySpawn = GetHeight(townBounds.Center);
-        Vector3 townCenter = new Vector3(townBounds.Center.x, ySpawn, townBounds.Center.y);
-        MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
-
         townBuildings = TownBuilder.Helper.BuildTown(townBounds, chunkPRG, this);
+
+        float xSpawn, zSpawn;
+        do
+        {
+            xSpawn = chunkPRG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
+            zSpawn = chunkPRG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
+        } while (InBuilding(new Vector2(xSpawn, zSpawn), 0.5f));
+
+        float ySpawn = GetHeight(new Vector2(xSpawn, zSpawn));
+        Vector3 townCenter = new Vector3(xSpawn, ySpawn, zSpawn);
+        MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
+        chunkMesh = TownBuilder.Helper.TraceRoads(chunkMesh, townBuildings);
+
+        chunkFilter.mesh = chunkMesh.GetMesh();
+        chunkCollider.sharedMesh = chunkFilter.mesh;
+    }
+
+    public bool InBuilding(Vector2 point, float distTolerance)
+    {
+        foreach(BoxBounds building in townBuildings)
+        {
+            if (building.PointWithinBounds(point, distTolerance)) return true;
+        }
+
+        return false;
     }
 
     public void FlattenLand(Vector2Int start, Vector2Int size)
@@ -197,7 +218,8 @@ public class Chunk
                     
                 }
 
-                if (townExists && townBounds.PointWithinBounds(treeLoc, TreeDistance))
+                if (townExists && InBuilding(treeLoc, 0.5f))
+                    //townBounds.PointWithinBounds(treeLoc, TreeDistance))
                 {
                     canPlace = false;
                 }

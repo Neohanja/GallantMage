@@ -15,6 +15,7 @@ public class TownBuilder : MonoBehaviour
     public float BuildingDistance = 2;
     [Header("Town Buildings")]
     public List<BuildingSpawner> buildings;
+    public List<BuildingSpawner> townCenter;
 
     void Awake()
     {
@@ -29,9 +30,26 @@ public class TownBuilder : MonoBehaviour
 
         int buildingCount = townRNG.Roll(MinBuildings, MaxBuildings);
 
+        if(townCenter != null && townCenter.Count > 0)
+        {
+            int buildingID = townRNG.Roll(0, townCenter.Count - 1);
+            BuildingSpawner potentialBuilding = townCenter[buildingID];
+            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();
+            float xPos = townBounds.Center.x;
+            float zPos = townBounds.Center.y;
+            float yPos = chunkID.GetHeight(new Vector2(xPos, zPos));
+
+            bPoint.start += new Vector2(xPos, zPos);
+            townBuildings.Add(bPoint);
+
+            Vector3 buildingFullLoc = chunkOffset + new Vector3(xPos, yPos, zPos);
+            GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
+            home.name = "Town Banner: " + potentialBuilding.buildingName;
+        }
+
         for (int t = 0; t < MaxTries; t++)
         {
-            if (townBuildings.Count >= buildingCount) break;
+            if (townBuildings.Count > buildingCount) break;
 
             int buildingID = townRNG.Roll(0, buildings.Count - 1);
             BuildingSpawner potentialBuilding = buildings[buildingID];
@@ -70,6 +88,27 @@ public class TownBuilder : MonoBehaviour
         }
 
         return townBuildings;
+    }
+
+    public MeshData TraceRoads(MeshData terrain, List<BoxBounds> roadPoints)
+    {
+        int centerX = MathFun.Round(roadPoints[0].Center.x);
+        int centerY = MathFun.Round(roadPoints[0].Center.y);
+        for (int i = 1; i < roadPoints.Count; i++)
+        {
+            int trailX = MathFun.Round(roadPoints[i].Center.x);
+            int trailY = MathFun.Round(roadPoints[i].Center.y);
+            while(trailX != centerX && trailY != centerY)
+            {
+                terrain.PaintPoint(trailX, trailY, new Color(1f, 1f, 1f, 1f));
+                if (trailX < centerX) trailX++;
+                else if (trailX > centerX) trailX--;
+                if (trailY < centerY) trailY++;
+                else if (trailY > centerY) trailY--;
+            }
+        }
+
+        return terrain;
     }
 }
 
