@@ -12,12 +12,10 @@ public class MapManager : MonoBehaviour
     [Header("Materials")]
     public Material terrainMat;
     public Material waterMat;
-    public TreeStyle[] treeVariations;
     Dictionary<Vector2Int, Chunk> chunkMap;
     List<Vector2Int> activeChunks;
     public List<Vector3> potentialSpawns;
     List<Vector2Int> queuedChunks;
-    List<Vector3> popSpawn;
 
     [Header("Game Settings")]
     public int seed;
@@ -40,8 +38,8 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         if (UIManager.ActiveUI != null) seed = UIManager.ActiveUI.seed;
+        if (testMesh != null) Destroy(testMesh);
 
-        Destroy(testMesh);
         chunkMap = new Dictionary<Vector2Int, Chunk>();
         activeChunks = new List<Vector2Int>();
         queuedChunks = new List<Vector2Int>();
@@ -56,28 +54,6 @@ public class MapManager : MonoBehaviour
         VerifyMap(AIManager.AI_Engine.GetLocation());
 
         if (queuedChunks.Count > 0) BuildQueue();
-        if (popSpawn != null && popSpawn.Count > 0)
-        {
-            AddTown(popSpawn);
-            popSpawn.Clear();
-        }
-    }
-
-    public void AddTown(List<Vector3> pop)
-    {
-        if(AIManager.AI_Engine == null)
-        {
-            if (popSpawn == null) popSpawn = new List<Vector3>();
-            foreach(Vector3 v in pop)
-            {
-                if(!popSpawn.Contains(v))
-                    popSpawn.Add(v);
-            }
-        }
-        else
-        {
-            AIManager.AI_Engine.AddPopulous(pop);
-        }
     }
 
     public void AddSpawnPoint(Vector3 location)
@@ -143,7 +119,7 @@ public class MapManager : MonoBehaviour
         {
             for (int c = activeChunks.Count - 1; c >= 0; c--)
             {
-                if (!chunkMap[activeChunks[c]].CheckViewDistance(viewDistance * ChunkSize, position, false))
+                if (!chunkMap[activeChunks[c]].CheckViewDistance(viewDistance * ChunkSize * 2, position, false))
                 {
                     activeChunks.RemoveAt(c);
                 }
@@ -180,6 +156,7 @@ public class MapManager : MonoBehaviour
 
     public void CompileNodeGraph()
     {
+        if (Application.isPlaying) return;
         ChunkData chunkData = terrainGraph.ProcessNodes(testOffset, seed);
         MeshData chunkMesh = new MeshData(chunkData.GetPoints(), growth, minHeight);
 

@@ -21,11 +21,22 @@ public class TownBuilder : MonoBehaviour
     {
         if (Helper != null && Helper != this) Destroy(gameObject);
         else Helper = this;
+
+        //In case I remove something and forget to remove it from here
+        for (int b = buildings.Count - 1; b >= 0; b--)
+        {
+            if (buildings[b].buildingSpawn == null) buildings.RemoveAt(b);
+        }
+        for(int t = townCenter.Count -1; t >= 0; t--)
+        {
+            if (townCenter[t].buildingSpawn == null) townCenter.RemoveAt(t);
+        }
     }
 
     public List<BoxBounds> BuildTown(BoxBounds townBounds, RanGen townRNG, Chunk chunkID)
     {
         List<BoxBounds> townBuildings = new List<BoxBounds>();
+        List<Vector3> spawnPoints = new List<Vector3>();
         Vector3 chunkOffset = chunkID.ChunkLocV3();
 
         int buildingCount = townRNG.Roll(MinBuildings, MaxBuildings);
@@ -39,11 +50,13 @@ public class TownBuilder : MonoBehaviour
             float zPos = townBounds.Center.y;
             float yPos = chunkID.GetHeight(new Vector2(xPos, zPos));
 
-            bPoint.start += new Vector2(xPos, zPos);
-            townBuildings.Add(bPoint);
+            bPoint.MoveBuilding(new Vector2(xPos, zPos));
 
             Vector3 buildingFullLoc = chunkOffset + new Vector3(xPos, yPos, zPos);
             GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
+            home.GetComponent<BuildingData>().buildingBounds = bPoint;
+            home.GetComponent<BuildingData>().RecalcDoor(chunkID.ChunkOffset);
+            townBuildings.Add(home.GetComponent<BuildingData>().buildingBounds.Copy());
             home.name = "Town Banner: " + potentialBuilding.buildingName;
         }
 
@@ -53,7 +66,7 @@ public class TownBuilder : MonoBehaviour
 
             int buildingID = townRNG.Roll(0, buildings.Count - 1);
             BuildingSpawner potentialBuilding = buildings[buildingID];
-            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();
+            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();            
 
             float x = townRNG.Roll(1, (int)townBounds.size.x - 1 - (int)bPoint.size.x) + townRNG.Percent();
             float z = townRNG.Roll(1, (int)townBounds.size.y - 1 - (int)bPoint.size.y) + townRNG.Percent();
@@ -61,8 +74,7 @@ public class TownBuilder : MonoBehaviour
             z += townBounds.start.y;
 
             Vector2 buildingLoc = new Vector2(x, z);
-            bPoint.start += buildingLoc;
-
+            bPoint.MoveBuilding(buildingLoc);
 
             bool canPlace = true;
             foreach (BoxBounds pt in townBuildings)
@@ -76,39 +88,29 @@ public class TownBuilder : MonoBehaviour
 
             if (canPlace)
             {
-                townBuildings.Add(bPoint);
                 float y = chunkID.GetHeight(buildingLoc);
                 Vector3 buildingFullLoc = chunkOffset + new Vector3(x, y, z);
                 Vector3 tCenter = new Vector3(townBounds.Center.x, y, townBounds.Center.y);
 
                 GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
+                home.GetComponent<BuildingData>().buildingBounds = bPoint;
+                home.GetComponent<BuildingData>().RecalcDoor(chunkID.ChunkOffset);
+                townBuildings.Add(home.GetComponent<BuildingData>().buildingBounds.Copy());
                 home.name = "Building " + townBuildings.Count.ToString() + ": " + potentialBuilding.buildingName;
                 home.transform.LookAt(chunkOffset + tCenter);
+
+                if (potentialBuilding.isHouse)
+                {
+                    Vector3 spawnLoc = chunkOffset + new Vector3(bPoint.Center.x + 0.5f, 0.1f, bPoint.Center.y + 0.5f);
+
+                    spawnPoints.Add(spawnLoc);
+                }
             }
         }
+
+        if (AIManager.AI_Engine != null) AIManager.AI_Engine.AddPopulous(spawnPoints, chunkID);
 
         return townBuildings;
-    }
-
-    public MeshData TraceRoads(MeshData terrain, List<BoxBounds> roadPoints)
-    {
-        int centerX = MathFun.Round(roadPoints[0].Center.x);
-        int centerY = MathFun.Round(roadPoints[0].Center.y);
-        for (int i = 1; i < roadPoints.Count; i++)
-        {
-            int trailX = MathFun.Round(roadPoints[i].Center.x);
-            int trailY = MathFun.Round(roadPoints[i].Center.y);
-            while(trailX != centerX && trailY != centerY)
-            {
-                terrain.PaintPoint(trailX, trailY, new Color(1f, 1f, 1f, 1f));
-                if (trailX < centerX) trailX++;
-                else if (trailX > centerX) trailX--;
-                if (trailY < centerY) trailY++;
-                else if (trailY > centerY) trailY--;
-            }
-        }
-
-        return terrain;
     }
 }
 
@@ -118,4 +120,5 @@ public class BuildingSpawner
 {
     public string buildingName;
     public GameObject buildingSpawn;
+    public bool isHouse;
 }

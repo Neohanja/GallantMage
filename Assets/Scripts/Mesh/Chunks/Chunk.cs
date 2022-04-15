@@ -5,10 +5,6 @@ using UnityEngine;
 public class Chunk
 {
     static readonly int MaxTries = 100000;
-    // Tree Distro
-    static readonly int MinTreeCount = 256;
-    static readonly int MaxTreeCount = 600;
-    static readonly float TreeDistance = 0.75f;
     // Towns
     static readonly float MaxTownAltitude = 15f;
     static readonly int MinTownSize = 15;
@@ -30,9 +26,9 @@ public class Chunk
     // Data and Randomness
     ChunkData chunkData;
     BoxBounds chunkBounds;
-    bool townExists;
-    BoxBounds townBounds;
-    RanGen chunkPRG;
+    public bool townExists;
+    public BoxBounds townBounds;
+    public RanGen chunkPRG;
     List<BoxBounds> townBuildings;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
@@ -63,7 +59,11 @@ public class Chunk
 
         // Populate Chunks
         PopTown();
-        BuildTrees();        
+
+        if(ClutterBuilder.Helper != null)
+        {
+            ClutterBuilder.Helper.BuildTrees(this);
+        }
     }
 
     public Transform GetChunkTransform() { return chunkObj.transform; }
@@ -116,10 +116,59 @@ public class Chunk
         float ySpawn = GetHeight(new Vector2(xSpawn, zSpawn));
         Vector3 townCenter = new Vector3(xSpawn, ySpawn, zSpawn);
         MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
-        chunkMesh = TownBuilder.Helper.TraceRoads(chunkMesh, townBuildings);
+        TraceRoads();
 
         chunkFilter.mesh = chunkMesh.GetMesh();
         chunkCollider.sharedMesh = chunkFilter.mesh;
+    }
+
+    public void TraceRoads()
+    {
+        int centerX = MathFun.Round(townBounds.Center.x);
+        int centerY = MathFun.Round(townBounds.Center.y);
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for(int y = -1; y <= 1; y++)
+            {
+                chunkMesh.PaintPoint(centerX + x, centerY + y, new Color(1f, 1f, 1f, 1f));
+            }
+        }
+
+        for (int i = 1; i < townBuildings.Count; i++)
+        {
+            int trailX = MathFun.Round(townBuildings[i].door.x);
+            int trailY = MathFun.Round(townBuildings[i].door.y);
+            while (trailX != centerX || trailY != centerY)
+            {
+                chunkMesh.PaintPoint(trailX, trailY, new Color(1f, 1f, 1f, 1f));
+                if (trailX < centerX)
+                {
+                    chunkMesh.PaintPoint(trailX, trailY + 1, new Color(1f, 1f, 1f, 1f));
+                    chunkMesh.PaintPoint(trailX, trailY - 1, new Color(1f, 1f, 1f, 1f));
+                    trailX++;
+                }
+                else if (trailX > centerX)
+                {
+                    chunkMesh.PaintPoint(trailX, trailY + 1, new Color(1f, 1f, 1f, 1f));
+                    chunkMesh.PaintPoint(trailX, trailY - 1, new Color(1f, 1f, 1f, 1f));
+                    trailX--;
+                }
+                if (trailY < centerY)
+                {
+                    chunkMesh.PaintPoint(trailX + 1, trailY, new Color(1f, 1f, 1f, 1f));
+                    chunkMesh.PaintPoint(trailX - 1, trailY, new Color(1f, 1f, 1f, 1f));
+                    trailY++;
+                }
+                else if (trailY > centerY)
+                {
+
+                    chunkMesh.PaintPoint(trailX + 1, trailY, new Color(1f, 1f, 1f, 1f));
+                    chunkMesh.PaintPoint(trailX - 1, trailY, new Color(1f, 1f, 1f, 1f));
+                    trailY--;
+                }
+            }
+        }
     }
 
     public bool InBuilding(Vector2 point, float distTolerance)
@@ -161,18 +210,6 @@ public class Chunk
         chunkCollider.sharedMesh = chunkFilter.mesh;
     }
 
-    Vector2 Rotate(Vector2 point, float degrees)
-    {
-        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-
-        float tx = point.x;
-        float ty = point.y;
-        float vX = (cos * tx) - (sin * ty);
-        float vY = (sin * tx) + (cos * ty);
-        return new Vector2(vX, vY);
-    }
-
     public bool IsAreaClear(Vector2 point, Vector2 size)
     {
         for(int x = 0; x < size.x; x++)
@@ -187,62 +224,6 @@ public class Chunk
         }
 
         return true;
-    }
-
-    public void BuildTrees()
-    {
-        int treePop = chunkPRG.Roll(MinTreeCount, MaxTreeCount);
-        List<Vector3> points = new List<Vector3>();
-
-        for(int t = 0; t < MaxTries; t++)
-        {
-            if (points.Count >= treePop) break;
-
-            float x = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
-            float z = chunkPRG.Roll(0, ChunkSize) + chunkPRG.Percent();
-
-            Vector2 treeLoc = new Vector2(x, z);
-
-            float y = GetHeight(treeLoc);
-
-            if(y > MapManager.World.seaLevel)
-            {
-                bool canPlace = true;
-                foreach(Vector3 pt in points)
-                {
-                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= TreeDistance)
-                    {
-                        canPlace = false;
-                        break;
-                    }
-                    
-                }
-
-                if (townExists && InBuilding(treeLoc, 0.5f))
-                    //townBounds.PointWithinBounds(treeLoc, TreeDistance))
-                {
-                    canPlace = false;
-                }
-
-                if (canPlace)
-                {
-                    Vector3 treeLocFull = new Vector3(x, y, z);
-                    points.Add(treeLocFull);
-                    Vector3 scale = (chunkPRG.Percent() + 0.5f) * Vector3.one;
-
-                    TreeStyle thisTree = MapManager.World.treeVariations[chunkPRG.Roll(0, MapManager.World.treeVariations.Length - 1)];
-                    GameObject tree = new GameObject("Tree " + points.Count.ToString() + ": " + thisTree.treeName);                    
-                    tree.AddComponent<MeshFilter>().mesh = thisTree.model;
-                    if (thisTree.blocksMovement) tree.AddComponent<MeshCollider>().sharedMesh = thisTree.model;
-                    tree.AddComponent<MeshRenderer>().materials = thisTree.materials;
-                    tree.AddComponent<FloraData>();
-                    tree.transform.SetParent(chunkObj.transform);
-                    tree.transform.position = ChunkOffset + treeLocFull;
-                    tree.transform.localScale = scale;
-                    tree.transform.Rotate(new Vector3(0, chunkPRG.Roll(0, 360), 0));
-                }
-            }
-        }
     }
 
     public float GetHeight(Vector2 point)
@@ -289,7 +270,7 @@ public class Chunk
         return checkDist;
     }
 
-    int ChunkSize { get { return MeshData.MeshSize - 1; } }
+    public int ChunkSize { get { return MeshData.MeshSize - 1; } }
 
-    Vector3 ChunkOffset { get { return chunkObj.transform.position; } }
+    public Vector3 ChunkOffset { get { return chunkObj.transform.position; } }
 }

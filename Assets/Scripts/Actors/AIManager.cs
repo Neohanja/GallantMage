@@ -9,9 +9,8 @@ public class AIManager : MonoBehaviour
     public static readonly int Player = 0;
 
     [Header("Game Actors")]
-    public int testNpcCount;
-    public int testMobCount;
     public List<Actor> aiAgents;
+    public bool noTowns;
     int target;
 
     [Header("Master Lists")]
@@ -45,26 +44,16 @@ public class AIManager : MonoBehaviour
         aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), MapManager.World.GetRandomSpawn(),
             npcRacials[0], playerCam));
         CamControl.MainCam.SetTarget(aiAgents[0].actorObj);
-
-        for (int i = 0; i < testNpcCount; i++)
-        {
-            int npcIndex = Random.Range(0, npcRacials.Count);
-            aiAgents.Add(new Actor(Actor.ActorType.NPC, masterList.CopyList(), RandomSpawn(), npcRacials[npcIndex]));
-        }
-
-        for (int i = 0; i < testMobCount; i++)
-        {
-            int mobIndex = Random.Range(0, mobRacials.Count);
-            aiAgents.Add(new Actor(Actor.ActorType.Mob, masterList.CopyList(), RandomSpawn(), mobRacials[mobIndex]));
-        }
     }
 
-    public void AddPopulous(List<Vector3> newActors)
+    public void AddPopulous(List<Vector3> newActors, Chunk home)
     {
+        if (noTowns) return;
         foreach(Vector3 spawner in newActors)
         {
-            int npcIndex = Random.Range(0, npcRacials.Count);
+            int npcIndex = home.chunkPRG.Roll(0, npcRacials.Count - 1);
             aiAgents.Add(new Actor(Actor.ActorType.NPC, masterList.CopyList(), spawner, npcRacials[npcIndex]));
+            aiAgents[aiAgents.Count - 1].actorObj.transform.SetParent(home.GetChunkTransform());
         }
     }
 
