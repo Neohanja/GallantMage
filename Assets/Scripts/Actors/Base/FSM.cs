@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// AI Stuff
+
 [System.Serializable]
 public class FSM
 {
     public Movement movement;
     public State.StateID currentState;
     public int stateCount = 0;
+
+    public Dictionary<Actor, int> reputation;
 
     protected Dictionary<State.StateID, State> stateDrive;
 
@@ -30,6 +34,11 @@ public class FSM
             }
         }
         stateDrive[currentState].Action();
+    }
+
+    public Vector2 GetLocation()
+    {
+        return movement.GetLocation();
     }
 
     public void AddState(State.StateID newState, State classFunction)

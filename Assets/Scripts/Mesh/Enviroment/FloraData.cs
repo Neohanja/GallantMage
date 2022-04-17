@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class FloraData : MonoBehaviour
 {
-    public int treeIndex;    
+    public TreeType treeType;
+    
+    public enum TreeType
+    {
+        Birch,
+        Willow,
+        Pine
+    }
 }

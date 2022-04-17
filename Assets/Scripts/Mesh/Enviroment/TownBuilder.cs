@@ -33,9 +33,9 @@ public class TownBuilder : MonoBehaviour
         }
     }
 
-    public List<BoxBounds> BuildTown(BoxBounds townBounds, RanGen townRNG, Chunk chunkID)
+    public List<BuildingData> BuildTown(BoxBounds townBounds, RanGen townRNG, Chunk chunkID)
     {
-        List<BoxBounds> townBuildings = new List<BoxBounds>();
+        List<BuildingData> townBuildings = new List<BuildingData>();
         List<Vector3> spawnPoints = new List<Vector3>();
         Vector3 chunkOffset = chunkID.ChunkLocV3();
 
@@ -55,8 +55,7 @@ public class TownBuilder : MonoBehaviour
             Vector3 buildingFullLoc = chunkOffset + new Vector3(xPos, yPos, zPos);
             GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
             home.GetComponent<BuildingData>().buildingBounds = bPoint;
-            home.GetComponent<BuildingData>().RecalcDoor(chunkID.ChunkOffset);
-            townBuildings.Add(home.GetComponent<BuildingData>().buildingBounds.Copy());
+            townBuildings.Add(home.GetComponent<BuildingData>());
             home.name = "Town Banner: " + potentialBuilding.buildingName;
         }
 
@@ -77,9 +76,9 @@ public class TownBuilder : MonoBehaviour
             bPoint.MoveBuilding(buildingLoc);
 
             bool canPlace = true;
-            foreach (BoxBounds pt in townBuildings)
+            foreach (BuildingData pt in townBuildings)
             {
-                if (pt.BoxOverlap(bPoint, BuildingDistance))
+                if (pt.buildingBounds.BoxOverlap(bPoint, BuildingDistance))
                 {
                     canPlace = false;
                     break;
@@ -94,8 +93,7 @@ public class TownBuilder : MonoBehaviour
 
                 GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
                 home.GetComponent<BuildingData>().buildingBounds = bPoint;
-                home.GetComponent<BuildingData>().RecalcDoor(chunkID.ChunkOffset);
-                townBuildings.Add(home.GetComponent<BuildingData>().buildingBounds.Copy());
+                townBuildings.Add(home.GetComponent<BuildingData>());
                 home.name = "Building " + townBuildings.Count.ToString() + ": " + potentialBuilding.buildingName;
                 home.transform.LookAt(chunkOffset + tCenter);
 

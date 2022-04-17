@@ -29,7 +29,7 @@ public class Chunk
     public bool townExists;
     public BoxBounds townBounds;
     public RanGen chunkPRG;
-    List<BoxBounds> townBuildings;
+    List<BuildingData> townBuildings;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {
@@ -124,6 +124,7 @@ public class Chunk
 
     public void TraceRoads()
     {
+        // return;
         int centerX = MathFun.Round(townBounds.Center.x);
         int centerY = MathFun.Round(townBounds.Center.y);
 
@@ -137,8 +138,8 @@ public class Chunk
 
         for (int i = 1; i < townBuildings.Count; i++)
         {
-            int trailX = MathFun.Round(townBuildings[i].door.x);
-            int trailY = MathFun.Round(townBuildings[i].door.y);
+            int trailX = MathFun.Round(townBuildings[i].DoorLoc(true).x);
+            int trailY = MathFun.Round(townBuildings[i].DoorLoc(true).y);
             while (trailX != centerX || trailY != centerY)
             {
                 chunkMesh.PaintPoint(trailX, trailY, new Color(1f, 1f, 1f, 1f));
@@ -173,12 +174,55 @@ public class Chunk
 
     public bool InBuilding(Vector2 point, float distTolerance)
     {
-        foreach(BoxBounds building in townBuildings)
+        foreach(BuildingData building in townBuildings)
         {
-            if (building.PointWithinBounds(point, distTolerance)) return true;
+            if (building.buildingBounds.PointWithinBounds(point, distTolerance)) return true;
         }
 
         return false;
+    }
+
+    public bool InSameBuilding(Vector2 a, Vector2 b)
+    {
+        foreach (BuildingData building in townBuildings)
+        {
+            if (building.buildingBounds.PointWithinBounds(a, 0f) && 
+                building.buildingBounds.PointWithinBounds(b, 0f)) return true;
+        }
+
+        return false;
+    }
+
+    public int GetBuildingIndex(Vector2 a)
+    {
+        for (int i = 0; i < townBuildings.Count; i++)
+        {
+            if (townBuildings[i].buildingBounds.PointWithinBounds(a, 0f)) return i;
+        }
+        return -1;
+    }
+
+    public Vector2 DoorBetween(Vector2 a, Vector2 b)
+    {
+        // If they are in the same building, no need to worry
+        if (InSameBuilding(a, b)) return b;
+
+        // Get the buildings of each a and b
+        int aID = GetBuildingIndex(a);
+        int bID = GetBuildingIndex(b);
+
+        // If a is in a building, then process where the door is first
+        if(aID >= 0)
+        {
+            return townBuildings[aID].DoorLoc(false);
+        }
+        // If not, then get the b building door
+        if (bID >= 0)
+        {
+            return townBuildings[bID].DoorLoc(false);
+        }
+        // If both are outside, then ignore the doors
+        return b;
     }
 
     public void FlattenLand(Vector2Int start, Vector2Int size)
@@ -237,9 +281,7 @@ public class Chunk
         float midY = point.y - iY;
 
         float a = MathFun.Lerp(chunkMesh.GetPoint(iX, iY), chunkMesh.GetPoint(iX + 1, iY), midX);
-        //float a = MathFun.Lerp(chunkData.GetPoint(iX, iY), chunkData.GetPoint(iX + 1, iY), midX);
         float b = MathFun.Lerp(chunkMesh.GetPoint(iX, iY + 1), chunkMesh.GetPoint(iX + 1, iY + 1), midX);
-        //float b = MathFun.Lerp(chunkData.GetPoint(iX, iY + 1), chunkData.GetPoint(iX + 1, iY + 1), midX);
 
         return MathFun.Lerp(a, b, midY);
     }

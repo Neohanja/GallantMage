@@ -7,11 +7,26 @@ public class BuildingData : MonoBehaviour
     public string buildingName;
     public BoxBounds buildingBounds;
     public GameObject door;
+    public BuildingType buildingType;
+    public bool doNotEnter;
 
-    public void RecalcDoor(Vector3 chunkOffset)
+    public Vector2 DoorLoc(bool local)
     {
-        if (door == null) return;
-        Vector2 doorPos = new Vector2(door.transform.position.x - chunkOffset.x, door.transform.position.z - chunkOffset.z);
-        buildingBounds.door = doorPos;
+        if (local)
+        {
+            float x = transform.localPosition.x + door.transform.localPosition.x;
+            float z = transform.localPosition.z + door.transform.localPosition.z;
+            return new Vector2(x, z);
+        }
+        
+        return new Vector2(door.transform.position.x, door.transform.position.z);
+    }
+
+    public enum BuildingType
+    {
+        Home,
+        Smith,
+        Store,
+        Utility
     }
 }

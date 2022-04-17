@@ -7,20 +7,11 @@ public class BoxBounds
 {
     public Vector2 start;
     public Vector2 size;
-    public Vector2 door;
 
     public BoxBounds(Vector2 startPoint, Vector2 boxSize)
     {
         start = startPoint;
         size = boxSize;
-        door = new Vector2(0, 0);
-    }
-
-    public BoxBounds(Vector2 startPoint, Vector2 boxSize, Vector2 doorLoc)
-    {
-        start = startPoint;
-        size = boxSize;
-        door = doorLoc;
     }
 
     public BoxBounds(Mesh mesh)
@@ -45,16 +36,14 @@ public class BoxBounds
     public void MoveBuilding(Vector2 offset)
     {
         start += offset;
-        door += offset;
     }
 
     public BoxBounds Copy()
     {
         Vector2 startN = new Vector2(start.x, start.y);
         Vector2 sizeN = new Vector2(size.x, size.y);
-        Vector2 doorN = new Vector2(door.x, door.y);
 
-        return new BoxBounds(startN, sizeN, doorN);
+        return new BoxBounds(startN, sizeN);
     }
 
     public bool PointWithinBounds(Vector2 point, float buffer)

@@ -42,8 +42,9 @@ public class MapManager : MonoBehaviour
 
         chunkMap = new Dictionary<Vector2Int, Chunk>();
         activeChunks = new List<Vector2Int>();
-        queuedChunks = new List<Vector2Int>();
         potentialSpawns = new List<Vector3>();
+        queuedChunks = new List<Vector2Int>();
+
         VerifyMap(new Vector2Int(0, 0), initMap: true);
         if (AIManager.AI_Engine != null) AIManager.AI_Engine.StartAI();
         if (UIManager.ActiveUI != null) UIManager.ActiveUI.DoneLoading();
@@ -74,8 +75,23 @@ public class MapManager : MonoBehaviour
             float zPos = RanGen.PullNumber(seed, 10107, 8008) % ChunkSize - Chunk.HalfMap + 0.5f;
             float yPos = GetHeight(new Vector2(xPos, zPos));
             return new Vector3(xPos, yPos, zPos);
-
         }
+    }
+
+    public Vector2 GetDoorBetween(Vector2 a, Vector2 b)
+    {
+        Vector2 aT = a - new Vector2(Chunk.HalfMap, Chunk.HalfMap);
+        Vector2 bT = b - new Vector2(Chunk.HalfMap, Chunk.HalfMap);
+
+        Vector2Int chunkID = new Vector2Int(MathFun.Floor(aT.x / ChunkSize), MathFun.Floor(aT.y / ChunkSize));
+
+        if (chunkMap.ContainsKey(chunkID))
+        {
+            Vector2 des = chunkMap[chunkID].DoorBetween(aT - (chunkID * ChunkSize), bT - (chunkID * ChunkSize));
+
+            return des;
+        }
+        else return b;
     }
 
     public float GetHeight(Vector2 point, bool autoCorrect = true)

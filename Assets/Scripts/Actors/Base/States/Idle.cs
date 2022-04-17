@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A state for just kind of "Chillin"
+/// </summary>
+
 public class Idle : State
 {
     public Idle(FSM fsmController) : base(StateID.Idle, fsmController)
@@ -11,6 +15,7 @@ public class Idle : State
 
     public override StateID Determine()
     {
+        // Right now, we just wait out a timer. Soon, it will be time scaled
         if(elapsedTime >= stateTimer)
         {
             return StateID.Wander;

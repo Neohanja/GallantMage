@@ -19,8 +19,6 @@ public class PlayerMove : Movement
 
         model = GetComponent<MeshRenderer>();
 
-        gameObject.AddComponent<AudioListener>();
-
         if (CamControl.MainCam != null)
             thirdPersonCam = CamControl.MainCam.gameObject;
         firstPersonCam = GetComponentInChildren<Camera>().gameObject;

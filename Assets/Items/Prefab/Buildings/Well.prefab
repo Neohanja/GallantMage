@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7037791292794146554}
   m_Layer: 0
   m_Name: Well
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +148,10 @@ MonoBehaviour:
   buildingBounds:
     start: {x: -3, y: -3}
     size: {x: 6, y: 6}
+    door: {x: 0, y: 0}
+  door: {fileID: 0}
+  buildingType: 3
+  doNotEnter: 1
 --- !u!1 &7194051904545350434
 GameObject:
   m_ObjectHideFlags: 0

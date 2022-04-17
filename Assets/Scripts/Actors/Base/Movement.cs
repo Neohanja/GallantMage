@@ -66,12 +66,16 @@ public class Movement : MonoBehaviour
         BuildStateMachine();
     }
 
-    public virtual void MoveDirection(Vector2 direction)
+    public Vector2 GetLocation()
     {
-        direction.Normalize();
+        return new Vector2(transform.position.x, transform.position.z);
+    }
 
-        momentum.x = direction.x;
-        momentum.z = direction.y;
+    public virtual void MoveDirection(Vector2 destination)
+    {
+        Vector3 point = new Vector3(destination.x, transform.position.y, destination.y);
+        transform.LookAt(point);
+        momentum += transform.forward;
     }
 
     protected virtual void GetMovement()

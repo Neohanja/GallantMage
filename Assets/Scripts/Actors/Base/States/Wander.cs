@@ -13,7 +13,7 @@ public class Wander : State
 
     public override StateID Determine()
     {
-        if (elapsedTime >= stateTimer)
+        if (elapsedTime >= stateTimer || DistanceToDestination() <= 0.2f)
         {
             return StateID.Idle;
         }
@@ -23,14 +23,24 @@ public class Wander : State
 
     public override void Restart()
     {
-        movement = Noise.RandomWalk(new Vector2(Random.Range(0, 100), Random.Range(0, 100)), Random.Range(0, 100), Random.Range(0, 5000));
-        stateTimer = Random.Range(2f, 5f);
+        destination = stateMachine.GetLocation();
+        destination.x += Random.Range(-5f, 5f);
+        destination.y += Random.Range(-5f, 5f);
+
+        movement = RecalcPath();
+
+        stateTimer = 300f;
 
         base.Restart();
     }
 
     public override void Action()
     {
+        if (Vector2.Distance(stateMachine.GetLocation(), movement) <= 0.2f || elapsedTime % 0.25f == 0)
+        {
+            movement = RecalcPath();
+        }
+
         stateMachine.movement.MoveDirection(movement);
 
         base.Action();
