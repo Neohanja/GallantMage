@@ -930,8 +930,9 @@ MonoBehaviour:
   buildingBounds:
     start: {x: -3, y: -2}
     size: {x: 6, y: 4}
-    door: {x: 1.9, y: 1.5}
   door: {fileID: 8781778543449933652}
+  buildingType: 0
+  doNotEnter: 0
 --- !u!1 &179460
 GameObject:
   m_ObjectHideFlags: 0

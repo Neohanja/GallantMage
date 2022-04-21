@@ -99,7 +99,7 @@ public class Chunk
             int startX = chunkPRG.Roll(2, ChunkSize - 3 - sizeX);
             int startY = chunkPRG.Roll(2, ChunkSize - 3 - sizeY);
             townStart = new Vector2Int(startX, startY);
-        } while(!IsAreaClear(townStart, townSize));
+        } while (!IsAreaClear(townStart, townSize));
 
         FlattenLand(townStart - Vector2Int.one * 2, townSize + Vector2Int.one * 2);
         townBounds = new BoxBounds(townStart, townSize);
@@ -107,14 +107,20 @@ public class Chunk
         townBuildings = TownBuilder.Helper.BuildTown(townBounds, chunkPRG, this);
 
         float xSpawn, zSpawn;
-        do
+        if (TownBuilder.Helper != null)
+            do
+            {
+                xSpawn = chunkPRG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
+                zSpawn = chunkPRG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
+            } while (TownBuilder.Helper.InBuilding(new Vector2(xSpawn, zSpawn)));
+        else
         {
             xSpawn = chunkPRG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
             zSpawn = chunkPRG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
-        } while (InBuilding(new Vector2(xSpawn, zSpawn), 0.5f));
+        }
 
         float ySpawn = GetHeight(new Vector2(xSpawn, zSpawn));
-        Vector3 townCenter = new Vector3(xSpawn, ySpawn, zSpawn);
+        Vector3 townCenter = new Vector3(xSpawn + 0.5f, ySpawn, zSpawn + 0.5f);
         MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
         TraceRoads();
 
@@ -170,59 +176,6 @@ public class Chunk
                 }
             }
         }
-    }
-
-    public bool InBuilding(Vector2 point, float distTolerance)
-    {
-        foreach(BuildingData building in townBuildings)
-        {
-            if (building.buildingBounds.PointWithinBounds(point, distTolerance)) return true;
-        }
-
-        return false;
-    }
-
-    public bool InSameBuilding(Vector2 a, Vector2 b)
-    {
-        foreach (BuildingData building in townBuildings)
-        {
-            if (building.buildingBounds.PointWithinBounds(a, 0f) && 
-                building.buildingBounds.PointWithinBounds(b, 0f)) return true;
-        }
-
-        return false;
-    }
-
-    public int GetBuildingIndex(Vector2 a)
-    {
-        for (int i = 0; i < townBuildings.Count; i++)
-        {
-            if (townBuildings[i].buildingBounds.PointWithinBounds(a, 0f)) return i;
-        }
-        return -1;
-    }
-
-    public Vector2 DoorBetween(Vector2 a, Vector2 b)
-    {
-        // If they are in the same building, no need to worry
-        if (InSameBuilding(a, b)) return b;
-
-        // Get the buildings of each a and b
-        int aID = GetBuildingIndex(a);
-        int bID = GetBuildingIndex(b);
-
-        // If a is in a building, then process where the door is first
-        if(aID >= 0)
-        {
-            return townBuildings[aID].DoorLoc(false);
-        }
-        // If not, then get the b building door
-        if (bID >= 0)
-        {
-            return townBuildings[bID].DoorLoc(false);
-        }
-        // If both are outside, then ignore the doors
-        return b;
     }
 
     public void FlattenLand(Vector2Int start, Vector2Int size)

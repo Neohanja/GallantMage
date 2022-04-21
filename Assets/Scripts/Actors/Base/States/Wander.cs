@@ -24,8 +24,8 @@ public class Wander : State
     public override void Restart()
     {
         destination = stateMachine.GetLocation();
-        destination.x += Random.Range(-5f, 5f);
-        destination.y += Random.Range(-5f, 5f);
+        destination.x += Random.Range(-15f, 15f);
+        destination.y += Random.Range(-15f, 15f);
 
         movement = RecalcPath();
 

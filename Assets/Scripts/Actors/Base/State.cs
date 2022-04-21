@@ -34,8 +34,8 @@ public class State
 
     public Vector2 RecalcPath()
     {
-        if (MapManager.World != null)
-            return MapManager.World.GetDoorBetween(stateMachine.GetLocation(), destination);
+        if (TownBuilder.Helper != null)
+            return TownBuilder.Helper.BuildingPath(stateMachine.GetLocation(), destination);
         else return destination;
     }
 

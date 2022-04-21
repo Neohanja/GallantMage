@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Human
   m_EditorClassIdentifier: 
   raceName: Human
-  baseModel: {fileID: 4711208715938537054, guid: 283f7290c49dca2488736f4c559d74d7, type: 3}
+  baseModel: {fileID: 8548482718589853407, guid: 283f7290c49dca2488736f4c559d74d7, type: 3}
   racialStats:
     stats:
     - statName: Damage

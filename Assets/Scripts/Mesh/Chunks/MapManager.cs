@@ -78,22 +78,6 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public Vector2 GetDoorBetween(Vector2 a, Vector2 b)
-    {
-        Vector2 aT = a - new Vector2(Chunk.HalfMap, Chunk.HalfMap);
-        Vector2 bT = b - new Vector2(Chunk.HalfMap, Chunk.HalfMap);
-
-        Vector2Int chunkID = new Vector2Int(MathFun.Floor(aT.x / ChunkSize), MathFun.Floor(aT.y / ChunkSize));
-
-        if (chunkMap.ContainsKey(chunkID))
-        {
-            Vector2 des = chunkMap[chunkID].DoorBetween(aT - (chunkID * ChunkSize), bT - (chunkID * ChunkSize));
-
-            return des;
-        }
-        else return b;
-    }
-
     public float GetHeight(Vector2 point, bool autoCorrect = true)
     {
         if (autoCorrect)

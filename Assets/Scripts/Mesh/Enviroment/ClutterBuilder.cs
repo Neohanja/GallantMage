@@ -58,8 +58,7 @@ public class ClutterBuilder : MonoBehaviour
 
                 }
 
-                if (chunkID.townExists && chunkID.InBuilding(treeLoc, 0.5f))
-                //townBounds.PointWithinBounds(treeLoc, TreeDistance))
+                if (TownBuilder.Helper != null && TownBuilder.Helper.InBuilding(treeLoc, TreeDistance))
                 {
                     canPlace = false;
                 }
