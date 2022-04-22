@@ -39,7 +39,15 @@ public class TownBuilder : MonoBehaviour
     {
         List<BuildingData> townBuildings = new List<BuildingData>();
         List<Vector3> spawnPoints = new List<Vector3>();
-        Vector3 chunkOffset = chunkID.ChunkLocV3();
+        Vector3 chunkOffset = chunkID.ChunkOffset;
+        
+        // Build the buildings first
+        GameObject[] modelHomes = new GameObject[buildings.Count];
+        for(int i = 0; i < buildings.Count; i++)
+        {
+            modelHomes[i] = Instantiate(buildings[i].buildingSpawn);
+            modelHomes[i].GetComponent<BuildingData>().Init();
+        }
 
         int buildingCount = townRNG.Roll(MinBuildings, MaxBuildings);
 
@@ -47,16 +55,13 @@ public class TownBuilder : MonoBehaviour
         {
             int buildingID = townRNG.Roll(0, townCenter.Count - 1);
             BuildingSpawner potentialBuilding = townCenter[buildingID];
-            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();
             float xPos = townBounds.Center.x;
             float zPos = townBounds.Center.y;
             float yPos = chunkID.GetHeight(new Vector2(xPos, zPos));
 
-            bPoint.MoveBuilding(new Vector2(xPos, zPos));
-
             Vector3 buildingFullLoc = chunkOffset + new Vector3(xPos, yPos, zPos);
             GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
-            home.GetComponent<BuildingData>().buildingBounds = bPoint;
+            home.GetComponent<BuildingData>().Init();
             townBuildings.Add(home.GetComponent<BuildingData>());
             home.name = "Town Banner: " + potentialBuilding.buildingName;
         }
@@ -67,20 +72,25 @@ public class TownBuilder : MonoBehaviour
 
             int buildingID = townRNG.Roll(0, buildings.Count - 1);
             BuildingSpawner potentialBuilding = buildings[buildingID];
-            BoxBounds bPoint = potentialBuilding.buildingSpawn.GetComponent<BuildingData>().buildingBounds.Copy();            
+            BuildingData modelHome = modelHomes[buildingID].GetComponent<BuildingData>();
 
-            float x = townRNG.Roll(1, (int)townBounds.size.x - 1 - (int)bPoint.size.x) + townRNG.Percent();
-            float z = townRNG.Roll(1, (int)townBounds.size.y - 1 - (int)bPoint.size.y) + townRNG.Percent();
+            float x = townRNG.Roll((int)(modelHome.Size * 0.5f), (int)townBounds.size.x - 1 - (int)(modelHome.Size * 0.5f)) + townRNG.Percent();
+            float z = townRNG.Roll((int)(modelHome.Size * 0.5f), (int)townBounds.size.y - 1 - (int)(modelHome.Size * 0.5f)) + townRNG.Percent();
             x += townBounds.start.x;
             z += townBounds.start.y;
 
             Vector2 buildingLoc = new Vector2(x, z);
-            bPoint.MoveBuilding(buildingLoc);
+            float y = chunkID.GetHeight(buildingLoc);
+            Vector3 tCenter = chunkOffset + new Vector3(townBounds.Center.x, y, townBounds.Center.y);
 
+            modelHome.transform.position = chunkOffset + new Vector3(x, y, z);
+            modelHome.transform.LookAt(tCenter);
+            modelHome.bBounds.CalcCenter(0f);
+            
             bool canPlace = true;
             foreach (BuildingData pt in townBuildings)
             {
-                if (pt.buildingBounds.BoxOverlap(bPoint, BuildingDistance))
+                if (pt.BuildingWithin(modelHome, BuildingDistance))
                 {
                     canPlace = false;
                     break;
@@ -89,19 +99,18 @@ public class TownBuilder : MonoBehaviour
 
             if (canPlace)
             {
-                float y = chunkID.GetHeight(buildingLoc);
                 Vector3 buildingFullLoc = chunkOffset + new Vector3(x, y, z);
-                Vector3 tCenter = new Vector3(townBounds.Center.x, y, townBounds.Center.y);
-
+                
                 GameObject home = Instantiate(potentialBuilding.buildingSpawn, buildingFullLoc, Quaternion.identity, chunkID.GetChunkTransform());
-                home.GetComponent<BuildingData>().buildingBounds = bPoint;
-                townBuildings.Add(home.GetComponent<BuildingData>());
+                BuildingData buildHome = home.GetComponent<BuildingData>();
+                buildHome.Init();
+                townBuildings.Add(buildHome);
                 home.name = "Building " + townBuildings.Count.ToString() + ": " + potentialBuilding.buildingName;
-                home.transform.LookAt(chunkOffset + tCenter);
+                home.transform.LookAt(tCenter);
 
                 if (potentialBuilding.isHouse)
                 {
-                    Vector3 spawnLoc = chunkOffset + new Vector3(bPoint.Center.x + 0.5f, 0.1f, bPoint.Center.y + 0.5f);
+                    Vector3 spawnLoc = new Vector3(buildHome.Center.x + 0.5f, y + 0.2f, buildHome.Center.y + 0.5f);
 
                     spawnPoints.Add(spawnLoc);
                 }
@@ -110,6 +119,11 @@ public class TownBuilder : MonoBehaviour
 
         if (AIManager.AI_Engine != null) AIManager.AI_Engine.AddPopulous(spawnPoints, chunkID);
         AddBuildingsToList(townBuildings);
+
+        for(int i = 0; i < modelHomes.Length; i++)
+        {
+            Destroy(modelHomes[i]);
+        }
 
         return townBuildings;
     }
@@ -124,21 +138,22 @@ public class TownBuilder : MonoBehaviour
         }
     }
 
-    public bool InBuilding(Vector2 a, float buffer = 0.5f)
+    public bool InBuilding(Vector2 a, float buffer = 0f)
     {
         foreach(BuildingData bBounds in towns)
         {
-            if (bBounds.buildingBounds.PointWithinBounds(a, buffer)) return true;
+            if (Vector2.Distance(a, bBounds.Center) > bBounds.Size + buffer) continue;
+            if (bBounds.PointWithin(new Vector3(a.x, 0f, a.y), buffer)) return true;
         }
 
         return false;
     }
 
-    public int BuildingID(Vector2 a, float buffer = 0.5f)
+    public int BuildingID(Vector2 a, float buffer = 0f)
     {
         for(int i = 0; i < towns.Count; i++)
         {
-            if (towns[i].buildingBounds.PointWithinBounds(a, buffer)) return i;
+            if (towns[i].PointWithin(new Vector3(a.x, 0f, a.y), buffer)) return i;
         }
         return -1;
     }

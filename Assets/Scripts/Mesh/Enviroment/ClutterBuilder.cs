@@ -30,6 +30,7 @@ public class ClutterBuilder : MonoBehaviour
     public void BuildTrees(Chunk chunkID)
     {
         if (trees == null || trees.Count == 0) return;
+        Vector2 chunkOffset = new Vector2(chunkID.ChunkOffset.x, chunkID.ChunkOffset.z);
 
         int treePop = chunkID.chunkPRG.Roll(MinTreeCount, MaxTreeCount);
         List<Vector3> points = new List<Vector3>();
@@ -40,6 +41,8 @@ public class ClutterBuilder : MonoBehaviour
 
             float x = chunkID.chunkPRG.Roll(0, chunkID.ChunkSize) + chunkID.chunkPRG.Percent();
             float z = chunkID.chunkPRG.Roll(0, chunkID.ChunkSize) + chunkID.chunkPRG.Percent();
+            TreeStyle thisTree = trees[chunkID.chunkPRG.Roll(0, trees.Count - 1)];
+            float size = thisTree.treeSpawner.GetComponent<ClutterData>().size;
 
             Vector2 treeLoc = new Vector2(x, z);
 
@@ -50,7 +53,7 @@ public class ClutterBuilder : MonoBehaviour
                 bool canPlace = true;
                 foreach (Vector3 pt in points)
                 {
-                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= TreeDistance)
+                    if (Vector2.Distance(treeLoc, new Vector2(pt.x, pt.z)) <= TreeDistance + size)
                     {
                         canPlace = false;
                         break;
@@ -58,7 +61,8 @@ public class ClutterBuilder : MonoBehaviour
 
                 }
 
-                if (TownBuilder.Helper != null && TownBuilder.Helper.InBuilding(treeLoc, TreeDistance))
+                if (TownBuilder.Helper != null && 
+                    TownBuilder.Helper.InBuilding(chunkOffset + treeLoc, TreeDistance * 2 + size))
                 {
                     canPlace = false;
                 }
@@ -69,7 +73,7 @@ public class ClutterBuilder : MonoBehaviour
                     points.Add(treeLocFull);
                     Vector3 scale = (chunkID.chunkPRG.Percent() + 0.5f) * Vector3.one;
 
-                    TreeStyle thisTree = trees[chunkID.chunkPRG.Roll(0, trees.Count - 1)];
+                    
                     GameObject tree = Instantiate(thisTree.treeSpawner, chunkID.ChunkOffset + treeLocFull, Quaternion.identity, chunkID.GetChunkTransform());
                     tree.name = "Tree " + points.Count.ToString() + ": " + thisTree.treeName;
 

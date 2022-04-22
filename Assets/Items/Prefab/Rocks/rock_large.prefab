@@ -106,6 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8303197896361080255}
+  - component: {fileID: 4047197300436192980}
   m_Layer: 0
   m_Name: rock_large
   m_TagString: Untagged
@@ -128,3 +129,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4047197300436192980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200457111390911282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8646ed39c786d478588e75317981bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeType: 0
+  size: 2

@@ -30,6 +30,7 @@ public class Chunk
     public BoxBounds townBounds;
     public RanGen chunkPRG;
     List<BuildingData> townBuildings;
+    Vector3 myTownCenter;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {
@@ -54,13 +55,14 @@ public class Chunk
         chunkMesh = new MeshData(chunkData.GetPoints(), MapManager.World.growth, MapManager.World.minHeight);
         chunkFilter.mesh = chunkMesh.GetMesh();
         chunkCollider.sharedMesh = chunkFilter.mesh;
+
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
         chunkBounds = new BoxBounds(new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap), Vector2.one * (MeshData.MeshSize - 1));
 
         // Populate Chunks
         PopTown();
 
-        if(ClutterBuilder.Helper != null)
+        if (ClutterBuilder.Helper != null)
         {
             ClutterBuilder.Helper.BuildTrees(this);
         }
@@ -107,21 +109,16 @@ public class Chunk
         townBuildings = TownBuilder.Helper.BuildTown(townBounds, chunkPRG, this);
 
         float xSpawn, zSpawn;
-        if (TownBuilder.Helper != null)
-            do
-            {
-                xSpawn = chunkPRG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
-                zSpawn = chunkPRG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
-            } while (TownBuilder.Helper.InBuilding(new Vector2(xSpawn, zSpawn)));
-        else
+        do
         {
             xSpawn = chunkPRG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
             zSpawn = chunkPRG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
-        }
-
+        } while (TownBuilder.Helper.InBuilding(new Vector2(xSpawn, zSpawn)));
+        
         float ySpawn = GetHeight(new Vector2(xSpawn, zSpawn));
         Vector3 townCenter = new Vector3(xSpawn + 0.5f, ySpawn, zSpawn + 0.5f);
         MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
+
         TraceRoads();
 
         chunkFilter.mesh = chunkMesh.GetMesh();
