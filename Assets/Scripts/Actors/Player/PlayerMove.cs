@@ -12,11 +12,13 @@ public class PlayerMove : Movement
     Quaternion prevRotation;
     MeshRenderer model;
     public int partIndex = 0;
+    public float maxLookAngle = 50f;
+    float rotX;
 
     protected override void Initialize()
     {
         base.Initialize();
-
+        rotX = 0f;
         model = GetComponent<MeshRenderer>();
 
         if (CamControl.MainCam != null)
@@ -83,12 +85,11 @@ public class PlayerMove : Movement
         if(fpsCam)
         {
             float mouseSide = Input.GetAxis("Mouse X") * mouseSensitivity;
-            float mouseUp = Input.GetAxisRaw("Mouse Y") * (inverseLookUp ? -1 : 1) * mouseSensitivity;
-
+            rotX += Input.GetAxisRaw("Mouse Y") * (inverseLookUp ? -1 : 1) * mouseSensitivity;
+            rotX = Mathf.Clamp(rotX, -maxLookAngle, maxLookAngle);
             transform.Rotate(new Vector3(0, mouseSide, 0));
-            firstPersonCam.transform.Rotate(new Vector3(mouseUp, 0, 0));
-
-            // WIP : Clamp Camera to a rotation up/down
+            firstPersonCam.transform.localRotation = Quaternion.identity;
+            firstPersonCam.transform.Rotate(new Vector3(rotX, 0f, 0f));
         }
 
         if (Input.GetKey(KeyCode.LeftShift)) running = true;
