@@ -26,11 +26,11 @@ public class CamControl : MonoBehaviour
         if (target != null)
         {
             transform.position = target.transform.position + offset;
-            if (MapManager.World != null)
+            if (World.Map != null)
             {
                 float x = transform.position.x;
                 float z = transform.position.z;
-                float y = MapManager.World.GetHeight(new Vector2(x, z));
+                float y = World.Map.GetHeight(new Vector2(x, z));
 
                 if (transform.position.y < y + offset.y)
                 {

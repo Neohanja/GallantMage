@@ -244,7 +244,7 @@ public class ChunkData
 
     public float GetPoint(int x, int y)
     {
-        return vals[x + y * MeshData.MeshSize] * MapManager.World.growth + MapManager.World.minHeight;
+        return vals[x + y * MeshData.MeshSize] * World.Map.growth + World.Map.minHeight;
     }
 
     public float[] CopyPoints()

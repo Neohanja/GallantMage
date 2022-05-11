@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class World : MonoBehaviour
 {
-    public static MapManager World { private set; get; }
+    public static World Map { private set; get; }
 
     [Header("Node Builder")]
     public TerrainGraph terrainGraph;
@@ -31,8 +31,8 @@ public class MapManager : MonoBehaviour
 
     void Awake()
     {
-        if (World != null && World != this) Destroy(gameObject);
-        else World = this;
+        if (Map != null && Map != this) Destroy(gameObject);
+        else Map = this;
     }
 
     void Start()

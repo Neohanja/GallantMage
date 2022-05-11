@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8303197896361080255}
   m_RootOrder: 0
@@ -109,7 +110,7 @@ GameObject:
   - component: {fileID: 4047197300436192980}
   m_Layer: 0
   m_Name: rock_large
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +125,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8143674124319151466}
   m_Father: {fileID: 0}
@@ -141,5 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8646ed39c786d478588e75317981bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeType: 0
-  size: 2
+  itemType: 4
+  destructible: 1
+  resourceCount: 75
+  size: 2.5

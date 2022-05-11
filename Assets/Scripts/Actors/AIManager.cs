@@ -41,7 +41,7 @@ public class AIManager : MonoBehaviour
 
         GameObject playerCam = GetComponentInChildren<Camera>().gameObject;
 
-        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), MapManager.World.GetRandomSpawn(),
+        aiAgents.Add(new Actor(Actor.ActorType.Player, masterList.CopyList(), World.Map.GetRandomSpawn(),
             npcRacials[0], playerCam));
         CamControl.MainCam.SetTarget(aiAgents[0].actorObj);
     }
@@ -51,7 +51,7 @@ public class AIManager : MonoBehaviour
         if (noTowns) return;
         foreach(Vector3 spawner in newActors)
         {
-            int npcIndex = home.chunkPRG.Roll(0, npcRacials.Count - 1);
+            int npcIndex = home.chunkRNG.Roll(0, npcRacials.Count - 1);
             aiAgents.Add(new Actor(Actor.ActorType.NPC, masterList.CopyList(), spawner, npcRacials[npcIndex]));
             aiAgents[aiAgents.Count - 1].actorObj.transform.SetParent(home.GetChunkTransform());
         }
@@ -65,8 +65,8 @@ public class AIManager : MonoBehaviour
         {
             x = Random.Range(-120f, 120f);
             z = Random.Range(-120f, 120f);
-            y = MapManager.World.GetHeight(new Vector2(x, z));
-        } while (y <= MapManager.World.seaLevel);
+            y = World.Map.GetHeight(new Vector2(x, z));
+        } while (y <= World.Map.seaLevel);
 
         return new Vector3(x, y, z);
     }

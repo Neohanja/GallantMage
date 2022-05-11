@@ -296,8 +296,10 @@ MonoBehaviour:
       _dynamic: 0
   ampType: 1
   ampAmount: 0.35
-  clampNoise: 1
-  minMax: {x: 0, y: 1}
+  minEffected: -1
+  maxEffected: 1
+  clampMin: -1
+  clampMax: 1
 --- !u!114 &-2275994930510203517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +357,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   blendType: 5
-  blend: 0.6848952
+  blend: 0.665
 --- !u!114 &-2157356183043341537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,8 +508,10 @@ MonoBehaviour:
       _dynamic: 0
   ampType: 2
   ampAmount: 2.77
-  clampNoise: 1
-  minMax: {x: 0.15, y: 1.5}
+  minEffected: -1
+  maxEffected: 1
+  clampMin: -1
+  clampMax: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +522,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c59571adea712f24ab77b81996d24fb5, type: 3}
-  m_Name: TerraGraph
+  m_Name: GameMap
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 3443036328621354917}
@@ -532,7 +536,7 @@ MonoBehaviour:
   - {fileID: -5502167298469903044}
   - {fileID: -3264291198561444928}
   - {fileID: -88268546312938600}
-  offset: {x: 0, y: 0}
+  offset: {x: 240, y: 240}
   seed: 3
 --- !u!114 &130563537046740247
 MonoBehaviour:

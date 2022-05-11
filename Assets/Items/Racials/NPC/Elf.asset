@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raceName: Elf
   baseModel: {fileID: 8548482718589853407, guid: 283f7290c49dca2488736f4c559d74d7, type: 3}
+  actorObj: {fileID: 8544655935420945688, guid: c843769f993684441a7e31b8546f1d50, type: 3}
   racialStats:
     stats:
     - statName: Damage

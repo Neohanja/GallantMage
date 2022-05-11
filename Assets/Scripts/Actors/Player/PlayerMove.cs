@@ -6,20 +6,23 @@ public class PlayerMove : Movement
 {
     public bool inverseLookUp = true;
     public float mouseSensitivity = 2f;
+    public float maxLookAngle = 50f;
     bool fpsCam;
     GameObject thirdPersonCam;
     GameObject firstPersonCam;
     Quaternion prevRotation;
     MeshRenderer model;
-    public int partIndex = 0;
-    public float maxLookAngle = 50f;
+    protected int partIndex = 0;
     float rotX;
+
+    [Header("Resources")]
+    public int woodCount = 0;
 
     protected override void Initialize()
     {
         base.Initialize();
         rotX = 0f;
-        model = GetComponent<MeshRenderer>();
+        model = GetComponentInChildren<MeshRenderer>();
 
         if (CamControl.MainCam != null)
             thirdPersonCam = CamControl.MainCam.gameObject;
@@ -90,6 +93,16 @@ public class PlayerMove : Movement
             transform.Rotate(new Vector3(0, mouseSide, 0));
             firstPersonCam.transform.localRotation = Quaternion.identity;
             firstPersonCam.transform.Rotate(new Vector3(rotX, 0f, 0f));
+        }
+
+        if(meleeRange && Input.GetMouseButtonDown(0))
+        {
+            int given = meleeTarget.GetComponent<ClutterData>().GiveResources(3, transform);
+            woodCount += given;
+            if (given < 3)
+            {
+                MeleeRange(null);
+            }
         }
 
         if (Input.GetKey(KeyCode.LeftShift)) running = true;

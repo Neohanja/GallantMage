@@ -26,15 +26,14 @@ public class Chunk
     // Data and Randomness
     ChunkData chunkData;
     BoxBounds chunkBounds;
-    public bool townExists;
+    public bool townExists { private set; get; }
     public BoxBounds townBounds;
-    public RanGen chunkPRG;
+    public RanGen chunkRNG;
     List<BuildingData> townBuildings;
-    Vector3 myTownCenter;
 
     public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
     {
-        chunkPRG = new RanGen(RanGen.PullNumber(MapManager.World.seed, MathFun.Floor(chunkCoord.x), MathFun.Floor(chunkCoord.y)));
+        chunkRNG = new RanGen(RanGen.PullNumber(World.Map.seed, MathFun.Floor(chunkCoord.x), MathFun.Floor(chunkCoord.y)));
 
         chunkData = chunkInfo;
         townExists = false;
@@ -44,33 +43,54 @@ public class Chunk
         chunkRender = chunkObj.AddComponent<MeshRenderer>();
         chunkCollider = chunkObj.AddComponent<MeshCollider>();
 
-        if (MapManager.World != null)
+        if (World.Map != null)
         {
-            chunkRender.material = MapManager.World.terrainMat;
-            chunkObj.transform.SetParent(MapManager.World.transform);
+            chunkRender.material = World.Map.terrainMat;
+            chunkObj.transform.SetParent(World.Map.transform);
             CreateWater();
         }
 
         // Make Chunk
-        chunkMesh = new MeshData(chunkData.GetPoints(), MapManager.World.growth, MapManager.World.minHeight);
+        chunkMesh = new MeshData(chunkData.GetPoints(), World.Map.growth, World.Map.minHeight);
         chunkFilter.mesh = chunkMesh.GetMesh();
         chunkCollider.sharedMesh = chunkFilter.mesh;
+
 
         chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
         chunkBounds = new BoxBounds(new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap), Vector2.one * (MeshData.MeshSize - 1));
 
-        // Populate Chunks
-        PopTown();
-
-        if (ClutterBuilder.Helper != null)
+        if (ClutterBuilder.Generator != null)
         {
-            ClutterBuilder.Helper.BuildTrees(this);
+            ClutterBuilder.Generator.BuildEnvironmentClutter(this);
         }
     }
 
-    public Transform GetChunkTransform() { return chunkObj.transform; }
-    public Vector2 ChunkLocV2() { return new Vector2(chunkObj.transform.position.x, chunkObj.transform.position.z); }
-    public Vector3 ChunkLocV3() { return chunkObj.transform.position; }
+    #region Random Number Gen for chunk Items
+    public Vector2 RandomSpotInChunk(bool waterPlacement)
+    {
+        float x, y;
+
+        do
+        {
+            x = RandomIndex(ChunkSize) + Percent();
+            y = RandomIndex(ChunkSize) + Percent();
+        } while (GetHeight(new Vector2(x, y)) <= SeaLevel || waterPlacement);
+
+        return new Vector2(x, y);
+    }
+    public float Percent()
+    {
+        return chunkRNG.Percent();
+    }
+    public int Roll(int min, int max)
+    {
+        return chunkRNG.Roll(min, max);
+    }
+    public int RandomIndex(int count)
+    {
+        return chunkRNG.Roll(0, count - 1);
+    }
+    #endregion
 
     public void CreateWater()
     {
@@ -78,12 +98,14 @@ public class Chunk
         waterFilter = waterObj.AddComponent<MeshFilter>();
         waterRender = waterObj.AddComponent<MeshRenderer>();
         waterObj.transform.SetParent(chunkObj.transform);
-        waterRender.material = MapManager.World.waterMat;
-        waterMesh = new MeshData(MapManager.World.seaLevel);
+        waterRender.material = World.Map.waterMat;
+        waterMesh = new MeshData(World.Map.seaLevel);
         waterFilter.mesh = waterMesh.GetMesh();
         waterRender.receiveShadows = false;
     }
 
+    // To Do: Rewrite Town Building (and place in Town Builder to clean up chunks)
+    #region Town Building
     public void PopTown()
     {
         if (TownBuilder.Helper == null) return;
@@ -95,29 +117,29 @@ public class Chunk
             if (tries >= MaxTries) return;
             tries++;
 
-            int sizeX = chunkPRG.Roll(MinTownSize, MaxTownSize);
-            int sizeY = chunkPRG.Roll(MinTownSize, MaxTownSize);
+            int sizeX = chunkRNG.Roll(MinTownSize, MaxTownSize);
+            int sizeY = chunkRNG.Roll(MinTownSize, MaxTownSize);
             townSize = new Vector2Int(sizeX, sizeY);
-            int startX = chunkPRG.Roll(2, ChunkSize - 3 - sizeX);
-            int startY = chunkPRG.Roll(2, ChunkSize - 3 - sizeY);
+            int startX = chunkRNG.Roll(2, ChunkSize - 3 - sizeX);
+            int startY = chunkRNG.Roll(2, ChunkSize - 3 - sizeY);
             townStart = new Vector2Int(startX, startY);
         } while (!IsAreaClear(townStart, townSize));
 
         FlattenLand(townStart - Vector2Int.one * 2, townSize + Vector2Int.one * 2);
         townBounds = new BoxBounds(townStart, townSize);
         townExists = true;
-        townBuildings = TownBuilder.Helper.BuildTown(townBounds, chunkPRG, this);
+        townBuildings = TownBuilder.Helper.BuildTown(townBounds, chunkRNG, this);
 
         float xSpawn, zSpawn;
         do
         {
-            xSpawn = chunkPRG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
-            zSpawn = chunkPRG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
+            xSpawn = chunkRNG.Roll(-townSize.x / 4, townSize.x / 4) + townBounds.Center.x;
+            zSpawn = chunkRNG.Roll(-townSize.y / 4, townSize.y / 4) + townBounds.Center.y;
         } while (TownBuilder.Helper.InBuilding(new Vector2(xSpawn, zSpawn)));
         
         float ySpawn = GetHeight(new Vector2(xSpawn, zSpawn));
         Vector3 townCenter = new Vector3(xSpawn + 0.5f, ySpawn, zSpawn + 0.5f);
-        MapManager.World.AddSpawnPoint(ChunkOffset + townCenter);
+        World.Map.AddSpawnPoint(ChunkOffset + townCenter);
 
         TraceRoads();
 
@@ -219,6 +241,8 @@ public class Chunk
 
         return true;
     }
+    #endregion
+
 
     public float GetHeight(Vector2 point)
     {
@@ -244,8 +268,6 @@ public class Chunk
         }
     }
 
-    public static float SeaLevel { get { return MapManager.World.seaLevel; } }
-
     public bool CheckViewDistance(float distance, Vector2 position, bool correctPos = true)
     {
         if(correctPos)
@@ -262,7 +284,9 @@ public class Chunk
         return checkDist;
     }
 
+    public static float SeaLevel { get { return World.Map.seaLevel; } }
     public int ChunkSize { get { return MeshData.MeshSize - 1; } }
-
+    public Transform GetChunkTransform() { return chunkObj.transform; }
+    public Vector2 ChunkLocV2() { return new Vector2(chunkObj.transform.position.x, chunkObj.transform.position.z); }
     public Vector3 ChunkOffset { get { return chunkObj.transform.position; } }
 }

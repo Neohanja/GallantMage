@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raceName: Goblin
   baseModel: {fileID: 2318947855118045424, guid: 68d9c494ee8f4c949812bafad78bd35a, type: 3}
+  actorObj: {fileID: 8544655935420945688, guid: c843769f993684441a7e31b8546f1d50, type: 3}
   racialStats:
     stats:
     - statName: Damage

@@ -14,6 +14,10 @@ public class Movement : MonoBehaviour
     protected Vector3 momentum;
     protected Rigidbody locomotion;
 
+    [Header("Combat Listener")]
+    [SerializeField] protected bool meleeRange;
+    [SerializeField] protected GameObject meleeTarget;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,12 @@ public class Movement : MonoBehaviour
         GameLoop();
     }
 
+    public virtual void MeleeRange(GameObject target)
+    {
+        meleeRange = target != null;
+        meleeTarget = target;
+    }
+
     protected virtual void GameLoop()
     {
         if (UIManager.ActiveUI != null && UIManager.ActiveUI.inUI) return;
@@ -35,7 +45,7 @@ public class Movement : MonoBehaviour
         float modSpeed = speed;
         if (running) modSpeed *= runBoost;
 
-        if (transform.position.y < MapManager.World.seaLevel)
+        if (transform.position.y < World.Map.seaLevel)
         {
             locomotion.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
             AttachToGround();
@@ -52,10 +62,10 @@ public class Movement : MonoBehaviour
     {
         float x = transform.position.x;
         float z = transform.position.z;
-        float y = MapManager.World.GetHeight(new Vector2(x, z));
+        float y = World.Map.GetHeight(new Vector2(x, z));
 
-        if (y < MapManager.World.seaLevel - (actorHeight * 0.25f))
-            y = MapManager.World.seaLevel - (actorHeight * 0.25f);
+        if (y < World.Map.seaLevel - (actorHeight * 0.25f))
+            y = World.Map.seaLevel - (actorHeight * 0.25f);
         transform.position = new Vector3(x, y, z);
     }
 

@@ -5,8 +5,10 @@ public class AmplifyNoiseNode : MeshNode
 {
 	public MathFunction ampType;
 	public float ampAmount;
-	public bool clampNoise;
-	public Vector2 minMax;
+	public float minEffected = -1f;
+	public float maxEffected = 1f;
+	public float clampMin = -1f;
+	public float clampMax = 1f;
 
 	public override void ProcessNode()
     {
@@ -18,26 +20,29 @@ public class AmplifyNoiseNode : MeshNode
 			{
 				int index = x + y * MeshData.MeshSize;
 
-				switch(ampType)
-                {
-					case MathFunction.Add:
-						vals[index] += ampAmount;
-						break;
-					case MathFunction.Subtract:
-						vals[index] -= ampAmount;
-						break;
-					case MathFunction.Multiply:
-						vals[index] *= ampAmount;
-						break;
-					case MathFunction.Divide:
-						vals[index] /= ampAmount;
-						break;
-					case MathFunction.Absolute:
-						vals[index] = MathFun.Abs(vals[index]);
-						break;
-                }
+				if (vals[index] >= minEffected && vals[index] <= maxEffected)
+				{
+					switch (ampType)
+					{
+						case MathFunction.Add:
+							vals[index] += ampAmount;
+							break;
+						case MathFunction.Subtract:
+							vals[index] -= ampAmount;
+							break;
+						case MathFunction.Multiply:
+							vals[index] *= ampAmount;
+							break;
+						case MathFunction.Divide:
+							vals[index] /= ampAmount;
+							break;
+						case MathFunction.Absolute:
+							vals[index] = MathFun.Abs(vals[index]);
+							break;
+					}
 
-				if (clampNoise) vals[index] = MathFun.Clamp(minMax.x, minMax.y, vals[index]);
+					vals[index] = MathFun.Clamp(clampMin, clampMax, vals[index]);
+				}
 			}
 		}
 
