@@ -57,20 +57,6 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    public Vector3 RandomSpawn()
-    {
-        float x, y, z;
-
-        do
-        {
-            x = Random.Range(0f, 240f);
-            z = Random.Range(0f, 240f);
-            y = World.Map.GetHeight(new Vector2(x, z));
-        } while (y <= World.Map.seaLevel);
-
-        return new Vector3(x, y, z);
-    }
-
     // Update is called once per frame
     void Update()
     {

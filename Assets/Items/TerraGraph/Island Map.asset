@@ -1,0 +1,514 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7889136123485011210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76278044983b69441b01a7b70c174c00, type: 3}
+  m_Name: Grad Noise
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1176, y: -200}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: -7889136123485011210}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 2415054460860545125}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: -7889136123485011210}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  zOffset: 0
+  scale: 61.81
+  noise0To1: 1
+--- !u!114 &-7406793929714603405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76278044983b69441b01a7b70c174c00, type: 3}
+  m_Name: Grad Noise
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1176, y: 8}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: -7406793929714603405}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entryTwo
+        node: {fileID: 2415054460860545125}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: -7406793929714603405}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  zOffset: 68
+  scale: 59.4
+  noise0To1: 0
+--- !u!114 &-7197495478907275527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93157b50bfa0444c8f795ffbfea1e6f, type: 3}
+  m_Name: Blend
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -152, y: -232}
+  ports:
+    keys:
+    - entryTwo
+    - points
+    - entry
+    values:
+    - _fieldName: entryTwo
+      _node: {fileID: -7197495478907275527}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 5665358648132397935}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: -7197495478907275527}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 872677942919781566}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: -7197495478907275527}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 8103219220056313422}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  blendType: 0
+  blend: 0.773
+--- !u!114 &-5830549578960444417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb0f59646a094441b1214828d5d8d10, type: 3}
+  m_Name: Mesh Final
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 536, y: -56}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: -5830549578960444417}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: -5830549578960444417}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 872677942919781566}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  normalize: 0
+  unclampValue: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59571adea712f24ab77b81996d24fb5, type: 3}
+  m_Name: Island Map
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -5830549578960444417}
+  - {fileID: -7889136123485011210}
+  - {fileID: -7406793929714603405}
+  - {fileID: 2415054460860545125}
+  - {fileID: -7197495478907275527}
+  - {fileID: 5665358648132397935}
+  - {fileID: 8103219220056313422}
+  - {fileID: 5469301383264053186}
+  - {fileID: 1630217586692945166}
+  - {fileID: 872677942919781566}
+  offset: {x: 0, y: 0}
+  seed: 3
+--- !u!114 &872677942919781566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93157b50bfa0444c8f795ffbfea1e6f, type: 3}
+  m_Name: Blend
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 209.57635, y: -26.7048}
+  ports:
+    keys:
+    - entryTwo
+    - points
+    - entry
+    values:
+    - _fieldName: entryTwo
+      _node: {fileID: 872677942919781566}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 1630217586692945166}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: 872677942919781566}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5830549578960444417}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: 872677942919781566}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: -7197495478907275527}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  blendType: 2
+  blend: 0.5
+--- !u!114 &1630217586692945166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5dd16d51b0e2944a51613405f9f48e, type: 3}
+  m_Name: Amplify Noise
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -136, y: 24}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: 1630217586692945166}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entryTwo
+        node: {fileID: 872677942919781566}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: 1630217586692945166}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 5469301383264053186}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  ampType: 2
+  ampAmount: 1.25
+  minEffected: -1
+  maxEffected: 1
+  clampMin: 0.05
+  clampMax: 1
+--- !u!114 &2415054460860545125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93157b50bfa0444c8f795ffbfea1e6f, type: 3}
+  m_Name: Blend
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -824, y: -88}
+  ports:
+    keys:
+    - entryTwo
+    - points
+    - entry
+    values:
+    - _fieldName: entryTwo
+      _node: {fileID: 2415054460860545125}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: -7406793929714603405}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: points
+      _node: {fileID: 2415054460860545125}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 5665358648132397935}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: 2415054460860545125}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: -7889136123485011210}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  blendType: 0
+  blend: 0.49322036
+--- !u!114 &5469301383264053186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76278044983b69441b01a7b70c174c00, type: 3}
+  m_Name: Grad Noise
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: 104}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: 5469301383264053186}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 1630217586692945166}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: 5469301383264053186}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  zOffset: 0
+  scale: 67.69
+  noise0To1: 0
+--- !u!114 &5665358648132397935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52ec4529ea38b24c995cf246f7bc937, type: 3}
+  m_Name: Min Max
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -552, y: -104}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: 5665358648132397935}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entryTwo
+        node: {fileID: -7197495478907275527}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: 5665358648132397935}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: points
+        node: {fileID: 2415054460860545125}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  min: 0.1
+  useMin: 0
+  max: 0.6
+  useMax: 1
+--- !u!114 &8103219220056313422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc25aebbb45ba544892cfd77d1e1ebfc, type: 3}
+  m_Name: Octave Layer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -552, y: -360}
+  ports:
+    keys:
+    - points
+    - entry
+    values:
+    - _fieldName: points
+      _node: {fileID: 8103219220056313422}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -7197495478907275527}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: entry
+      _node: {fileID: 8103219220056313422}
+      _typeQualifiedName: ChunkData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  scale: 27.2
+  xOffset: 14
+  octaves: 6
+  lacunarity: 0.59
+  persistance: 2
+  noise0To1: 0

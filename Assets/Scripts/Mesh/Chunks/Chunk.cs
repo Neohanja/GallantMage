@@ -26,6 +26,7 @@ public class Chunk
     // Data and Randomness
     ChunkData chunkData;
     BoxBounds chunkBounds;
+    Vector2Int chunkID;
     public bool townExists { private set; get; }
     public BoxBounds townBounds;
     public RanGen chunkRNG;
@@ -36,6 +37,7 @@ public class Chunk
         chunkRNG = new RanGen(RanGen.PullNumber(World.Map.seed, chunkCoord.x, chunkCoord.y));
 
         chunkData = chunkInfo;
+        chunkID = chunkCoord / ChunkSize;
         townExists = false;
 
         chunkObj = new GameObject("Chunk");
@@ -51,9 +53,7 @@ public class Chunk
         }
 
         // Make Chunk
-        chunkMesh = new MeshData(chunkData.GetPoints(), World.Map.growth, World.Map.minHeight);
-        chunkFilter.mesh = chunkMesh.GetMesh();
-        chunkCollider.sharedMesh = chunkFilter.mesh;
+        BuildChunk();
 
 
         chunkObj.transform.position = new Vector3(chunkCoord.x, 0f, chunkCoord.y);
@@ -63,6 +63,30 @@ public class Chunk
         {
             ClutterBuilder.Generator.BuildEnvironmentClutter(this);
         }
+    }
+
+    public virtual void BuildChunk()
+    {
+        float[] heightMap = chunkData.GetPoints();
+        if (!World.Map.endless && //Island Generation
+            (chunkID.x <= 0 || chunkID.y <= 0 || chunkID.x >= World.Map.islandSize || chunkID.y >= World.Map.islandSize))
+        {
+            float[,] falloffMap = IslandGen.FalloffMap(chunkID, MeshData.MeshSize, World.Map.islandSize);
+
+            for(int x = 0; x < MeshData.MeshSize; x++)
+            {
+                for(int y = 0; y < MeshData.MeshSize; y++)
+                {
+                    int hmIndex = y * MeshData.MeshSize + x;
+                    heightMap[hmIndex] *= falloffMap[x, y];
+                    if (falloffMap[x, y] < 0.5f) heightMap[hmIndex] -= 0.5f - falloffMap[x, y];
+                }
+            }
+        }
+
+        chunkMesh = new MeshData(heightMap, World.Map.growth, World.Map.minHeight);
+        chunkFilter.mesh = chunkMesh.GetMesh();
+        chunkCollider.sharedMesh = chunkFilter.mesh;
     }
 
     #region Random Number Gen for chunk Items

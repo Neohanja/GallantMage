@@ -40,7 +40,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-  scale: 63
+  scale: 67.73
   xOffset: 0
   octaves: 8
   lacunarity: 0.29
@@ -400,7 +400,7 @@ MonoBehaviour:
       _dynamic: 0
   zOffset: 0
   scale: 77.64
-  noise0To1: 1
+  noise0To1: 0
 --- !u!114 &-2053409693829322356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   - {fileID: -5502167298469903044}
   - {fileID: -3264291198561444928}
   - {fileID: -88268546312938600}
-  offset: {x: 240, y: 240}
+  offset: {x: 0, y: 0}
   seed: 3
 --- !u!114 &130563537046740247
 MonoBehaviour:

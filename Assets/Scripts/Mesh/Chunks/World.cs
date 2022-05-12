@@ -19,6 +19,7 @@ public class World : MonoBehaviour
 
     [Header("Game Settings")]
     public bool endless;
+    [Range(1, 5)]
     public int islandSize;
     public int seed;
     public int viewDistance;
@@ -73,9 +74,12 @@ public class World : MonoBehaviour
         }
         else
         {
-            float xPos = RanGen.PullNumber(seed, 10107) % ChunkSize + 0.5f;
-            float zPos = RanGen.PullNumber(seed, 10107, 8008) % ChunkSize + 0.5f;
-            float yPos = GetHeight(new Vector2(xPos, zPos));
+            float xPos, zPos, yPos;
+
+            xPos = RanGen.PullNumber(seed, 10107) % ChunkSize + 0.5f;
+            zPos = RanGen.PullNumber(seed, 10107, 8008) % ChunkSize + 0.5f;
+            yPos = GetHeight(new Vector2(xPos, zPos));
+
             return new Vector3(xPos, yPos, zPos);
         }
     }
@@ -129,7 +133,8 @@ public class World : MonoBehaviour
 
     public void AddChunk(Vector2Int location, bool buildNow)
     {
-        if (!endless && (location.x > islandSize || location.y > islandSize || location.x < 0 || location.y < 0)) return;
+        if (!endless && (location.x > islandSize || location.y > islandSize || location.x < 0 || location.y < 0))
+            return;
 
         if (!buildNow && !chunkMap.ContainsKey(location))
         {
@@ -157,6 +162,7 @@ public class World : MonoBehaviour
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }
+
 
     private void OnValidate()
     {
