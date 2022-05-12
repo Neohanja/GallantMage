@@ -95,14 +95,18 @@ public class PlayerMove : Movement
             firstPersonCam.transform.Rotate(new Vector3(rotX, 0f, 0f));
         }
 
-        if(meleeRange && Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            int given = meleeTarget.GetComponent<ClutterData>().GiveResources(3, transform);
-            woodCount += given;
-            if (given < 3)
+            if (meleeRange && meleeTarget != null)
             {
-                MeleeRange(null);
+                int given = meleeTarget.GetComponent<ClutterData>().GiveResources(3, transform);
+                woodCount += given;
+                if (given < 3)
+                {
+                    MeleeRange(null);
+                }
             }
+            else meleeRange = false;
         }
 
         if (Input.GetKey(KeyCode.LeftShift)) running = true;

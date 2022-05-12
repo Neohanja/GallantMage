@@ -31,9 +31,9 @@ public class Chunk
     public RanGen chunkRNG;
     List<BuildingData> townBuildings;
 
-    public Chunk(Vector2 chunkCoord, ChunkData chunkInfo)
+    public Chunk(Vector2Int chunkCoord, ChunkData chunkInfo)
     {
-        chunkRNG = new RanGen(RanGen.PullNumber(World.Map.seed, MathFun.Floor(chunkCoord.x), MathFun.Floor(chunkCoord.y)));
+        chunkRNG = new RanGen(RanGen.PullNumber(World.Map.seed, chunkCoord.x, chunkCoord.y));
 
         chunkData = chunkInfo;
         townExists = false;
@@ -56,8 +56,8 @@ public class Chunk
         chunkCollider.sharedMesh = chunkFilter.mesh;
 
 
-        chunkObj.transform.position = new Vector3(chunkCoord.x - HalfMap, 0f, chunkCoord.y - HalfMap);
-        chunkBounds = new BoxBounds(new Vector2(chunkCoord.x - HalfMap, chunkCoord.y - HalfMap), Vector2.one * (MeshData.MeshSize - 1));
+        chunkObj.transform.position = new Vector3(chunkCoord.x, 0f, chunkCoord.y);
+        chunkBounds = new BoxBounds(new Vector2(chunkCoord.x, chunkCoord.y), Vector2.one * (MeshData.MeshSize - 1));
 
         if (ClutterBuilder.Generator != null)
         {
@@ -260,22 +260,8 @@ public class Chunk
         return MathFun.Lerp(a, b, midY);
     }
 
-    public static float HalfMap
+    public bool CheckViewDistance(float distance, Vector2 position)
     {
-        get
-        {
-            return (MeshData.MeshSize - 1) / 2f;
-        }
-    }
-
-    public bool CheckViewDistance(float distance, Vector2 position, bool correctPos = true)
-    {
-        if(correctPos)
-        {
-            position.x += HalfMap;
-            position.y += HalfMap;
-        }
-
         bool checkDist = chunkBounds.PointWithinBounds(position, distance);
 
         if (checkDist && !chunkObj.activeSelf) chunkObj.SetActive(true);

@@ -63,8 +63,8 @@ public class AIManager : MonoBehaviour
 
         do
         {
-            x = Random.Range(-120f, 120f);
-            z = Random.Range(-120f, 120f);
+            x = Random.Range(0f, 240f);
+            z = Random.Range(0f, 240f);
             y = World.Map.GetHeight(new Vector2(x, z));
         } while (y <= World.Map.seaLevel);
 

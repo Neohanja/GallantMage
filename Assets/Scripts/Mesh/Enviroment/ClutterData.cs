@@ -33,7 +33,7 @@ public class ClutterData : MonoBehaviour
 
         if (resourceCount <= 0)
         {
-            fallDirection = attacker.forward;
+            fallDirection = attacker.right;
             dying = true;
             elapsedTimer = 0f;
         }

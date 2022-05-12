@@ -97,14 +97,14 @@ public class ClutterBuilder : MonoBehaviour
             location += chunkID.ChunkOffset;
             float yRot = chunkID.RandomIndex(360);
             float xRot = item.fullRotation ? chunkID.RandomIndex(360) : 0;
-            float zRot = item.fullRotation ? chunkID.RandomIndex(260) : 0;
+            float zRot = item.fullRotation ? chunkID.RandomIndex(360) : 0;
             Vector3 scale = myScale * Vector3.one;
             GameObject clutterItem = Instantiate(item.spawner, location,
                 Quaternion.identity, chunkID.GetChunkTransform());
 
             clutterItem.name = clutterItem.GetComponent<ClutterData>().itemType.ToString();
             clutterItem.transform.localScale = scale;
-            clutterItem.transform.Rotate(new Vector3(xRot, yRot, zRot));
+            clutterItem.GetComponentInChildren<MeshRenderer>().transform.Rotate(new Vector3(xRot, yRot, zRot));
 
             environmentEffects.Add(new ClutterPlacement(location, mySize, clutterItem));
 

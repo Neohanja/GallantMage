@@ -18,6 +18,8 @@ public class World : MonoBehaviour
     List<Vector2Int> queuedChunks;
 
     [Header("Game Settings")]
+    public bool endless;
+    public int islandSize;
     public int seed;
     public int viewDistance;
     public float seaLevel;
@@ -45,7 +47,7 @@ public class World : MonoBehaviour
         potentialSpawns = new List<Vector3>();
         queuedChunks = new List<Vector2Int>();
 
-        VerifyMap(new Vector2Int(0, 0), initMap: true);
+        VerifyMap(new Vector2Int(0, 0), true);
         if (AIManager.AI_Engine != null) AIManager.AI_Engine.StartAI();
         if (UIManager.ActiveUI != null) UIManager.ActiveUI.DoneLoading();
     }
@@ -71,21 +73,15 @@ public class World : MonoBehaviour
         }
         else
         {
-            float xPos = RanGen.PullNumber(seed, 10107) % ChunkSize - Chunk.HalfMap + 0.5f;
-            float zPos = RanGen.PullNumber(seed, 10107, 8008) % ChunkSize - Chunk.HalfMap + 0.5f;
+            float xPos = RanGen.PullNumber(seed, 10107) % ChunkSize + 0.5f;
+            float zPos = RanGen.PullNumber(seed, 10107, 8008) % ChunkSize + 0.5f;
             float yPos = GetHeight(new Vector2(xPos, zPos));
             return new Vector3(xPos, yPos, zPos);
         }
     }
 
-    public float GetHeight(Vector2 point, bool autoCorrect = true)
+    public float GetHeight(Vector2 point)
     {
-        if (autoCorrect)
-        {
-            point.x += Chunk.HalfMap;
-            point.y += Chunk.HalfMap;
-        }
-
         int chunkX = MathFun.Floor(point.x / ChunkSize);
         int chunkY = MathFun.Floor(point.y / ChunkSize);
 
@@ -97,13 +93,8 @@ public class World : MonoBehaviour
         return chunkMap[new Vector2Int(chunkX, chunkY)].GetHeight(new Vector2(xPos, yPos));
     }
 
-    public void VerifyMap(Vector2 position, bool autoCorrect = true, bool initMap = false)
+    public void VerifyMap(Vector2 position, bool initMap = false)
     {
-        if(autoCorrect)
-        {
-            position.x += Chunk.HalfMap;
-            position.y += Chunk.HalfMap;
-        }
 
         Vector2Int location = new Vector2Int(MathFun.Floor(position.x / ChunkSize), MathFun.Floor(position.y / ChunkSize));
 
@@ -119,7 +110,7 @@ public class World : MonoBehaviour
         {
             for (int c = activeChunks.Count - 1; c >= 0; c--)
             {
-                if (!chunkMap[activeChunks[c]].CheckViewDistance(viewDistance * ChunkSize * 2, position, false))
+                if (!chunkMap[activeChunks[c]].CheckViewDistance(viewDistance * ChunkSize * 2, position))
                 {
                     activeChunks.RemoveAt(c);
                 }
@@ -138,6 +129,8 @@ public class World : MonoBehaviour
 
     public void AddChunk(Vector2Int location, bool buildNow)
     {
+        if (!endless && (location.x > islandSize || location.y > islandSize || location.x < 0 || location.y < 0)) return;
+
         if (!buildNow && !chunkMap.ContainsKey(location))
         {
             queuedChunks.Add(location);
@@ -164,4 +157,9 @@ public class World : MonoBehaviour
     }
 
     int ChunkSize { get { return MeshData.MeshSize - 1; } }
+
+    private void OnValidate()
+    {
+        if (islandSize < 1) islandSize = 1;
+    }
 }
